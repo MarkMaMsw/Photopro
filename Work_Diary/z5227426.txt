@@ -1,0 +1,4 @@
+week1: 
+- Gave comment on the draft plan of our design 
+- Searched Ant design resource and discuss with teammate to see if it could be used for Front-end development 
+- Practiced related operations on official offered website  
