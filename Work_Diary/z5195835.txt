@@ -1,0 +1,6 @@
+Week 1
+1. analyze the project requirement and divide the requirement into several functions
+2. specify the project function and draw ER-model 
+3. implement database based on ER-model
+4. confirm python version and flask version with the backend team
+5. schedule week2
