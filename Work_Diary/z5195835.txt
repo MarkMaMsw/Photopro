@@ -1,3 +1,5 @@
+Hao ZHONG
+z5195835
 Week 1
 1. analyze the project requirement and divide the requirement into several functions
 2. specify the project function and draw ER-model 
