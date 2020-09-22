@@ -1,0 +1,4 @@
+Week 1
+1.analyze the basic needs of assignment
+2.configurate the environment for the react framework
+3.design the home page structure
