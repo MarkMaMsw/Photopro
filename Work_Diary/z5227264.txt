@@ -1,0 +1,8 @@
+Longcheng Zhao
+z5227264
+Week 1
+1. analyze the project requirement and help draft up initial verison of design document
+2. communicate with team members about design document
+3. create the Jira & Github teams following guidance
+4. build up initial backend environment(flask + mongodb) and push to Github
+5. create new cluster on the MongoDB Atlas
