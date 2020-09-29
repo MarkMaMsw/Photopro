@@ -12,4 +12,5 @@ Week 2
 2. working on API document
 3. confirm data model
 4. implement a sample demo by using swagger-codegen(consider using swagger-codegen to create a framework)
-5. schedule week3
+5. draw system architecture
+6. schedule week3
