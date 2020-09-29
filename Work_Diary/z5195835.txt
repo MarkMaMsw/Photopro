@@ -6,3 +6,10 @@ Week 1
 3. implement database based on ER-model
 4. confirm python version and flask version with the backend team
 5. schedule week2
+
+Week 2
+1. implement swagger
+2. working on API document
+3. confirm data model
+4. implement a sample demo by using swagger-codegen(consider using swagger-codegen to create a framework)
+5. schedule week3
