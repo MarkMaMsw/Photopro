@@ -2,3 +2,9 @@ Week 1
 1.analyze the basic needs of assignment
 2.configurate the environment for the react framework
 3.design the home page structure
+
+
+Week 2
+1.learn react framework and make an example of antdesign
+2.design the components of main page, user detail website, author detail website
+3.draw the sketch of every websites on the powerpoint
