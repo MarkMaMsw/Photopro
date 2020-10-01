@@ -6,3 +6,10 @@ Week 1
 3. create the Jira & Github teams following guidance
 4. build up initial backend environment(flask + mongodb) and push to Github
 5. create new cluster on the MongoDB Atlas
+
+Week 2
+1. Write background part and schedule part in the proposal
+2. Design API
+3. Organize meting to track progress after class
+4. Communicate and start a new sprint
+5. Plan for the next week
