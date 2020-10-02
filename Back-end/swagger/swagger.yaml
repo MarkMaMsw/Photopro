@@ -1,0 +1,24 @@
+openapi: 3.0.0
+info:
+  title: PhotoSeller
+  description: This is the integrated platform of PhotoSeller
+  version: 0.0.1
+servers:
+- url: http://localhost:8080/
+tags:
+- name: authentication
+  description: Actions to authenticate user
+- name: user
+  description: User Action
+- name: image
+  description: Image Actions
+- name: order
+  description: Order Action
+- name: collection
+  description: Collection Action
+
+paths:
+  /auth/register:
+    post:
+        tags:
+        - authentication
