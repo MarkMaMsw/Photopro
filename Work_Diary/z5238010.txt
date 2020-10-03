@@ -1,3 +1,13 @@
 Week1
 
-Group formed, I participated in group discussion and select to develop front-end part of our project.
+1.Participated in group discussion and select to develop front-end part of our project.
+2.Learned react which we plan to use in our project.
+
+Week2
+1.Discuss user story and user interface.
+2.Draw 1/3 webpage sketches.
+
+Week3
+1.Write user stories on Jira.
+2.Draw page sketches by PPT.
+3.Draw flow chart by PPT.
