@@ -2,3 +2,16 @@ week1:
 - Gave comment on the draft plan of our design 
 - Searched Ant design resource and discuss with teammate to see if it could be used for Front-end development 
 - Practiced related operations on official offered website  
+
+week2:
+- Learned react framework and made an example of antdesign
+- Drew the sketch with Jerry and Mark of every websites
+- Discussed user story and user interface.
+
+week3:
+- Wrote 6/7 of user stories with Jerry 
+- Matched user stories with project objectives 
+- Marked user stories with CHF# on Jira epic 
+- Drew the draft page with Jerry and Mark on teams PPT
+- Drew 6 flow dirgram which cover all different scenario in our projects
+- Redrew several draft pages
