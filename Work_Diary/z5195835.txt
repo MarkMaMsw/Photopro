@@ -14,3 +14,9 @@ Week 2
 4. implement a sample demo by using swagger-codegen(consider using swagger-codegen to create a framework)
 5. draw system architecture
 6. schedule week3
+
+Week 4
+1. working on swagger API document
+2. formatting project proposal
+3. detail system architecture and match feature function and API
+4. schedule week4
