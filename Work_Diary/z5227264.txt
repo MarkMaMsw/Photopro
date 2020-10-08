@@ -13,3 +13,8 @@ Week 2
 3. Organize meting to track progress after class
 4. Communicate and start a new sprint
 5. Plan for the next week
+
+Week 3
+1. Update proposal based on the feedback
+2. Formatting API document
+3. Schedule targets for next week
