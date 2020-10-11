@@ -56,6 +56,7 @@ paths:
             type: "string"
   /auth/register:
     post:
+<<<<<<< HEAD
       tags:
       - "auth"
       summary: "for user register"
@@ -781,3 +782,33 @@ definitions:
         type: "array"
         items:
           $ref: "#/definitions/Image"
+=======
+        tags:
+        - authentication
+        summary: Create new account
+        operationId: app_create_account
+        requestBody:
+          description: New user identifier
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/register"
+          required: true
+        responses:
+
+  /auth/login:
+    post:
+        tags:
+        - authentication
+        summary: Get JWT token
+        operationId: app_generate_token
+        requestBody:
+          description: User identifier
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/login"
+          required: true
+        responses:
+    
+>>>>>>> 2b37f19b72c7fb4e3525b9d4ec86144e976e0ed8
