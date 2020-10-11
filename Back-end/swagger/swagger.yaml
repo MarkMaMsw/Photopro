@@ -1,24 +1,783 @@
-openapi: 3.0.0
+swagger: '2.0'
 info:
-  title: PhotoSeller
-  description: This is the integrated platform of PhotoSeller
-  version: 0.0.1
-servers:
-- url: http://localhost:8080/
-tags:
-- name: authentication
-  description: Actions to authenticate user
-- name: user
-  description: User Action
-- name: image
-  description: Image Actions
-- name: order
-  description: Order Action
-- name: collection
-  description: Collection Action
+  version: 1.0.0
+  title: comp9900
+  description: comp9900
+# Added by API Auto Mocking Plugin
+host: 127.0.0.1:8080
+basePath: /api
+schemes:
+ - https
+ - http
 
+tags: 
+- name: "user"
+  description: "everything about user"
+- name: "image"
+  description: "everything about order"
+- name: "order"
+  description: "everything about index"
+- name: "view"
+  description: "everything about index"
+- name: "like"
+  description: "everything about user"
+- name: "comment"
+  description: "everything about order"
+- name: "tag"
+  description: "everything about index"
+- name: "collection"
+  description: "everything about index"
+- name: "search"
+  description: "everything about order"
+- name: "cart"
+  description: "everything about index"
+- name: "auth"
+  
+  
 paths:
+  /auth/login:
+    post:
+      tags:
+      - "auth"
+      summary: "for user login"
+      description: ""
+      operationId: ""
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        schema:
+          $ref: "#/definitions/Order"
+      responses:
+        "200":
+          description: "tem"
+          schema:
+            type: "string"
   /auth/register:
     post:
-        tags:
-        - authentication
+      tags:
+      - "auth"
+      summary: "for user register"
+      description: ""
+      operationId: ""
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        schema:
+          $ref: "#/definitions/Order"
+      responses:
+        "200":
+          description: "tem"
+          schema:
+            type: "string"
+  /image/getImage:
+    get:
+      tags:
+      - "image"
+      summary: "return default display photo/search image using keyword"
+      description: ""
+      operationId: ""
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        schema:
+          $ref: "#/definitions/Order"
+      responses:
+        "200":
+          description: "tem"
+          schema:
+            type: "string"
+      
+  /image/toplike:
+    get:
+      tags:
+      - "image"
+      summary: "return toplike photo"
+      description: ""
+      operationId: ""
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        schema:
+          $ref: "#/definitions/Order"
+      responses:
+        "200":
+          description: "tem"
+          schema:
+            type: "string"
+  /image/topcomment:
+    get:
+      tags:
+      - "image"
+      summary: "return topcomment photo"
+      description: ""
+      operationId: ""
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        schema:
+          $ref: "#/definitions/Order"
+      responses:
+        "200":
+          description: "tem"
+          schema:
+            type: "string"
+      
+  /image/bestsell:
+    get:
+      tags:
+      - "image"
+      summary: "return bestsell photo"
+      description: ""
+      operationId: ""
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        schema:
+          $ref: "#/definitions/Order"
+      responses:
+        "200":
+          description: "tem"
+          schema:
+            type: "string"
+      
+  /image/detail/{imageID}:
+    get:
+      tags:
+      - "image"
+      summary: "return image detail"
+      description: ""
+      operationId: ""
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        schema:
+          $ref: "#/definitions/Order"
+      responses:
+        "200":
+          description: "tem"
+          schema:
+            type: "string"
+      
+    put:
+      tags:
+      - "image"
+      summary: "update image detail"
+      description: ""
+      operationId: ""
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        schema:
+          $ref: "#/definitions/Order"
+      responses:
+        "200":
+          description: "tem"
+          schema:
+            type: "string"
+      
+  /image:
+    post:
+      tags:
+      - "image"
+      summary: "upload image"
+      description: ""
+      operationId: ""
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        schema:
+          $ref: "#/definitions/Order"
+      responses:
+        "200":
+          description: "tem"
+          schema:
+            type: "string"
+            
+  /image/like:
+    post:
+      tags:
+      - "image"
+      summary: "like an image"
+      description: ""
+      operationId: ""
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        schema:
+          $ref: "#/definitions/Order"
+      responses:
+        "200":
+          description: "tem"
+          schema:
+            type: "string"
+            
+  /image/comment:
+    post:
+      tags:
+      - "image"
+      summary: "comment an image"
+      description: ""
+      operationId: ""
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        schema:
+          $ref: "#/definitions/Order"
+      responses:
+        "200":
+          description: "tem"
+          schema:
+            type: "string"
+            
+  /user/getCreater:
+    get:
+      tags:
+      - "user"
+      summary: "get default creater or search"
+      description: ""
+      operationId: ""
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        schema:
+          $ref: "#/definitions/Order"
+      responses:
+        "200":
+          description: "tem"
+          schema:
+            type: "string"
+            
+  /user/toplike:
+    get:
+      tags:
+      - "user"
+      summary: "return toplike user"
+      description: ""
+      operationId: ""
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        schema:
+          $ref: "#/definitions/Order"
+      responses:
+        "200":
+          description: "tem"
+          schema:
+            type: "string"
+            
+  /user/topcomment:
+    get:
+      tags:
+      - "user"
+      summary: "return topcomment user"
+      description: ""
+      operationId: ""
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        schema:
+          $ref: "#/definitions/Order"
+      responses:
+        "200":
+          description: "tem"
+          schema:
+            type: "string"
+            
+  /user/detail/{userID}:
+    get:
+      tags:
+      - "user"
+      summary: "get user detail"
+      description: ""
+      operationId: ""
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        schema:
+          $ref: "#/definitions/Order"
+      responses:
+        "200":
+          description: "tem"
+          schema:
+            type: "string"
+      
+    put:
+      tags:
+      - "user"
+      summary: "update user detail"
+      description: ""
+      operationId: ""
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        schema:
+          $ref: "#/definitions/Order"
+      responses:
+        "200":
+          description: "tem"
+          schema:
+            type: "string"
+            
+  /user/image/{userID}:
+    get:
+      tags:
+      - "user"
+      summary: "get all upload image of the user"
+      description: ""
+      operationId: ""
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        schema:
+          $ref: "#/definitions/Order"
+      responses:
+        "200":
+          description: "tem"
+          schema:
+            type: "string"
+            
+  /user/cart:
+    post:
+      tags:
+      - "cart"
+      summary: "add image into a cart"
+      description: ""
+      operationId: ""
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        schema:
+          $ref: "#/definitions/Order"
+      responses:
+        "200":
+          description: "tem"
+          schema:
+            type: "string"
+      
+    get:
+      tags:
+      - "cart"
+      summary: "get all image in a cart"
+      description: ""
+      operationId: ""
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        schema:
+          $ref: "#/definitions/Order"
+      responses:
+        "200":
+          description: "tem"
+          schema:
+            type: "string"
+            
+  /user/collection:
+    post:
+      tags:
+      - "collection"
+      summary: "create new collection"
+      description: ""
+      operationId: ""
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        schema:
+          $ref: "#/definitions/Order"
+      responses:
+        "200":
+          description: "tem"
+          schema:
+            type: "string"
+      
+    get:
+      tags:
+      - "collection"
+      summary: "get all collection"
+      description: ""
+      operationId: ""
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        schema:
+          $ref: "#/definitions/Order"
+      responses:
+        "200":
+          description: "tem"
+          schema:
+            type: "string"
+            
+  /user/collection/{collectionID}:
+    post:
+      tags:
+      - "collection"
+      summary: "add an image into collection"
+      description: ""
+      operationId: ""
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        schema:
+          $ref: "#/definitions/Order"
+      responses:
+        "200":
+          description: "tem"
+          schema:
+            type: "string"
+      
+    get:
+      tags:
+      - "user"
+      summary: "get all image of one collection"
+      description: ""
+      operationId: ""
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        schema:
+          $ref: "#/definitions/Order"
+      responses:
+        "200":
+          description: "tem"
+          schema:
+            type: "string"
+            
+  /order:
+    post:
+      tags:
+      - "order"
+      summary: "create an new order"
+      description: ""
+      operationId: ""
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        schema:
+          $ref: "#/definitions/Order"
+      responses:
+        "200":
+          description: "tem"
+          schema:
+            type: "string"
+            
+  /order/detail/{orderID}:
+    get:
+      tags:
+      - "order"
+      summary: "get an order detail"
+      description: ""
+      operationId: ""
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        schema:
+          $ref: "#/definitions/Order"
+      responses:
+        "200":
+          description: "tem"
+          schema:
+            type: "string"
+            
+  /user/orders:
+    get:
+      tags:
+      - "user"
+      summary: "get order list"
+      description: ""
+      operationId: ""
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        schema:
+          $ref: "#/definitions/Order"
+      responses:
+        "200":
+          description: "tem"
+          schema:
+            type: "string"
+            
+  /user/likefromother:
+    get:
+      tags:
+      - "user"
+      summary: "get likefromother"
+      description: ""
+      operationId: ""
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        schema:
+          $ref: "#/definitions/Order"
+      responses:
+        "200":
+          description: "tem"
+          schema:
+            type: "string"
+            
+  /user/mylike:
+    get:
+      tags:
+      - "user"
+      summary: "get mylike"
+      description: ""
+      operationId: ""
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        schema:
+          $ref: "#/definitions/Order"
+      responses:
+        "200":
+          description: "tem"
+          schema:
+            type: "string"
+            
+  /user/mycomment:
+    get:
+      tags:
+      - "user"
+      summary: "get mycomment"
+      description: ""
+      operationId: ""
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        schema:
+          $ref: "#/definitions/Order"
+      responses:
+        "200":
+          description: "tem"
+          schema:
+            type: "string"
+            
+  /user/commentfromother:
+    get:
+      tags:
+      - "user"
+      summary: "get commentfromother"
+      description: ""
+      operationId: ""
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        schema:
+          $ref: "#/definitions/Order"
+      responses:
+        "200":
+          description: "tem"
+          schema:
+            type: "string"
+      
+
+  
+  
+  
+  
+  
+  
+  
+      
+    
+definitions:
+  Tag:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      name:
+        type: "string"
+  User:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      username:
+        type: "string"
+      email:
+        type: "string"
+      password:
+        type: "string"
+      description:
+        type: "string"
+      photoURL:
+        type: "string"
+      balance:
+        type: "integer"
+  Image:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      title:
+        type: "string"
+      price:
+        type: "integer"
+      userID:
+        type: "string"
+      status:
+        type: "string"
+        enum: 
+        - "on shop"
+        - "off shop"
+      tags:
+        type: "array"
+        items:
+          $ref: "#/definitions/Tag"
+      
+  Order:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      userID:
+        type: "string"
+      images:
+        type: "array"
+        items:
+          $ref: "#/definitions/Image"
+      time:
+        type: "string"
+        format: "date-time"
+      totalPrice:
+        type: "integer"
+        
+
+  View:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      imageID:
+        type: "string"
+      userID:
+        type: "string"
+      time:
+        type: "string"
+        format: "date-time"
+        
+  Like:
+    type: "object"
+    properties:
+      imageID:
+        type: "string"
+      userID:
+        type: "string"
+      time:
+        type: "string"
+        format: "date-time"
+      status:
+        type: "string"
+        enum: 
+        - "active"
+        - "inactive"
+  Comment:
+    type: "object"
+    properties:
+      imageID:
+        type: "string"
+      userID:
+        type: "string"
+      time:
+        type: "string"
+        format: "date-time"
+      status:
+        type: "string"
+        enum: 
+        - "active"
+        - "inactive"
+      detail:
+        type: "string"
+
+  Collection:
+    type: "object"
+    properties:
+      userID:
+        type: "string"
+      name:
+        type: "string"
+      detail:
+        type: "string"
+      images:
+        type: "array"
+        items:
+          $ref: "#/definitions/Image"
+          
+  Search:
+    type: "object"
+    properties:
+      userID:
+        type: "string"
+      keyword:
+        type: "string"
+      time:
+        type: "string"
+        format: "date-time"
+        
+  Cart:
+    type: "object"
+    properties:
+      userID:
+        type: "string"
+      images:
+        type: "array"
+        items:
+          $ref: "#/definitions/Image"
