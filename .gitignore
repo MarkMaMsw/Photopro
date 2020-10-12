@@ -1,0 +1,32 @@
+# dependencies
+Front-end/my-project/node_modules
+Front-end/my-project/src/coreui-new
+Front-end/my-project/src/coreui-icons
+Front-end/my-project/src/coreui-charts
+
+# testing
+Front-end/my-project/coverage
+Front-end/my-project/src/coreui-new
+Front-end/my-project/src/coreui-icons
+Front-end/my-project/src/coreui-charts
+
+# production
+Front-end/my-project/build
+Front-end/my-project/src/coreui-new
+Front-end/my-project/src/coreui-icons
+Front-end/my-project/src/coreui-charts
+
+# misc
+Front-end/my-project/.DS_Store
+Front-end/my-project/.idea
+Front-end/my-project/.env.local
+Front-end/my-project/.env.development.local
+Front-end/my-project/.env.test.local
+Front-end/my-project/.env.production.local
+
+Front-end/my-project/npm-debug.log*
+Front-end/my-project/yarn-debug.log*
+Front-end/my-project/yarn-error.log*
+
+# exclude home page
+Front-end/my-project/src/containers
