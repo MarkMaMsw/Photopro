@@ -1,0 +1,959 @@
+---
+swagger: "2.0"
+info:
+  description: "comp9900"
+  version: "1.0.0"
+  title: "comp9900"
+host: "127.0.0.1"
+basePath: "/v1"
+tags:
+- name: "user"
+  description: "everything about user"
+- name: "image"
+  description: "everything about order"
+- name: "order"
+  description: "everything about index"
+- name: "collection"
+  description: "everything about collection"
+- name: "cart"
+  description: "everything about cart"
+- name: "auth"
+  description: "everything about auth"
+schemes:
+- "https"
+- "http"
+paths:
+  /auth/login:
+    post:
+      tags:
+      - "auth"
+      summary: "user login"
+      description: "N"
+      operationId: "user_login"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          $ref: "#/definitions/body"
+      responses:
+        "200":
+          description: "successfully login"
+          schema:
+            type: "string"
+        "400":
+          description: "fail to login"
+          schema:
+            type: "string"
+      x-swagger-router-controller: "swagger_server.controllers.auth_controller"
+  /auth/register:
+    post:
+      tags:
+      - "auth"
+      summary: "for user register"
+      description: "N"
+      operationId: "user_register"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        "200":
+          description: "successfully register"
+          schema:
+            type: "string"
+        "409":
+          description: "already has this user"
+          schema:
+            type: "string"
+      x-swagger-router-controller: "swagger_server.controllers.auth_controller"
+  /image/getImage:
+    get:
+      tags:
+      - "image"
+      summary: "return default display photo/search image using keyword"
+      description: "N"
+      operationId: "get_image_by_keyword"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          $ref: "#/definitions/Search"
+      responses:
+        "200":
+          description: "successfully get images"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Image"
+        "404":
+          description: "not found"
+          schema:
+            type: "string"
+      x-swagger-router-controller: "swagger_server.controllers.image_controller"
+  /auth/logout:
+    get:
+      tags:
+      - "auth"
+      summary: "user logout"
+      description: "ZH"
+      operationId: "user_logout"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        default:
+          description: "successful operation"
+      x-swagger-router-controller: "swagger_server.controllers.auth_controller"
+  /image/toplike:
+    get:
+      tags:
+      - "image"
+      summary: "return toplike photo"
+      description: "N"
+      operationId: "toplike_photo"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "successfully get info"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Image"
+        "404":
+          description: "not found"
+          schema:
+            type: "string"
+      x-swagger-router-controller: "swagger_server.controllers.image_controller"
+  /image/topcomment:
+    get:
+      tags:
+      - "image"
+      summary: "return topcomment photo"
+      description: "N"
+      operationId: "topcomment_photo"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "successfully get info"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Image"
+        "404":
+          description: "not found"
+          schema:
+            type: "string"
+      x-swagger-router-controller: "swagger_server.controllers.image_controller"
+  /image/bestsell:
+    get:
+      tags:
+      - "image"
+      summary: "return bestsell photo"
+      description: "N"
+      operationId: "bestsell_photo"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "successfully get info"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Image"
+        "404":
+          description: "not found"
+          schema:
+            type: "string"
+      x-swagger-router-controller: "swagger_server.controllers.image_controller"
+  /image/detail/{imageID}:
+    get:
+      tags:
+      - "image"
+      summary: "return image detail"
+      description: "N"
+      operationId: "image_detail"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "imageID"
+        in: "path"
+        description: "image ID"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "get photo detail"
+          schema:
+            $ref: "#/definitions/Image"
+        "404":
+          description: "Not found"
+          schema:
+            type: "string"
+      x-swagger-router-controller: "swagger_server.controllers.image_controller"
+    put:
+      tags:
+      - "image"
+      summary: "update image detail"
+      description: "N"
+      operationId: "image_update"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "imageID"
+        in: "path"
+        description: "image ID"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/Image"
+      responses:
+        "200":
+          description: "update photo detail"
+          schema:
+            type: "string"
+        "404":
+          description: "Not found"
+          schema:
+            type: "string"
+      x-swagger-router-controller: "swagger_server.controllers.image_controller"
+  /image:
+    post:
+      tags:
+      - "image"
+      summary: "upload image"
+      description: "N"
+      operationId: "image_upload"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          $ref: "#/definitions/Image"
+      responses:
+        "200":
+          description: "upload photo detail"
+          schema:
+            type: "string"
+        "400":
+          description: "Bad request"
+          schema:
+            type: "string"
+      x-swagger-router-controller: "swagger_server.controllers.image_controller"
+  /image/like:
+    post:
+      tags:
+      - "image"
+      summary: "like an image"
+      description: "N"
+      operationId: "image_like"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          $ref: "#/definitions/Like"
+      responses:
+        "200":
+          description: "like photo"
+          schema:
+            type: "string"
+        "400":
+          description: "Bad request"
+          schema:
+            type: "string"
+      x-swagger-router-controller: "swagger_server.controllers.image_controller"
+  /image/comment:
+    post:
+      tags:
+      - "image"
+      summary: "comment an image"
+      description: "N"
+      operationId: "image_comment"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          $ref: "#/definitions/Comment"
+      responses:
+        "200":
+          description: "comment photo"
+          schema:
+            type: "string"
+        "400":
+          description: "Bad request"
+          schema:
+            type: "string"
+      x-swagger-router-controller: "swagger_server.controllers.image_controller"
+  /user/getCreater:
+    get:
+      tags:
+      - "user"
+      summary: "get default creater or search"
+      description: "N"
+      operationId: "get_creator"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          $ref: "#/definitions/Search"
+      responses:
+        "200":
+          description: "get creators"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/User"
+        "404":
+          description: "not found"
+          schema:
+            type: "string"
+      x-swagger-router-controller: "swagger_server.controllers.user_controller"
+  /user/toplike:
+    get:
+      tags:
+      - "user"
+      summary: "return toplike user"
+      description: "N"
+      operationId: "get_toplike_creators"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "get creators"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/User"
+        "404":
+          description: "not found"
+          schema:
+            type: "string"
+      x-swagger-router-controller: "swagger_server.controllers.user_controller"
+  /user/topcomment:
+    get:
+      tags:
+      - "user"
+      summary: "return topcomment creator"
+      description: "N"
+      operationId: "get_topcomment_creator"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "get creators"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/User"
+        "404":
+          description: "not found"
+          schema:
+            type: "string"
+      x-swagger-router-controller: "swagger_server.controllers.user_controller"
+  /user/detail/{userID}:
+    get:
+      tags:
+      - "user"
+      summary: "get user detail"
+      description: "ZH"
+      operationId: "get_user_detail"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "userID"
+        in: "path"
+        description: "ID of user"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/User"
+      x-swagger-router-controller: "swagger_server.controllers.user_controller"
+    put:
+      tags:
+      - "user"
+      summary: "update user detail"
+      description: "ZH"
+      operationId: "update_user_detail"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "userID"
+        in: "path"
+        description: "ID of user"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        "200":
+          description: "Update successfully"
+        "400":
+          description: "update fail"
+      x-swagger-router-controller: "swagger_server.controllers.user_controller"
+  /user/image/{userID}:
+    get:
+      tags:
+      - "user"
+      summary: "get all upload image of the user"
+      description: "ZH"
+      operationId: "get_image_by_user_id"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "userID"
+        in: "path"
+        description: "ID of user"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Image"
+      x-swagger-router-controller: "swagger_server.controllers.user_controller"
+  /user/cart:
+    get:
+      tags:
+      - "cart"
+      summary: "get all image in a cart"
+      description: "ZH"
+      operationId: "get_all_imageof_crat"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Cart"
+      x-swagger-router-controller: "swagger_server.controllers.cart_controller"
+    post:
+      tags:
+      - "cart"
+      summary: "add image into a cart"
+      description: "ZH"
+      operationId: "get_all_image_of_user"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          $ref: "#/definitions/Order"
+      responses:
+        "200":
+          description: "successful operation"
+      x-swagger-router-controller: "swagger_server.controllers.cart_controller"
+  /user/collection:
+    get:
+      tags:
+      - "collection"
+      summary: "get all collection"
+      description: "ZH"
+      operationId: "get_user_collection"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "operation successfully"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Collection"
+      x-swagger-router-controller: "swagger_server.controllers.collection_controller"
+    post:
+      tags:
+      - "collection"
+      summary: "create new collection"
+      description: "ZH"
+      operationId: "create_new_collection"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          $ref: "#/definitions/Collection"
+      responses:
+        "200":
+          description: "create successful"
+        "400":
+          description: "fail"
+      x-swagger-router-controller: "swagger_server.controllers.collection_controller"
+  /user/collection/{collectionID}:
+    get:
+      tags:
+      - "user"
+      summary: "get all image of one collection"
+      description: "ZH"
+      operationId: "get_image_of_collection"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "collectionID"
+        in: "path"
+        description: "ID of collection"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Image"
+        "404":
+          description: "collection dose not exist"
+      x-swagger-router-controller: "swagger_server.controllers.user_controller"
+    post:
+      tags:
+      - "collection"
+      summary: "add an image into collection"
+      description: "ZH"
+      operationId: "add_image_into_collection"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "collectionID"
+        in: "path"
+        description: "ID of collection"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          $ref: "#/definitions/Image"
+      responses:
+        "200":
+          description: "add successfully"
+        "400":
+          description: "item exist"
+      x-swagger-router-controller: "swagger_server.controllers.collection_controller"
+  /order:
+    post:
+      tags:
+      - "order"
+      summary: "create an new order"
+      description: "ZH"
+      operationId: "order_created"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          $ref: "#/definitions/Order"
+      responses:
+        "200":
+          description: "successful operation"
+        "400":
+          description: "fail"
+      x-swagger-router-controller: "swagger_server.controllers.order_controller"
+  /order/detail/{orderID}:
+    get:
+      tags:
+      - "order"
+      summary: "get an order detail"
+      description: "ZH"
+      operationId: "get_order_detail"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "orderID"
+        in: "path"
+        description: "ID of Order"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Order"
+        "404":
+          description: "order not found"
+      x-swagger-router-controller: "swagger_server.controllers.order_controller"
+  /user/orders:
+    get:
+      tags:
+      - "user"
+      summary: "get order list"
+      description: "ZH"
+      operationId: "get_user_order_list"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Order"
+        "400":
+          description: "fail"
+      x-swagger-router-controller: "swagger_server.controllers.user_controller"
+  /user/likefromother:
+    get:
+      tags:
+      - "user"
+      summary: "get likefromother"
+      description: "ZH"
+      operationId: "get_like_from_other"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Like"
+        "400":
+          description: "fail"
+      x-swagger-router-controller: "swagger_server.controllers.user_controller"
+  /user/mylike:
+    get:
+      tags:
+      - "user"
+      summary: "get mylike"
+      description: "ZH"
+      operationId: "get_my_like"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Like"
+        "400":
+          description: "fail"
+      x-swagger-router-controller: "swagger_server.controllers.user_controller"
+  /user/mycomment:
+    get:
+      tags:
+      - "user"
+      summary: "get mycomment"
+      description: "ZH"
+      operationId: "get_my_comment"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Comment"
+        "400":
+          description: "fail"
+      x-swagger-router-controller: "swagger_server.controllers.user_controller"
+  /user/commentfromother:
+    get:
+      tags:
+      - "user"
+      summary: "get commentfromother"
+      description: "ZH"
+      operationId: "commentfromother"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Comment"
+        "400":
+          description: "fail"
+      x-swagger-router-controller: "swagger_server.controllers.user_controller"
+definitions:
+  Tag:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      name:
+        type: "string"
+    example:
+      name: "name"
+      id: "id"
+  User:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      username:
+        type: "string"
+      email:
+        type: "string"
+      password:
+        type: "string"
+      description:
+        type: "string"
+      photoURL:
+        type: "string"
+      balance:
+        type: "integer"
+    example:
+      photoURL: "photoURL"
+      password: "password"
+      balance: 0
+      description: "description"
+      id: "id"
+      email: "email"
+      username: "username"
+  Image:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      title:
+        type: "string"
+      price:
+        type: "integer"
+      userID:
+        type: "string"
+      status:
+        type: "string"
+        enum:
+        - "on shop"
+        - "off shop"
+      tags:
+        type: "array"
+        items:
+          $ref: "#/definitions/Tag"
+    example:
+      price: 0
+      id: "id"
+      title: "title"
+      userID: "userID"
+      status: "on shop"
+      tags:
+      - name: "name"
+        id: "id"
+      - name: "name"
+        id: "id"
+  Order:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      userID:
+        type: "string"
+      images:
+        type: "array"
+        items:
+          $ref: "#/definitions/Image"
+      time:
+        type: "string"
+        format: "date-time"
+      totalPrice:
+        type: "integer"
+    example:
+      images:
+      - price: 0
+        id: "id"
+        title: "title"
+        userID: "userID"
+        status: "on shop"
+        tags:
+        - name: "name"
+          id: "id"
+        - name: "name"
+          id: "id"
+      - price: 0
+        id: "id"
+        title: "title"
+        userID: "userID"
+        status: "on shop"
+        tags:
+        - name: "name"
+          id: "id"
+        - name: "name"
+          id: "id"
+      totalPrice: 0
+      id: "id"
+      time: "2000-01-23T04:56:07.000+00:00"
+      userID: "userID"
+  Like:
+    type: "object"
+    properties:
+      imageID:
+        type: "string"
+      userID:
+        type: "string"
+      time:
+        type: "string"
+        format: "date-time"
+      status:
+        type: "string"
+        enum:
+        - "active"
+        - "inactive"
+    example:
+      imageID: "imageID"
+      time: "2000-01-23T04:56:07.000+00:00"
+      userID: "userID"
+      status: "active"
+  Comment:
+    type: "object"
+    properties:
+      imageID:
+        type: "string"
+      userID:
+        type: "string"
+      time:
+        type: "string"
+        format: "date-time"
+      status:
+        type: "string"
+        enum:
+        - "active"
+        - "inactive"
+      detail:
+        type: "string"
+    example:
+      imageID: "imageID"
+      time: "2000-01-23T04:56:07.000+00:00"
+      detail: "detail"
+      userID: "userID"
+      status: "active"
+  Collection:
+    type: "object"
+    properties:
+      userID:
+        type: "string"
+      name:
+        type: "string"
+      detail:
+        type: "string"
+      images:
+        type: "array"
+        items:
+          $ref: "#/definitions/Image"
+    example:
+      images:
+      - price: 0
+        id: "id"
+        title: "title"
+        userID: "userID"
+        status: "on shop"
+        tags:
+        - name: "name"
+          id: "id"
+        - name: "name"
+          id: "id"
+      - price: 0
+        id: "id"
+        title: "title"
+        userID: "userID"
+        status: "on shop"
+        tags:
+        - name: "name"
+          id: "id"
+        - name: "name"
+          id: "id"
+      name: "name"
+      detail: "detail"
+      userID: "userID"
+  Search:
+    type: "object"
+    properties:
+      userID:
+        type: "string"
+      keyword:
+        type: "string"
+      time:
+        type: "string"
+        format: "date-time"
+      searchType:
+        type: "string"
+        enum:
+        - "Image"
+        - "Creater"
+  Cart:
+    type: "object"
+    properties:
+      userID:
+        type: "string"
+      images:
+        type: "array"
+        items:
+          $ref: "#/definitions/Image"
+    example:
+      images:
+      - price: 0
+        id: "id"
+        title: "title"
+        userID: "userID"
+        status: "on shop"
+        tags:
+        - name: "name"
+          id: "id"
+        - name: "name"
+          id: "id"
+      - price: 0
+        id: "id"
+        title: "title"
+        userID: "userID"
+        status: "on shop"
+        tags:
+        - name: "name"
+          id: "id"
+        - name: "name"
+          id: "id"
+      userID: "userID"
+  body:
+    type: "object"
+    properties:
+      username:
+        type: "string"
+      password:
+        type: "string"
