@@ -30,3 +30,4 @@ Front-end/my-project/yarn-error.log*
 
 # exclude home page
 Front-end/my-project/src/containers
+Front-end/my-project/src/routes.js
