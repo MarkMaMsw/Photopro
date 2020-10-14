@@ -20,7 +20,7 @@ import './Login.css';
 const Login = () => {
   return (
     <>
-    <div><h1>PhotoPro</h1></div>
+    <div id="Login-header"><a href="/#/MainP">PhotoPro</a></div>
     <div id="Login-container" className="c-app c-default-layout flex-row align-items-center">
       <CContainer>
         <CRow className="justify-content-center">

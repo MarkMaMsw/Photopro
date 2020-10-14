@@ -32,3 +32,4 @@ yarn-error.log*
 
 # exclude home page
 /src/containers
+/src/routes.js
