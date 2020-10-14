@@ -11,3 +11,7 @@ Week3
 1.Write user stories on Jira.
 2.Draw page sketches by PPT.
 3.Draw flow chart by PPT.
+
+Week4
+1.Write Sign in and Sign up pages using React
+2.Discuss with teammates about how to implement the home page
