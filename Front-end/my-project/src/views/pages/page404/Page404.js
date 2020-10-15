@@ -14,7 +14,7 @@ import CIcon from '@coreui/icons-react'
 
 const Page404 = () => {
   return (
-    <div className="c-app c-default-layout flex-row align-items-center">
+    <div id="page-404" className="c-app c-default-layout flex-row align-items-center">
       <CContainer>
         <CRow className="justify-content-center">
           <CCol md="6">

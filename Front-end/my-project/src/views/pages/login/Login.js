@@ -15,17 +15,26 @@ import {
   CRow
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
-import './Login.css';
+import '../../../scss/Login.css'
 
 const Login = () => {
   return (
-    <>
-    <div id="Login-header"><a href="/#/MainP">PhotoPro</a></div>
-    <div id="Login-container" className="c-app c-default-layout flex-row align-items-center">
+    <div className="c-app c-default-layout flex-row align-items-center">
       <CContainer>
         <CRow className="justify-content-center">
           <CCol md="8">
             <CCardGroup>
+            <CCard id="login-left-card" className="text-white bg-primary py-5 d-md-down-none" style={{ width: '44%' }}>
+                <CCardBody className="text-center">
+                  <div>
+                    <h1 id="photo-pro-icon" className="dark">PhotoPro</h1>
+                    <p>Find your favourite photo!</p>
+                    {/* <Link to="/register">
+                      <CButton color="dark" className="mt-3" active tabIndex={-1}>Register Now!</CButton>
+                    </Link> */}
+                  </div>
+                </CCardBody>
+              </CCard>
               <CCard className="p-4">
                 <CCardBody>
                   <CForm>
@@ -55,19 +64,8 @@ const Login = () => {
                         <CButton color="link" className="px-0">Forgot password?</CButton>
                       </CCol>
                     </CRow>
+                    <p className="text-muted">Don't have account? <Link to="/register">Register Now!</Link></p>
                   </CForm>
-                </CCardBody>
-              </CCard>
-              <CCard className="text-white bg-primary py-5 d-md-down-none" style={{ width: '44%' }}>
-                <CCardBody className="text-center">
-                  <div>
-                    <h2>Sign up</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                      labore et dolore magna aliqua.</p>
-                    <Link to="/register">
-                      <CButton color="primary" className="mt-3" active tabIndex={-1}>Register Now!</CButton>
-                    </Link>
-                  </div>
                 </CCardBody>
               </CCard>
             </CCardGroup>
@@ -75,7 +73,6 @@ const Login = () => {
         </CRow>
       </CContainer>
     </div>
-    </>
   )
 }
 
