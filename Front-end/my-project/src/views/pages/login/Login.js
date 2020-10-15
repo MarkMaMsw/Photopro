@@ -32,6 +32,7 @@ const Login = () => {
                     {/* <Link to="/register">
                       <CButton color="dark" className="mt-3" active tabIndex={-1}>Register Now!</CButton>
                     </Link> */}
+                    
                   </div>
                 </CCardBody>
               </CCard>
