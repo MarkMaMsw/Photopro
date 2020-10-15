@@ -15,7 +15,7 @@ import CIcon from '@coreui/icons-react'
 import './Mainheader.css'
 
 // routes config
-import routes from '/Users/jerrycom/Documents/9900/Fighting/capstone-project-comp9900-h16a-fighting/Front-end/my-project/src/routes.js'
+// import routes from '/Users/jerrycom/Documents/9900/Fighting/capstone-project-comp9900-h16a-fighting/Front-end/my-project/src/routes.js'
 
 import Mainheaderdropdown  from './Mainheaderdropdown'
 import Mainheaderdropdownmssg  from './Mainheaderdropdownmssg'
