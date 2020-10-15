@@ -32,7 +32,6 @@ class App extends Component {
               <Route exact path="/500" name="Page 500" render={props => <Page500 {...props}/>} />
               <Route exact path="/mainpage" name="Main Page" render={props => <Mainpage {...props}/>} />
               <Route exact path="/" name="Main P" render={props => <MainP {...props}/>} />
-              {/* <Route path="/" name="Home" render={props => <TheLayout {...props}/>} /> */}
             </Switch>
           </React.Suspense>
       </HashRouter>
