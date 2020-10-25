@@ -235,13 +235,29 @@ paths:
       summary: "upload image"
       description: "N"
       operationId: "imageUpload"
-      produces:
-      - "application/json"
+      consumes:
+      - "multipart/form-data"
       parameters:
-      - in: "body"
-        name: "body"
-        schema:
-         $ref: "#/definitions/Image"
+      - name: "file"
+        in: "formData"
+        type: "file"
+      - name: "title"
+        in: "formData"
+        type: "string"
+      - name: "price"
+        in: "formData"
+        type: "integer"
+      - name: "status"
+        in: "formData"
+        type: "string"
+        enum:
+        - "on shop"
+        - "off shop"
+      - name: "imageTags"
+        in: "formData"
+        type: "array"
+        items:
+          $ref: "#/definitions/Tag"
       responses:
         "200":
           description: "upload photo detail"
@@ -736,6 +752,8 @@ definitions:
         type: "string"
       balance:
         type: "integer"
+      userType:
+        type: "string"
   Image:
     type: "object"
     properties:
