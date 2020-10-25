@@ -1,0 +1,838 @@
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: comp9900
+  description: comp9900
+host: "127.0.0.1:8080"
+basePath: "/api"
+schemes:
+ - https
+ - http
+
+tags: 
+- name: "contributer"
+  description: "everything about contributer"
+- name: "exploiter"
+  description: "everything about exploiter"
+- name: "image"
+  description: "everything about order"
+- name: "order"
+  description: "everything about index"
+- name: "auth"
+  description: "everything about auth"
+  
+paths:
+  /auth/login:
+    post:
+      tags:
+      - "auth"
+      summary: "user login"
+      description: "N"
+      operationId: "userLogin"
+      parameters:
+        - in: "body"
+          name: "body"
+          schema:
+            type: "object"
+            properties:
+              "username":
+                type: "string"
+              "password":
+                type: "string"
+              "type":
+                type: "string"
+      responses:
+        "200":
+          description: "successfully login"
+          schema:
+            type: "string"
+        "400":
+          description: "fail to login"
+          schema:
+            type: "string"
+  /auth/register:
+    post:
+      tags:
+      - "auth"
+      summary: "for user register"
+      description: "N"
+      operationId: "userRegister"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        "200":
+          description: "successfully register"
+          schema:
+            type: "string"
+        "409":
+          description: "already has this user"
+          schema:
+            type: "string"
+  /image/getImage:
+    get:
+      tags:
+      - "image"
+      summary: "return default display photo/search image using keyword"
+      description: "N"
+      operationId: "getImageByKeyword"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        schema:
+          $ref: "#/definitions/Search"
+      responses:
+        "200":
+          description: "successfully get images"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Image"
+        "404":
+          description: "not found"
+          schema:
+            type: "string"
+  /auth/logout:
+    get:
+      tags:
+      - "auth"
+      summary: "user logout"
+      description: "ZH"
+      operationId: "userLogout"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        default:
+          description: "successful operation"
+          
+  /image/toplike:
+    get:
+      tags:
+      - "image"
+      summary: "return toplike photo"
+      description: "N"
+      operationId: "toplikePhoto"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "successfully get info"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Image"
+        "404":
+          description: "not found"
+          schema:
+            type: "string"
+  /image/topcomment:
+    get:
+      tags:
+      - "image"
+      summary: "return topcomment photo"
+      description: "N"
+      operationId: "topcommentPhoto"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "successfully get info"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Image"
+        "404":
+          description: "not found"
+          schema:
+            type: "string"
+      
+  /image/bestsell:
+    get:
+      tags:
+      - "image"
+      summary: "return bestsell photo"
+      description: "N"
+      operationId: "bestsellPhoto"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "successfully get info"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Image"
+        "404":
+          description: "not found"
+          schema:
+            type: "string"
+      
+  /image/detail/{imageID}:
+    get:
+      tags:
+      - "image"
+      summary: "return image detail"
+      description: "N"
+      operationId: "imageDetail"
+      produces:
+      - "application/json"
+      parameters: #path parameter
+        - in: path
+          name: imageID
+          required: true
+          type: "string"
+          description: "image ID"
+      responses:
+        "200":
+          description: "get photo detail"
+          schema:
+            $ref: "#/definitions/Image"
+        "404" :
+          description: "Not found"
+          schema:
+            type: "string"
+      
+    put:
+      tags:
+      - "image"
+      summary: "update image detail"
+      description: "N"
+      operationId: "imageUpdate"
+      produces:
+      - "application/json"
+      parameters:
+        - in: path
+          name: imageID
+          required: true
+          type: "string"
+          description: "image ID"
+        - in: body
+          name: body
+          required: true
+          schema:
+            $ref: "#/definitions/Image"
+      responses:
+        "200":
+          description: "update photo detail"
+          schema:
+            type: "string"
+        "404" :
+          description: "Not found"
+          schema:
+            type: "string"
+            
+  /image:
+    post:
+      tags:
+      - "image"
+      summary: "upload image"
+      description: "N"
+      operationId: "imageUpload"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        schema:
+         $ref: "#/definitions/Image"
+      responses:
+        "200":
+          description: "upload photo detail"
+          schema:
+            type: "string"
+        "400" :
+          description: "Bad request"
+          schema:
+            type: "string"
+            
+  /image/like:
+    post:
+      tags:
+      - "image"
+      summary: "like an image"
+      description: "N"
+      operationId: "imageLike"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        schema:
+          $ref: "#/definitions/Like"
+      responses:
+        "200":
+          description: "like photo"
+          schema:
+            type: "string"
+        "400" :
+          description: "Bad request"
+          schema:
+            type: "string"
+            
+  /image/comment:
+    post:
+      tags:
+      - "image"
+      summary: "comment an image"
+      description: "N"
+      operationId: "imageComment"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        schema:
+          $ref: "#/definitions/Comment"
+      responses:
+        "200":
+          description: "comment photo"
+          schema:
+            type: "string"
+        "400" :
+          description: "Bad request"
+          schema:
+            type: "string"
+            
+  /contributer:
+    get:
+      tags:
+      - "contributer"
+      summary: "get default creater or search"
+      description: "N"
+      operationId: "getCreator"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        schema:
+          $ref: "#/definitions/Search"
+      responses:
+        "200":
+          description: "get creators"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/User"
+        "404" :
+          description: "not found"
+          schema:
+            type: "string"
+            
+  /contributer/toplike:
+    get:
+      tags:
+      - "contributer"
+      summary: "return toplike user"
+      description: "N"
+      operationId: "getToplikeCreators"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "get creators"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/User"
+        "404" :
+          description: "not found"
+          schema:
+            type: "string"
+            
+  /contributer/topcomment:
+    get:
+      tags:
+      - "contributer"
+      summary: "return topcomment creator"
+      description: "N"
+      operationId: "getTopcommentCreator"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "get creators"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/User"
+        "404" :
+          description: "not found"
+          schema:
+            type: "string"
+            
+            
+  /contributer/detail/{userID}:
+    get:
+      tags:
+      - "contributer"
+      summary: "get user detail"
+      description: "ZH"
+      operationId: "getUserDetail"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "userID"
+        in: "path"
+        description: "ID of user" 
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/User"
+    put:
+      tags:
+      - "contributer"
+      summary: "update user detail"
+      description: "ZH"
+      operationId: "updateUserDetail"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "userID"
+        in: "path"
+        description: "ID of user" 
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        "200":
+          description: "Update successfully"
+        "400":
+          description: "update fail"
+      
+  /exploiter/detail/{userID}:
+    get:
+      tags:
+      - "exploiter"
+      summary: "get user detail"
+      description: "ZH"
+      operationId: "getExploiterDetail"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "userID"
+        in: "path"
+        description: "ID of user" 
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/User"
+    put:
+      tags:
+      - "exploiter"
+      summary: "update user detail"
+      description: "ZH"
+      operationId: "updateExploiterDetail"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "userID"
+        in: "path"
+        description: "ID of user" 
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        "200":
+          description: "Update successfully"
+        "400":
+          description: "update fail"
+  /contributer/image/{userID}:
+    get:
+      tags:
+      - "contributer"
+      summary: "get all upload image of the user"
+      description: "ZH"
+      operationId: "getImageByUserId"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "userID"
+        in: "path"
+        description: "ID of user" 
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Image"
+            
+
+            
+  /exploiter/collection:
+    post:
+      tags:
+      - "exploiter"
+      summary: "create new collection"
+      description: ""
+      operationId: "createNewCollection"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        schema:
+          $ref: "#/definitions/Collection"
+      responses:
+        "200":
+          description: "create successful"
+        "400":
+          description: "fail"
+      
+    get:
+      tags:
+      - "exploiter"
+      summary: "get all collection"
+      description: ""
+      operationId: "getUserCollection"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "operation successfully"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Collection"
+              
+  /exploiter/collection/{collectionID}:
+    post:
+      tags:
+      - "exploiter"
+      summary: "add an image into collection"
+      description: "ZH"
+      operationId: "addImageIntoCollection"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "collectionID"
+        in: "path"
+        description: "ID of collection"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        schema:
+          $ref: "#/definitions/Image"
+      responses:
+        "200":
+          description: "add successfully"
+        "400":
+          description: "item exist"
+      
+    get:
+      tags:
+      - "exploiter"
+      summary: "get all image of one collection"
+      description: "ZH"
+      operationId: "getImageOfCollection"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "collectionID"
+        in: "path"
+        description: "ID of collection"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Image"
+        "404":
+          description: "collection dose not exist"
+              
+  /order:
+    post:
+      tags:
+      - "order"
+      summary: "create an new order"
+      description: "ZH"
+      operationId: "orderCreated"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        schema:
+          $ref: "#/definitions/Order"
+      responses:
+        "200":
+          description: "successful operation"
+        "400":
+          description: "fail"
+            
+  /order/detail/{orderID}:
+    get:
+      tags:
+      - "order"
+      summary: "get an order detail"
+      description: "ZH"
+      operationId: "getOrderDetail"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "orderID"
+        in: "path"
+        description: "ID of Order"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Order"
+        "404":
+          description: "order not found"
+            
+  /exploiter/orders:
+    get:
+      tags:
+      - "exploiter"
+      summary: "get order list"
+      description: "ZH"
+      operationId: "getUserOrderList"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Order"
+        "400":
+          description: "fail"
+          
+  /contributer/likefromother:
+    get:
+      tags:
+      - "contributer"
+      summary: "get likefromother"
+      description: "ZH"
+      operationId: "getLikeFromOther"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Like"
+        "400":
+          description: "fail"
+            
+  /exploiter/mylike:
+    get:
+      tags:
+      - "exploiter"
+      summary: "get mylike"
+      description: "ZH"
+      operationId: "getMyLike"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Like"
+        "400":
+          description: "fail"
+            
+  /exploiter/mycomment:
+    get:
+      tags:
+      - "exploiter"
+      summary: "get mycomment"
+      description: "ZH"
+      operationId: "getMyComment"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Comment"
+        "400":
+          description: "fail"
+              
+  /contributer/commentfromother:
+    get:
+      tags:
+      - "contributer"
+      summary: "get commentfromother"
+      description: "ZH"
+      operationId: "getCommentFromOther"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Comment"
+        "400":
+          description: "fail"
+              
+              
+definitions:
+  Tag:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      name:
+        type: "string"
+  User:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      username:
+        type: "string"
+      email:
+        type: "string"
+      password:
+        type: "string"
+      description:
+        type: "string"
+      photoURL:
+        type: "string"
+      balance:
+        type: "integer"
+  Image:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      title:
+        type: "string"
+      price:
+        type: "integer"
+      userID:
+        type: "string"
+      status:
+        type: "string"
+        enum: 
+        - "on shop"
+        - "off shop"
+      imagetags:
+        type: "array"
+        items:
+          $ref: "#/definitions/Tag"
+      
+  Order:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      userID:
+        type: "string"
+      images:
+        type: "array"
+        items:
+          $ref: "#/definitions/Image"
+      time:
+        type: "string"
+        format: "date-time"
+      totalPrice:
+        type: "integer"
+        
+  Like:
+    type: "object"
+    properties:
+      imageID:
+        type: "string"
+      userID:
+        type: "string"
+      time:
+        type: "string"
+        format: "date-time"
+      status:
+        type: "string"
+        enum: 
+        - "active"
+        - "inactive"
+  Comment:
+    type: "object"
+    properties:
+      imageID:
+        type: "string"
+      userID:
+        type: "string"
+      time:
+        type: "string"
+        format: "date-time"
+      status:
+        type: "string"
+        enum: 
+        - "active"
+        - "inactive"
+      detail:
+        type: "string"
+
+  Collection:
+    type: "object"
+    properties:
+      userID:
+        type: "string"
+      name:
+        type: "string"
+      detail:
+        type: "string"
+      images:
+        type: "array"
+        items:
+          $ref: "#/definitions/Image"
+          
+  Search:
+    type: "object"
+    properties:
+      userID:
+        type: "string"
+      keyword:
+        type: "string"
+      time:
+        type: "string"
+        format: "date-time"
+      searchType:
+        type: "string"
+        enum:
+        - "Image"
+        - "Creater"
