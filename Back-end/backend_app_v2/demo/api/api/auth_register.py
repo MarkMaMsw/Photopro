@@ -14,17 +14,16 @@ class AuthRegister(Resource):
 
     def post(self):
         
-        if (db.db.user.find_one({"email":request.json["email"]}) != None):
+        if (db.db.user.find_one({"email":request.json["email"],"userType":request.json["userType"]}) != None):
             return "The user exists", 409, None
         g.user = request.json
         g.user["password"] = auth.generate_hash(request.json["password"])
         db.db.user.insert_one(g.user)
 
-        access_token = create_access_token(g.user["email"])
-        refresh_token = create_refresh_token(g.user["email"])
+        access_token = create_access_token({"user":g.user["email"],"type":g.user["userType"]})
+        # refresh_token = create_refresh_token(g.user["email"])
 
         return {
-                "message": "create user",
-                "access_token": access_token,
-                "refresh_token": refresh_token
+                "message": "Created user",
+                "access_token": access_token
                  }, 200, None
