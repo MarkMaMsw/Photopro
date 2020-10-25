@@ -13,3 +13,12 @@ week 3
 1. verify the function of all websites and draw the related flowchart
 2. write and modify the user stories
 3. satisfy the needs with userstory
+
+
+week 4
+1. make use of coreui framework to construct mainpage and research page result.
+2. complete the connection with mainpage and sign in/up page.
+3. learn how to write thumbup and comment function
+
+week 5
+
