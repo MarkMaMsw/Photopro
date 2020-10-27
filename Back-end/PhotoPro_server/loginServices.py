@@ -17,7 +17,7 @@ class AuthLogin(Resource):
 
         if not auth.verigy_hash(g.user["password"],user["password"]):
             return "The password not correct", 400, None
-        access_token = create_access_token({"user":g.user["username"],"type":g.user["userType"],"id":user["id"]})
+        access_token = create_access_token({"user":g.user["username"],"type":g.user["userType"],"id":user["id"]},expires_delta=False)
         # refresh_token = create_refresh_token(g.user["username"])
 
         return {
@@ -35,7 +35,7 @@ class AuthRegister(Resource):
         g.user["id"] = str(int(db.db.user.find_one(sort=[("id", -1)])["id"])+1)
         db.db.user.insert_one(g.user)
 
-        access_token = create_access_token({"user":g.user["email"],"type":g.user["userType"],"id":g.user["id"]})
+        access_token = create_access_token({"user":g.user["email"],"type":g.user["userType"],"id":g.user["id"]},expires_delta=False)
         # refresh_token = create_refresh_token(g.user["email"])
 
         return {
