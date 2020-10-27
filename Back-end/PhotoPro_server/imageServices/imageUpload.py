@@ -5,25 +5,29 @@ from flask_jwt_extended import (create_access_token, create_refresh_token, jwt_r
 from werkzeug.utils import secure_filename
 import db
 import time
-class File(Resource):
-    def get(self,imageName):
-        fileName = "upload/" + imageName
-        return send_file(fileName, mimetype='image/gif')
-class Image(Resource):
+class ImageUpload(Resource):
+    #upload image
     @jwt_required
     def post(self):
+        #get image detail from form
         f = request.files['file']
         image_title = request.form['title']
         image_price = request.form['price']
         image_status = request.form['status']
         image_tag = request.form['tag']
+        #rename image file
         image_filename = secure_filename(f.filename)
+        ext = image_filename.rsplit('.',1)[1]
+        image_id = str(int(time.time()))
+        image_newfilename = str(image_id) + '.' + ext
+        #get contributor id
         contributer_id = get_raw_jwt()["identity"]["id"]
         file_store_path = 'upload/'
-        image_id = int(time.time())
+        #save file
         if not os.path.exists(file_store_path):
             os.mkdir(file_store_path)
-        f.save(os.path.join(file_store_path, image_filename))
+        f.save(os.path.join(file_store_path, image_newfilename))
+        #insert in database
         image_detail = {
             'image_id' : image_id,
             'contributer_id' : contributer_id,
@@ -31,14 +35,8 @@ class Image(Resource):
             'price' : image_price,
             'status' : image_status,
             'tag' : image_tag,
-            'image_name' : image_filename
+            'image_name' : image_newfilename
         }
         db.db.image.insert_one(image_detail)
-        return [], 200, None
-
-class ImageGetimage(Resource):
-    @jwt_required
-    def get(self):
-        print(get_raw_jwt()["identity"]["id"])
-        return [], 200, None
-
+        result = {'status':'upload success'}
+        return result, 200, None
