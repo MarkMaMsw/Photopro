@@ -4,7 +4,9 @@ from flask_restful import Api
 from flask_jwt_extended import JWTManager
 
 from loginServices import AuthRegister, AuthLogin
-from image import Image, File
+from imageServices.imageUpload import ImageUpload
+from imageServices.imageDetail import ImageDetail
+from imageServices.imageFile import ImageFile
 
 app = Flask(__name__)
 
@@ -25,8 +27,9 @@ app.config['UPLOAD_FOLDER'] = file_store
 # loginService
 restful_api.add_resource(AuthRegister, '/register')
 restful_api.add_resource(AuthLogin, '/login')
-restful_api.add_resource(File, '/image/<string:imageName>')
-restful_api.add_resource(Image, '/image')
+restful_api.add_resource(ImageDetail, '/image/<string:imageId>')
+restful_api.add_resource(ImageUpload, '/image')
+restful_api.add_resource(ImageFile, '/image/file/<string:imageName>')
 
 
 if __name__ == '__main__':
