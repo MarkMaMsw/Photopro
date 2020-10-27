@@ -14,7 +14,7 @@ class ImageDetail(Resource):
         image_url = ip_address + file_url + image['image_name']
         result = {
             'image_id': image['image_id'], 
-            'contributer_id': image['contributer_id'], 
+            'contributor_id': image['contributor_id'], 
             'title': image['title'], 
             'price': image['price'], 
             'status': image['status'], 

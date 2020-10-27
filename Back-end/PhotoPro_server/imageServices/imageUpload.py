@@ -30,7 +30,7 @@ class ImageUpload(Resource):
         #insert in database
         image_detail = {
             'image_id' : image_id,
-            'contributer_id' : contributer_id,
+            'contributor_id' : contributer_id,
             'title' : image_title,
             'price' : image_price,
             'status' : image_status,
