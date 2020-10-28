@@ -18,3 +18,18 @@ Week 3
 1. Update proposal based on the feedback
 2. Formatting API document
 3. Schedule targets for next week
+
+Week 4
+1. update swagger yaml document based on requirements
+2. generate swagger-flask frame based on yaml file
+
+Week 5
+1. update swagger yaml document
+2. generate swagger-flask code
+3. implement login/signup functions connecting with online database
+4. prepare Demo A
+5. Hold retrospective meeting
+
+Week 6
+1. Write retrospective report
+2. implement more APIs
