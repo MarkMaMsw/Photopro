@@ -1,9 +1,6 @@
 #photo-pro-icon{
     background-color: rgb(204, 15, 15, 0.7);
-    /* display: flex; */
-    /* text-align: center; */
     border-radius: 5px;
-    /* box-shadow: 0 0 5px yellow; */
     box-shadow: inset 0 0 25px rgb(204, 15, 15);;
 }
 #login-left-card{
@@ -23,7 +20,7 @@
     font-size: 25px;
 }
 .c-app{
-    background-image: url('../images/LoginBcakground.jpg');
+    background-image: url('../../../images/LoginBcakground.jpg');
 }
 
 
