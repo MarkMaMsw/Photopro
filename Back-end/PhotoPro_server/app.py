@@ -5,6 +5,7 @@ from flask_jwt_extended import JWTManager
 
 from login import AuthLogin
 from register import AuthRegister
+from contributorServices.contributor import ContributorInfo
 from imageServices.imageUpload import ImageUpload
 from imageServices.imageDetail import ImageDetail
 from imageServices.imageFile import ImageFile
@@ -31,6 +32,7 @@ restful_api.add_resource(AuthLogin, '/login')
 restful_api.add_resource(ImageDetail, '/image/<string:imageId>')
 restful_api.add_resource(ImageUpload, '/image')
 restful_api.add_resource(ImageFile, '/image/file/<string:imageName>')
+restful_api.add_resource(ContributorInfo, '/contributor')
 
 
 if __name__ == '__main__':
