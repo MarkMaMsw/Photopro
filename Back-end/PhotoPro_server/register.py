@@ -13,6 +13,7 @@ class AuthRegister(Resource):
             return "The user exists", 409, None
         g.user = request.json
         g.user["password"] = encrypt.generate_hash(request.json["password"])
+        g.user["balance"] = 1000
         g.user["id"] = str(int(db.db.user.find_one(sort=[("id", -1)])["id"])+1)
         db.db.user.insert_one(g.user)
 
