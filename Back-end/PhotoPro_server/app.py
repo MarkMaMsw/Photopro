@@ -10,6 +10,8 @@ from contributorServices.contributorImage import ContributorImage
 from imageServices.imageUpload import ImageUpload
 from imageServices.imageDetail import ImageDetail
 from imageServices.imageFile import ImageFile
+from imageServices.indexImage import IndexImage
+from explorerServices.explorerInfo import ExplorerInfo
 
 app = Flask(__name__)
 
@@ -31,7 +33,9 @@ restful_api.add_resource(ImageDetail, '/image/<string:imageId>')
 restful_api.add_resource(ImageUpload, '/image')
 restful_api.add_resource(ImageFile, '/image/file/<string:imageName>')
 restful_api.add_resource(ContributorInfo, '/contributor')
-restful_api.add_resource(ContributorImage, '/contributor/<string:contributorId>')
+restful_api.add_resource(ExplorerInfo, '/explorerInfo')
+restful_api.add_resource(ContributorImage, '/contributor/image/<string:contributorId>')
+restful_api.add_resource(IndexImage, '/index')
 
 
 if __name__ == '__main__':

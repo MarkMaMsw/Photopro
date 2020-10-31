@@ -1,0 +1,337 @@
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: comp9900
+  description: comp9900
+host: "34.87.211.156"
+basePath: "/"
+schemes:
+ - https
+ - http
+ 
+tags: 
+- name: "contributer"
+  description: "everything about contributer"
+- name: "explorer"
+  description: "everything about exploiter"
+- name: "image"
+  description: "everything about order"
+- name: "order"
+  description: "everything about index"
+- name: "auth"
+  description: "everything about auth"
+  
+paths:
+  /login:
+    post:
+      tags:
+      - "auth"
+      summary: "user login"
+      description: "N"
+      operationId: "userLogin"
+      parameters:
+        - in: "body"
+          name: "body"
+          schema:
+            type: "object"
+            properties:
+              "username":
+                type: "string"
+              "password":
+                type: "string"
+              "userType":
+                type: "string"
+      responses:
+        "200":
+          description: "successfully login"
+          schema:
+            type: "object"
+            properties:
+              "message":
+                type: "string"
+              "access_token":
+                type: "string"
+        "400":
+          description: "fail to login"
+          schema:
+            type: "string"
+  /register:
+    post:
+      tags:
+      - "auth"
+      summary: "for user register"
+      description: "N"
+      operationId: "userRegister"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        "200":
+          description: "successfully register"
+          schema:
+            type: "object"
+            properties:
+              "message":
+                type: "string"
+              "access_token":
+                type: "string"
+        "409":
+          description: "already has this user"
+          schema:
+            type: "string"
+  /image/{imageId}:
+    get:
+      tags:
+      - "image"
+      summary: "return image detail"
+      produces:
+      - "application/json"
+      parameters: #path parameter
+        - in: path
+          name: imageId
+          required: true
+          type: "string"
+          description: "image ID"
+      responses:
+        "200":
+          description: "get photo detail"
+          schema:
+            $ref: "#/definitions/Image"
+        "404" :
+          description: "Not found"
+          schema:
+            type: "string"
+  /image:
+    post:
+      tags:
+      - "image"
+      summary: "upload image"
+      description: "N"
+      operationId: "imageUpload"
+      consumes:
+      - "multipart/form-data"
+      parameters:
+      - name: "file"
+        in: "formData"
+        type: "file"
+      - name: "title"
+        in: "formData"
+        type: "string"
+      - name: "price"
+        in: "formData"
+        type: "integer"
+      - name: "status"
+        in: "formData"
+        type: "string"
+        enum:
+        - "on_shop"
+        - "off_shop"
+      - name: "tag"
+        in: "formData"
+        type: "string"
+      responses:
+        "200":
+          description: "upload photo detail"
+          schema:
+            type: "string"
+        "400" :
+          description: "Bad request"
+          schema:
+            type: "string"
+  /contributor:
+    get:
+      tags:
+      - "contributor"
+      summary: "get user detail"
+      description: "need JWT"
+      operationId: "getUserDetail"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/User"
+              
+  /contributor/image/contributorId:
+    get:
+      tags:
+      - "contributor"
+      summary: "getContributorImage"
+      description: "need JWT"
+      operationId: "getContributorImage"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Image"
+  /index:
+    get:
+      tags:
+      - "image"
+      summary: "get Index Image"
+      operationId: "getIndexImage"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Image"
+
+  /explorerInfo:
+    get:
+      tags:
+      - "explorer"
+      summary: "get explorer detail"
+      description: "need JWT"
+      operationId: "getExplorerDetail"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/User"
+definitions:
+  Tag:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      name:
+        type: "string"
+  User:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      username:
+        type: "string"
+      email:
+        type: "string"
+      password:
+        type: "string"
+      description:
+        type: "string"
+      photoURL:
+        type: "string"
+      balance:
+        type: "integer"
+      userType:
+        type: "string"
+        enum:
+        - "contributor"
+        - "explorer"
+  Image:
+    type: "object"
+    properties:
+      image_id:
+        type: "string"
+      contributor_id:
+        type: "string"
+      title:
+        type: "string"
+      price:
+        type: "string"
+      status:
+        type: "string"
+        enum: 
+        - "on shop"
+        - "off shop"
+      tag:
+        type: "string"
+      image_name:
+        type: "string"
+      image_url:
+        type: "string"
+      
+  Order:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      userID:
+        type: "string"
+      images:
+        type: "array"
+        items:
+          $ref: "#/definitions/Image"
+      time:
+        type: "string"
+        format: "date-time"
+      totalPrice:
+        type: "integer"
+        
+  Like:
+    type: "object"
+    properties:
+      imageID:
+        type: "string"
+      userID:
+        type: "string"
+      time:
+        type: "string"
+        format: "date-time"
+      status:
+        type: "string"
+        enum: 
+        - "active"
+        - "inactive"
+  Comment:
+    type: "object"
+    properties:
+      imageID:
+        type: "string"
+      userID:
+        type: "string"
+      time:
+        type: "string"
+        format: "date-time"
+      status:
+        type: "string"
+        enum: 
+        - "active"
+        - "inactive"
+      detail:
+        type: "string"
+
+  Collection:
+    type: "object"
+    properties:
+      userID:
+        type: "string"
+      name:
+        type: "string"
+      detail:
+        type: "string"
+      images:
+        type: "array"
+        items:
+          $ref: "#/definitions/Image"
+          
+  Search:
+    type: "object"
+    properties:
+      userID:
+        type: "string"
+      keyword:
+        type: "string"
+      time:
+        type: "string"
+        format: "date-time"
+      searchType:
+        type: "string"
+        enum:
+        - "Image"
+        - "Creater"
