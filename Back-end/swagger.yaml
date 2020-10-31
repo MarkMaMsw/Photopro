@@ -246,6 +246,45 @@ paths:
             type: "array"
             items:
               $ref: "#/definitions/Comment"
+
+  /image/like:
+    post:
+      tags:
+      - "image"
+      summary: "post like"
+      description: "need JWT"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        schema:
+          $ref: "#/definitions/Comment"
+      responses:
+        "200":
+          description: "successful operation"
+          
+  /image/like/{imageId}:
+    get:
+      tags:
+      - "image"
+      summary: "get all likes of one image"
+      produces:
+      - "application/json"
+      parameters: #path parameter
+        - in: path
+          name: imageId
+          required: true
+          type: "string"
+          description: "image ID"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Comment"
+
 definitions:
   Tag:
     type: "object"
@@ -321,11 +360,6 @@ definitions:
     properties:
       imageID:
         type: "string"
-      userID:
-        type: "string"
-      time:
-        type: "string"
-        format: "date-time"
       status:
         type: "string"
         enum: 
