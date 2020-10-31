@@ -3,8 +3,8 @@ from flask_cors import CORS
 from flask_restful import Api
 from flask_jwt_extended import JWTManager
 
-from login import AuthLogin
-from register import AuthRegister
+from auth.login import AuthLogin
+from auth.register import AuthRegister
 from contributorServices.contributor import ContributorInfo
 from contributorServices.contributorImage import ContributorImage
 from imageServices.imageUpload import ImageUpload
