@@ -36,4 +36,3 @@ class AuthRegister(Resource):
                 "message": "Created user",
                 "access_token": access_token
                  }, 200, None
-

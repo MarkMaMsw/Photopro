@@ -12,6 +12,8 @@ from imageServices.imageDetail import ImageDetail
 from imageServices.imageFile import ImageFile
 from imageServices.indexImage import IndexImage
 from explorerServices.explorerInfo import ExplorerInfo
+from imageServices.imageComment import PostImageComment
+from imageServices.imageComment import GetImageComment
 
 app = Flask(__name__)
 
@@ -29,7 +31,9 @@ restful_api = Api(app)
 # loginService
 restful_api.add_resource(AuthRegister, '/register')
 restful_api.add_resource(AuthLogin, '/login')
-restful_api.add_resource(ImageDetail, '/image/<string:imageId>')
+restful_api.add_resource(ImageDetail, '/image/detail/<string:imageId>')
+restful_api.add_resource(PostImageComment, '/image/comment')
+restful_api.add_resource(GetImageComment, '/image/comment/<string:imageId>')
 restful_api.add_resource(ImageUpload, '/image')
 restful_api.add_resource(ImageFile, '/image/file/<string:imageName>')
 restful_api.add_resource(ContributorInfo, '/contributor')

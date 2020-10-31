@@ -83,7 +83,7 @@ paths:
           description: "already has this user"
           schema:
             type: "string"
-  /image/{imageId}:
+  /image/detail/{imageId}:
     get:
       tags:
       - "image"
@@ -157,7 +157,7 @@ paths:
           schema:
             $ref: "#/definitions/User"
               
-  /contributor/image/contributorId:
+  /contributor/image/{contributorId}:
     get:
       tags:
       - "contributor"
@@ -166,6 +166,12 @@ paths:
       operationId: "getContributorImage"
       produces:
       - "application/json"
+      parameters: #path parameter
+        - in: path
+          name: contributorId
+          required: true
+          type: "string"
+          description: "image ID"
       responses:
         "200":
           description: "successful operation"
@@ -203,6 +209,43 @@ paths:
           description: "successful operation"
           schema:
             $ref: "#/definitions/User"
+  /image/comment:
+    post:
+      tags:
+      - "image"
+      summary: "post comment"
+      description: "need JWT"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        schema:
+          $ref: "#/definitions/Comment"
+      responses:
+        "200":
+          description: "successful operation"
+          
+  /image/comment/{imageId}:
+    get:
+      tags:
+      - "image"
+      summary: "get all comment of one image"
+      produces:
+      - "application/json"
+      parameters: #path parameter
+        - in: path
+          name: imageId
+          required: true
+          type: "string"
+          description: "image ID"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Comment"
 definitions:
   Tag:
     type: "object"
@@ -291,19 +334,9 @@ definitions:
   Comment:
     type: "object"
     properties:
-      imageID:
+      image_id:
         type: "string"
-      userID:
-        type: "string"
-      time:
-        type: "string"
-        format: "date-time"
-      status:
-        type: "string"
-        enum: 
-        - "active"
-        - "inactive"
-      detail:
+      comment_detail:
         type: "string"
 
   Collection:
