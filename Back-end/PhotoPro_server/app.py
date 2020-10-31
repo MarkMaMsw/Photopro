@@ -16,6 +16,7 @@ from imageServices.imageComment import PostImageComment
 from imageServices.imageComment import GetImageComment
 from imageServices.imageLike import PostImageLike
 from imageServices.imageLike import GetImageLike
+from imageServices.imageCollection import ImageCollection
 
 app = Flask(__name__)
 
@@ -40,6 +41,7 @@ restful_api.add_resource(ImageUpload, '/image')
 restful_api.add_resource(ImageFile, '/image/file/<string:imageName>')
 restful_api.add_resource(PostImageLike, '/image/like')
 restful_api.add_resource(GetImageLike, '/image/like/<string:imageId>')
+restful_api.add_resource(ImageCollection, '/image/collection')
 restful_api.add_resource(ContributorInfo, '/contributor')
 restful_api.add_resource(ExplorerInfo, '/explorerInfo')
 restful_api.add_resource(ContributorImage, '/contributor/image/<string:contributorId>')

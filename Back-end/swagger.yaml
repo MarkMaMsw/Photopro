@@ -285,6 +285,49 @@ paths:
             items:
               $ref: "#/definitions/Comment"
 
+  /image/collection:
+    post:
+      tags:
+      - "image"
+      summary: "post collection"
+      description: "need JWT"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        schema:
+          $ref: "#/definitions/postcollection"
+      responses:
+        "200":
+          description: "successful operation"
+    put:
+      tags:
+      - "image"
+      summary: "put collection"
+      description: "need JWT"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        schema:
+          $ref: "#/definitions/putcollection"
+      responses:
+        "200":
+          description: "successful operation"
+
+    get:
+      tags:
+      - "image"
+      summary: "get collection"
+      description: "need JWT"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "successful operation"
+
 definitions:
   Tag:
     type: "object"
@@ -373,10 +416,18 @@ definitions:
       comment_detail:
         type: "string"
 
-  Collection:
+  postcollection:
     type: "object"
     properties:
-      userID:
+      name:
+        type: "string"
+      detail:
+        type: "string"
+
+  putcollection:
+    type: "object"
+    properties:
+      id:
         type: "string"
       name:
         type: "string"
@@ -385,7 +436,9 @@ definitions:
       images:
         type: "array"
         items:
-          $ref: "#/definitions/Image"
+          imageid:
+            type: "string"
+
           
   Search:
     type: "object"
