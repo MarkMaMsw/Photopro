@@ -18,7 +18,7 @@ const Page404 = React.lazy(() => import('./views/pages/page404/Page404'));
 const Page500 = React.lazy(() => import('./views/pages/page500/Page500'));
 const Mainpage = React.lazy(() => import('./views/pages/mainpage/Mainpage'));
 const MainP = React.lazy(() => import('./views/pages/Main/MainP'));
-const Testform = React.lazy(() => import('./views/pages/register/TestFrom'));
+const Testform = React.lazy(() => import('./components/ImageUploadForm'));
 
 class App extends Component {
 

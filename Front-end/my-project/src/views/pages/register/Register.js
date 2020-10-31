@@ -166,18 +166,6 @@ const Register = () => {
                     </CInputGroupPrepend>
                     <CInput type="password" placeholder="Repeat password" autoComplete="new-password" value={confirmPass} onChange={e => setConfirmPass(e.target.value)}/>
                   </CInputGroup>
-
-
-                  <CInputGroup className="mb-4">
-                    <CInputGroupPrepend>
-                      <CInputGroupText>
-                        <CIcon name="cil-lock-locked" />
-                      </CInputGroupText>
-                    </CInputGroupPrepend>
-                    <CInputFile type="file" placeholder="image" autoComplete="image"/>
-                  </CInputGroup>
-
-
                   <CFormGroup row onChange={e => setUsertype(e.target.value)}>
                     <CCol md="3">
                       <CLabel>User Type</CLabel>
