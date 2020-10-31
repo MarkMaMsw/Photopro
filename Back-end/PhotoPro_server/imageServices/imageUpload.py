@@ -5,6 +5,7 @@ from flask_jwt_extended import (create_access_token, create_refresh_token, jwt_r
 from werkzeug.utils import secure_filename
 import db
 import time
+import dev.config as config
 class ImageUpload(Resource):
     #upload image
     @jwt_required
@@ -29,7 +30,7 @@ class ImageUpload(Resource):
         image_newfilename = str(image_id) + '.' + ext
         #get contributor id
         contributer_id = get_raw_jwt()["identity"]["id"]
-        file_store_path = 'upload/'
+        file_store_path = config.image_upload_dir
         #save file
         if not os.path.exists(file_store_path):
             os.mkdir(file_store_path)
