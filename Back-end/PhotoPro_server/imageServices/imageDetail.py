@@ -7,7 +7,7 @@ class ImageDetail(Resource):
     #get image detail
     def get(self,imageId):
         
-        image_id = int(imageId)
+        #image_id = int(imageId)
         image = db.db.image.find_one({"image_id":imageId})
         #print(type(imageId))
         print(type(image))

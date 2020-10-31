@@ -11,12 +11,19 @@ class ImageUpload(Resource):
     @jwt_required
     def post(self):
         #get image detail from form
+        print(get_raw_jwt()["identity"])
+        if get_raw_jwt()["identity"]["type"] != 'contributor':
+                result = {'status':'you are not contributor'}
+                return result, 403, None
         try:
             f = request.files['file']
             image_title = request.form['title']
             image_price = request.form['price']
             image_status = request.form['status']
-            if image_status != 'on_shop' or image_status != 'off_shop':
+            if image_status == "on_shop" or image_status == "off_shop":
+                #nothing do here
+                a = 1
+            else:
                 result = {'status':'upload status error'}
                 return result, 409, None
             image_tag = request.form['tag']
