@@ -10,11 +10,18 @@ class ImageUpload(Resource):
     @jwt_required
     def post(self):
         #get image detail from form
-        f = request.files['file']
-        image_title = request.form['title']
-        image_price = request.form['price']
-        image_status = request.form['status']
-        image_tag = request.form['tag']
+        try:
+            f = request.files['file']
+            image_title = request.form['title']
+            image_price = request.form['price']
+            image_status = request.form['status']
+            if image_status != 'on_shop' or image_status != 'off_shop':
+                result = {'status':'upload status error'}
+                return result, 409, None
+            image_tag = request.form['tag']
+        except:
+            result = {'status':'upload error'}
+            return result, 409, None
         #rename image file
         image_filename = secure_filename(f.filename)
         ext = image_filename.rsplit('.',1)[1]

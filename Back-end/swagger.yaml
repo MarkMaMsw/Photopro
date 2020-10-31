@@ -12,7 +12,7 @@ schemes:
 tags: 
 - name: "contributer"
   description: "everything about contributer"
-- name: "exploiter"
+- name: "explorer"
   description: "everything about exploiter"
 - name: "image"
   description: "everything about order"
@@ -161,7 +161,7 @@ paths:
     get:
       tags:
       - "contributor"
-      summary: "get user detail"
+      summary: "getContributorImage"
       description: "need JWT"
       operationId: "getContributorImage"
       produces:
@@ -173,7 +173,36 @@ paths:
             type: "array"
             items:
               $ref: "#/definitions/Image"
-              
+  /index:
+    get:
+      tags:
+      - "image"
+      summary: "get Index Image"
+      operationId: "getIndexImage"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Image"
+
+  /explorerInfo:
+    get:
+      tags:
+      - "explorer"
+      summary: "get explorer detail"
+      description: "need JWT"
+      operationId: "getExplorerDetail"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/User"
 definitions:
   Tag:
     type: "object"
