@@ -17,6 +17,8 @@ from imageServices.imageComment import GetImageComment
 from imageServices.imageLike import PostImageLike
 from imageServices.imageLike import GetImageLike
 from imageServices.imageCollection import ImageCollection
+from contributorServices.contributorComment import ContributorComment
+from contributorServices.contributorLike import ContributorLike
 
 app = Flask(__name__)
 
@@ -46,6 +48,8 @@ restful_api.add_resource(ContributorInfo, '/contributor')
 restful_api.add_resource(ExplorerInfo, '/explorerInfo')
 restful_api.add_resource(ContributorImage, '/contributor/image/<string:contributorId>')
 restful_api.add_resource(IndexImage, '/index')
+restful_api.add_resource(ContributorComment, '/contributor/commentfromothers')
+restful_api.add_resource(ContributorLike, '/contributor/likefromothers')
 
 
 if __name__ == '__main__':

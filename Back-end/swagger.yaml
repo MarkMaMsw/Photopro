@@ -327,7 +327,50 @@ paths:
       responses:
         "200":
           description: "successful operation"
-
+  /contributor/commentfromothers:
+    get:
+      tags:
+      - "contributor"
+      summary: "get all comment"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              properties:
+                explorer_name:
+                  type: string
+                explorer_id:
+                  type: string
+                comment_detail:
+                  type: string
+                comment_time:
+                  type: string
+                  
+  /contributor/likefromothers:
+    get:
+      tags:
+      - "contributor"
+      summary: "get all like"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              properties:
+                explorer_name:
+                  type: string
+                explorer_id:
+                  type: string
+                like_time:
+                  type: string
+                  
 definitions:
   Tag:
     type: "object"
