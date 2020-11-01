@@ -415,6 +415,28 @@ paths:
                 like_time:
                   type: string
                   
+  /user/{userId}:
+    get:
+      tags:
+      - "explorer"
+      - "contributor"
+      summary: "ger user info for both contributor and explorer"
+      produces:
+      - "application/json"
+      parameters: #path parameter
+        - in: path
+          name: userId
+          required: true
+          type: "string"
+          description: "user ID"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/User"
+                  
 definitions:
   Tag:
     type: "object"

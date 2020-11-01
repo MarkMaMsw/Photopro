@@ -14,3 +14,14 @@ def get_user_info(user_id):
     for i in attributes:
         result[i] = user[i]
     return result
+class UserInfo(Resource):
+
+    #get image detail
+    def get(self,userId):
+        
+        #image_id = int(imageId)
+        result = get_user_info(userId)
+        if result:
+            return result, 200, None
+        else:
+            return "not found", 404, None
