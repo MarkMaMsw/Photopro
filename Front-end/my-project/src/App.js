@@ -19,6 +19,8 @@ const Page500 = React.lazy(() => import('./views/pages/page500/Page500'));
 const Mainpage = React.lazy(() => import('./views/pages/mainpage/Mainpage'));
 const MainP = React.lazy(() => import('./views/pages/Main/MainP'));
 const Testform = React.lazy(() => import('./components/ImageUploadForm'));
+const AllComments = React.lazy(() => import('./components/AllComments'));
+const AllLikes = React.lazy(() => import('./components/AllLikes'));
 
 class App extends Component {
 
@@ -33,6 +35,8 @@ class App extends Component {
               <Route exact path="/500" name="Page 500" render={props => <Page500 {...props}/>} />
               <Route exact path="/mainpage" name="Main Page" render={props => <Mainpage {...props}/>} />
               <Route exact path="/myform" name="Form Page" render={props => <Testform {...props}/>} />
+              <Route exact path="/allcomments" name="Form Page" render={props => <AllComments {...props}/>} />
+              <Route exact path="/alllikes" name="Form Page" render={props => <AllLikes {...props}/>} />
               {/* <Route exact path="/" name="Main P" render={props => <MainP {...props}/>} /> */}
               <Route path="/" name="Home" render={props => <TheLayout {...props}/>} />
             </Switch>

@@ -148,9 +148,9 @@ const Login = () => {
                       <CCol xs="6">
                         <CButton color="primary" className="px-4" onClick={sendUserInfo}>Login</CButton>
                       </CCol>
-                      <CCol xs="6" className="text-right">
+                      {/* <CCol xs="6" className="text-right">
                         <CButton color="link" className="px-0">Forgot password?</CButton>
-                      </CCol>
+                      </CCol> */}
                     </CRow>
                     <p className="text-muted">Don't have account? <Link to="/register">Register Now!</Link></p>
                   </CForm>
