@@ -259,7 +259,7 @@ paths:
       - in: "body"
         name: "body"
         schema:
-          $ref: "#/definitions/Comment"
+          $ref: "#/definitions/Like"
       responses:
         "200":
           description: "successful operation"
@@ -283,7 +283,7 @@ paths:
           schema:
             type: "array"
             items:
-              $ref: "#/definitions/Comment"
+              $ref: "#/definitions/ReturnLike"
 
   /image/collection:
     post:
@@ -401,13 +401,22 @@ definitions:
   Like:
     type: "object"
     properties:
-      imageID:
+      image_id:
         type: "string"
       status:
         type: "string"
         enum: 
         - "active"
         - "inactive"
+  
+  ReturnLike:
+    type: "object"
+    properties:
+      explorer_name:
+        type: "string"
+      like_time:
+        type: "string"
+
   Comment:
     type: "object"
     properties:
