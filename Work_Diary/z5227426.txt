@@ -15,3 +15,20 @@ week3:
 - Drew the draft page with Jerry and Mark on teams PPT
 - Drew 6 flow dirgram which cover all different scenario in our projects
 - Redrew several draft pages
+
+week4: 
+- Got hands on implementing the mainpage and search page
+
+week5:
+- Finished the mainpage and search page 
+- Realised several sub-function on the mainpage
+- Set up jumps between pages
+
+week6:
+- Reviewd things we did well and unwell during the first half section 
+- Wrote down the things we are trying to make at the next step 
+
+week7:
+- Assisted scrum master to improve the retrospective document through the front-end 
+- Figured out how to connect with the backend data and use the data 
+- Learned how to use postman to get token after user finish their registration
