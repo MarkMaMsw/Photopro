@@ -341,10 +341,10 @@ paths:
             type: "array"
             items:
               properties:
-                explorer_name:
-                  type: string
-                explorer_id:
-                  type: string
+                explorer:
+                  $ref: "#/definitions/User"
+                image:
+                  $ref: "#/definitions/Image"
                 comment_detail:
                   type: string
                 comment_time:
@@ -364,9 +364,53 @@ paths:
             type: "array"
             items:
               properties:
-                explorer_name:
+                explorer:
+                  $ref: "#/definitions/User"
+                image:
+                  $ref: "#/definitions/Image"
+                like_status:
                   type: string
-                explorer_id:
+                like_time:
+                  type: string
+                  
+  /explorer/mycomment:
+    get:
+      tags:
+      - "explorer"
+      summary: "get all me comment"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              properties:
+                image:
+                  $ref: "#/definitions/Image"
+                comment_detail:
+                  type: string
+                comment_time:
+                  type: string
+                  
+  /explorer/mylike:
+    get:
+      tags:
+      - "explorer"
+      summary: "get all me like"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              properties:
+                image:
+                  $ref: "#/definitions/Image"
+                like_status:
                   type: string
                 like_time:
                   type: string

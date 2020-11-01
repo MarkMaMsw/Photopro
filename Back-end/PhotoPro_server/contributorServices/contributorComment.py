@@ -4,6 +4,8 @@ from flask_restful import Resource
 import json
 import dev.config as config
 from flask_jwt_extended import (create_access_token, create_refresh_token, jwt_required, jwt_refresh_token_required, get_jwt_identity, get_raw_jwt)
+import userServices.userInfo as UserInfo
+import imageServices.imageDetail as ImageDetail
 class ContributorComment(Resource):
     def get_id_from_db(self,contributorId):
         image = db.db.image.find({"contributor_id":contributorId})
@@ -16,10 +18,13 @@ class ContributorComment(Resource):
         comment = db.db.comment.find({'image_id':image_id})
         comment_result = []
         for c in comment:
-            explorer = db.db.user.find_one({"id":c['explorer_id']})
+            explorer_id = c['explorer_id']
+            #print(explorer_id)
+            explorer_detail = UserInfo.get_user_info(explorer_id)
+            image_detail = ImageDetail.get_image_detail_from_db(c['image_id'])
             tem_result = {
-                'explorer_name' : explorer['username'],
-                'explorer_id' : c['explorer_id'],
+                'explorer' : explorer_detail,
+                'image' : image_detail,
                 'comment_detail' : c['comment_detail'],
                 'comment_time' : c['comment_time']
             }
