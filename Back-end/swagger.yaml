@@ -445,8 +445,10 @@ definitions:
       images:
         type: "array"
         items:
-          imageid:
-            type: "string"
+          type: "object"
+          properties:
+            imageid:
+              type: "string"
 
           
   Search:
