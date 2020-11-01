@@ -6,12 +6,13 @@ from werkzeug.utils import secure_filename
 import db
 import time
 import dev.config as config
+from PIL import Image, ImageDraw, ImageFont
 class ImageUpload(Resource):
     #upload image
     @jwt_required
     def post(self):
         #get image detail from form
-        print(get_raw_jwt()["identity"])
+        #print(get_raw_jwt()["identity"])
         if get_raw_jwt()["identity"]["type"] != 'contributor':
                 result = {'status':'you are not contributor'}
                 return result, 403, None
@@ -31,17 +32,32 @@ class ImageUpload(Resource):
             result = {'status':'upload error'}
             return result, 409, None
         #rename image file
-        image_filename = secure_filename(f.filename)
-        ext = image_filename.rsplit('.',1)[1]
-        image_id = str(int(time.time()))
-        image_newfilename = str(image_id) + '.' + ext
-        #get contributor id
-        contributer_id = get_raw_jwt()["identity"]["id"]
-        file_store_path = config.image_upload_dir
-        #save file
-        if not os.path.exists(file_store_path):
-            os.mkdir(file_store_path)
-        f.save(os.path.join(file_store_path, image_newfilename))
+        try:
+            image_filename = secure_filename(f.filename)
+            ext = image_filename.rsplit('.',1)[1]
+            image_id = str(int(time.time()))
+            image_newfilename = str(image_id) + '.' + ext
+            #get contributor id
+            contributer_id = get_raw_jwt()["identity"]["id"]
+            file_store_path = config.image_upload_dir
+            #save file
+            if not os.path.exists(file_store_path):
+                os.mkdir(file_store_path)
+            f.save(os.path.join(file_store_path, image_newfilename))
+            #add watermark
+            img = Image.open(os.path.join(file_store_path, image_newfilename))
+            draw = ImageDraw.Draw(img)
+            ttfront = ImageFont.truetype('simhei.ttf', 30)
+            #print(get_raw_jwt()["identity"])
+            bottomRight = (int(img.size[0]/2 - 150), int(img.size[1]/2))
+            #print(bottomRight)
+            #draw.text((100, 100),get_raw_jwt()["identity"]["user"],fill=(195,195,195), font=ttfront)
+            draw.text(bottomRight,"PhotoPro - " + get_raw_jwt()["identity"]["user"],fill=(195,195,195), font=ttfront)
+            watermark_image_name = "watermark_" + image_newfilename
+            img.save(os.path.join(file_store_path, watermark_image_name))
+        except:
+            result = {'status':'upload error'}
+            return result, 409, None
         #insert in database
         image_detail = {
             'image_id' : image_id,
@@ -50,7 +66,8 @@ class ImageUpload(Resource):
             'price' : image_price,
             'status' : image_status,
             'tag' : image_tag,
-            'image_name' : image_newfilename
+            'image_name' : watermark_image_name,
+            'image_name_no_watermark' : image_newfilename
         }
         db.db.image.insert_one(image_detail)
         result = {'status':'upload success'}
