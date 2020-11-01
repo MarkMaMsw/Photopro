@@ -21,6 +21,7 @@ from contributorServices.contributorComment import ContributorComment
 from contributorServices.contributorLike import ContributorLike
 from explorerServices.explorerComment import ExplorerComment
 from explorerServices.explorerLike import ExplorerLike
+from userServices.userInfo import UserInfo
 
 app = Flask(__name__)
 
@@ -54,6 +55,7 @@ restful_api.add_resource(ContributorComment, '/contributor/commentfromothers')
 restful_api.add_resource(ContributorLike, '/contributor/likefromothers')
 restful_api.add_resource(ExplorerComment, '/explorer/mycomment')
 restful_api.add_resource(ExplorerLike, '/explorer/mylike')
+restful_api.add_resource(UserInfo, '/user/<string:userId>')
 
 
 if __name__ == '__main__':
