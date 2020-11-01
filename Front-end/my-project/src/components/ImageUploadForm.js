@@ -18,7 +18,12 @@ import {
   CInputGroupPrepend,
   CInputGroupText,
   CSelect,
-  CInputGroupAppend
+  CInputGroupAppend,
+  CModal,
+  CModalHeader,
+  CModalTitle,
+  CModalBody,
+  CModalFooter,
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import styles from './ImageUploadForm.module.css'
@@ -31,6 +36,8 @@ const ImageUploadForm = () => {
   const [currentTag, setCurrentTag] = useState('');
   const [file, setFile] = useState('');
   const [url, setUrl] = useState('');
+  const [success, setSuccess] = useState(false);
+  const [warning, setWarning] = useState(false);
 
   const titleChange = (e) => {
     console.log(e.target.value);
@@ -85,14 +92,18 @@ const ImageUploadForm = () => {
     Axios.post('http://34.87.211.156:5000/image', formData, {
       headers: {
         "Content-type": "multipart/form-data",
-        // "Content-Length": "<calculated when request is sent>",
-        // "Accept": 
         // 'Authorization': `Bearer ${sessionStorage.getItem('token')}}`
         'Authorization': `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDM5Njk5NTQsIm5iZiI6MTYwMzk2OTk1NCwianRpIjoiZjYwODA2ZjQtYjAyZC00NjJiLWFiMmUtZDIxMTI2OWQyMDE4IiwiaWRlbnRpdHkiOnsidXNlciI6InJpY2tAZ21haWwuY29tIiwidHlwZSI6ImNvbnRyaWJ1dG9yIiwiaWQiOiIyIn0sImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.VQjztnQByO2ddzfXzeAFOkH5AcOmCjjzBLNLwxaesO0`
       }
     })
-    .then(res=>console.log(res))
-    .catch(err=>console.log(err))
+    .then(res=>{
+      console.log(res);
+      setSuccess(!success);
+    })
+    .catch(err=>{
+      console.log(err);
+      setWarning(!warning);
+    })
 
   }
 
@@ -189,6 +200,43 @@ const ImageUploadForm = () => {
                   </CCol>
                 </CFormGroup>
               </CForm>
+
+
+              {/* a notice card which will show if register successfully */}
+              <CModal 
+                show={success} 
+                onClose={() => setSuccess(!success)}
+                color="success"
+              >
+                <CModalHeader closeButton>
+                  <CModalTitle>Successful Upload</CModalTitle>
+                </CModalHeader>
+                <CModalBody>
+                  Congratulations!! Your photo has been successfully uploaded!
+                </CModalBody>
+                <CModalFooter>
+                  <CButton color="success" onClick={() => setSuccess(!success)}>OK</CButton>
+                </CModalFooter>
+              </CModal>
+
+              {/* a notice card which will show if register unsuccessfully */}
+              <CModal 
+              show={warning} 
+              onClose={() => setWarning(!warning)}
+              color="warning"
+              >
+                <CModalHeader closeButton>
+                  <CModalTitle>Fail Upload</CModalTitle>
+                </CModalHeader>
+                <CModalBody>
+                  Fail to upload photo, please try again.
+                </CModalBody>
+                <CModalFooter>
+                  <CButton color="warning" onClick={() => setWarning(!warning)}>Try again</CButton>
+                  <CButton color="secondary" onClick={() => setWarning(!warning)}>Cancel</CButton>
+                </CModalFooter>
+              </CModal>
+
             </CCardBody>
             <CCardFooter>
               <CRow className="justify-content-end">

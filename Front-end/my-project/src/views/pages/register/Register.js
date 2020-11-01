@@ -22,7 +22,6 @@ import {
   CModalFooter,
   CModalHeader,
   CModalTitle,
-  CInputFile
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 
