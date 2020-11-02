@@ -46,8 +46,9 @@ class ImageUpload(Resource):
             f.save(os.path.join(file_store_path, image_newfilename))
             #add watermark
             img = Image.open(os.path.join(file_store_path, image_newfilename))
+            '''
             draw = ImageDraw.Draw(img)
-            ttfront = ImageFont.truetype('simhei.ttf', 30)
+            ttfront = ImageFont.truetype(os.path.join('/dev/', 'Chalkduster.ttf'), 30)
             #print(get_raw_jwt()["identity"])
             bottomRight = (int(img.size[0]/2 - 150), int(img.size[1]/2))
             #print(bottomRight)
@@ -55,9 +56,21 @@ class ImageUpload(Resource):
             draw.text(bottomRight,"PhotoPro - " + get_raw_jwt()["identity"]["user"],fill=(195,195,195), font=ttfront)
             watermark_image_name = "watermark_" + image_newfilename
             img.save(os.path.join(file_store_path, watermark_image_name))
+            '''
+            watermark = Image.open(os.path.join('upload/static/', 'watermark.png'))
+            r,g,b,a = watermark.split()
+            img.convert("RGBA")
+            bottomRight = (int(img.size[0]/2 - 150), int(img.size[1]/2))
+            
+            
+            watermark.convert("RGBA")
+            img.paste(watermark, bottomRight, mask=a)
+            watermark_image_name = "watermark_" + image_newfilename
+            img.save(os.path.join(file_store_path, watermark_image_name))
         except:
             result = {'status':'upload error'}
             return result, 409, None
+
         #insert in database
         image_detail = {
             'image_id' : image_id,
