@@ -15,3 +15,16 @@ Week3
 Week4
 1.Write Sign in and Sign up pages using React
 2.Discuss with teammates about how to implement the home page
+
+Week5
+1.Modify Sign in and Sign up page
+2.Attend demostration
+3.Discuss retrospective
+
+Week6
+1.Write photo upload component
+2.Write All commnents component(contributor's profile)
+3.Write All likes component(contributor's profile)
+
+Week7
+1.Write Show card component(photo card showed in main page)
