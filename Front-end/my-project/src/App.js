@@ -21,6 +21,7 @@ const MainP = React.lazy(() => import('./views/pages/Main/MainP'));
 const Testform = React.lazy(() => import('./components/ImageUploadForm'));
 const AllComments = React.lazy(() => import('./components/AllComments'));
 const AllLikes = React.lazy(() => import('./components/AllLikes'));
+const ImageCard = React.lazy(() => import('./components/ImageCard'));
 
 class App extends Component {
 
@@ -37,6 +38,7 @@ class App extends Component {
               <Route exact path="/myform" name="Form Page" render={props => <Testform {...props}/>} />
               <Route exact path="/allcomments" name="Form Page" render={props => <AllComments {...props}/>} />
               <Route exact path="/alllikes" name="Form Page" render={props => <AllLikes {...props}/>} />
+              <Route exact path="/imagecard" name="Form Page" render={props => <ImageCard {...props}/>} />
               {/* <Route exact path="/" name="Main P" render={props => <MainP {...props}/>} /> */}
               <Route path="/" name="Home" render={props => <TheLayout {...props}/>} />
             </Switch>
