@@ -47,7 +47,7 @@ class ImageUpload(Resource):
             #add watermark
             img = Image.open(os.path.join(file_store_path, image_newfilename))
             draw = ImageDraw.Draw(img)
-            ttfront = ImageFont.truetype('simhei.ttf', 30)
+            ttfront = ImageFont.truetype(os.path.join('/dev/', 'simhei.ttf'), 30)
             #print(get_raw_jwt()["identity"])
             bottomRight = (int(img.size[0]/2 - 150), int(img.size[1]/2))
             #print(bottomRight)
