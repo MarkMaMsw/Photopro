@@ -24,6 +24,7 @@ import {
   CModalTitle,
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
+import styles from './Register.module.css'
 
 const Register = () => {
   
@@ -71,7 +72,8 @@ const Register = () => {
   }
 
   return (
-    <div className="c-app c-default-layout flex-row align-items-center">
+    // <div className="c-app c-default-layout flex-row align-items-center">
+    <div className={styles.container}>
       <CContainer>
         <CRow className="justify-content-center">
           <CCol md="9" lg="7" xl="6">

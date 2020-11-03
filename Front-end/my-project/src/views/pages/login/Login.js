@@ -24,7 +24,7 @@ import {
   CModalTitle
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
-import './Login.css'
+import styles from './Login.module.css'
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -55,9 +55,9 @@ const Login = () => {
   }
 
   return (
-    <div className="c-app c-default-layout flex-row align-items-center">
-      <CContainer>
-
+    // <div className="c-app c-default-layout flex-row align-items-center">
+      <div className={styles.container}> 
+      <CContainer >
          {/* a notice card which will show if register unsuccessfully */}
          <CModal 
           show={warning} 
@@ -148,9 +148,6 @@ const Login = () => {
                       <CCol xs="6">
                         <CButton color="primary" className="px-4" onClick={sendUserInfo}>Login</CButton>
                       </CCol>
-                      {/* <CCol xs="6" className="text-right">
-                        <CButton color="link" className="px-0">Forgot password?</CButton>
-                      </CCol> */}
                     </CRow>
                     <p className="text-muted">Don't have account? <Link to="/register">Register Now!</Link></p>
                   </CForm>
@@ -160,7 +157,8 @@ const Login = () => {
           </CCol>
         </CRow>
       </CContainer>
-    </div>
+      </div>
+    // </div>
   )
 }
 

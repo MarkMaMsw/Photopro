@@ -1,4 +1,4 @@
-#photo-pro-icon{
+/* #photo-pro-icon{
     background-color: rgb(204, 15, 15, 0.7);
     border-radius: 5px;
     box-shadow: inset 0 0 25px rgb(204, 15, 15);;
@@ -18,14 +18,12 @@
 }
 #login-left-card p{
     font-size: 25px;
-}
-.c-app{
+} */
+.container{
     background-image: url('../../../images/LoginBcakground.jpg');
-}
-
-
-
-/* page404 and page500 */
-#page-404, #page-500{
-    background-color: #fff;
+    width: 100%;
+    height: calc(100vh);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
