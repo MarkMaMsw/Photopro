@@ -41,7 +41,7 @@ class App extends Component {
               <Route exact path="/imagecard" name="Form Page" render={props => <ImageCard {...props}/>} />
               <Route exact path="/mainpage" name="Main Page" render={props => <Mainpage {...props}/>} />
               <Route exact path="/mainp" name="Main P" render={props => <MainP {...props}/>} />
-              <Route exact path="/profile" name="profile" render={props => <Profile {...props}/>} />
+              <Route path="/profile" name="profile" render={props => <Profile {...props}/>} />
               <Route path="/" name="Home" render={props => <TheLayout {...props}/>} />
             </Switch>
           </React.Suspense>

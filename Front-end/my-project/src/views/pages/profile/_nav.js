@@ -18,13 +18,13 @@ export default [
   {
     _tag: 'CSidebarNavItem',
     name: 'Comments',
-    to: '/profile',
+    to: '/profile/allcomments',
     icon: <CIcon content={freeSet.cilCommentSquare} customClasses="c-sidebar-nav-icon"/>
   },
   {
     _tag: 'CSidebarNavItem',
     name: 'Likes',
-    to: '/profile',
+    to: '/profile/alllikes',
     icon: <CIcon content={freeSet.cilHeart} customClasses="c-sidebar-nav-icon"/>
   },
   {
@@ -36,7 +36,7 @@ export default [
   {
     _tag: 'CSidebarNavItem',
     name: 'Upload Photo',
-    to: '/profile',
+    to: '/profile/imageuploadform',
     icon: <CIcon content={freeSet.cilCloudUpload} customClasses="c-sidebar-nav-icon"/>
   }
 ]
