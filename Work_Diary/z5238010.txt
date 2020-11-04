@@ -28,3 +28,5 @@ Week6
 
 Week7
 1.Write Show card component(photo card showed in main page)
+2.Write contributor's profile page, include: allphotos component, all likes from explorer, all comments, purchase history
+3.Write Homepage before sign in, includ: hearbar, selected photo, photo recommend, author recommend.
