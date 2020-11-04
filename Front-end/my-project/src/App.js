@@ -19,10 +19,10 @@ const Page500 = React.lazy(() => import('./views/pages/page500/Page500'));
 const Mainpage = React.lazy(() => import('./views/pages/mainpage/Mainpage'));
 const MainP = React.lazy(() => import('./views/pages/Main/MainP'));
 const Profile = React.lazy(() => import('../src/views/pages/profile/Profile'));
-const Testform = React.lazy(() => import('./components/ImageUploadForm'));
-const AllComments = React.lazy(() => import('./components/AllComments'));
-const AllLikes = React.lazy(() => import('./components/AllLikes'));
-const ImageCard = React.lazy(() => import('./components/ImageCard'));
+const Testform = React.lazy(() => import('./components/contributor/PhotoUpload/ImageUploadForm'));
+const AllComments = React.lazy(() => import('./components/contributor/AllComments/AllComments'));
+const AllLikes = React.lazy(() => import('./components/contributor/AllLikes/AllLikes'));
+const ImageCard = React.lazy(() => import('./components/resueable/ImageCard/ImageCard'));
 
 class App extends Component {
 

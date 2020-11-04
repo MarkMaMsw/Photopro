@@ -8,12 +8,13 @@ import {
 } from 'react-router-dom';
 
 import { CContainer, CFade } from '@coreui/react'
-import ImageUploadForm from '../../../components/ImageUploadForm'
-import AllComments from '../../../components/AllComments'
-import AllLikes from '../../../components/AllLikes'
+import ContributorProfile from '../../../components/contributor/Profile/ContributorProfile'
+import ContributorPhotos from '../../../components/contributor/AllPhotos/ContributorPhotos'
+import AllComments from '../../../components/contributor/AllComments/AllComments'
+import AllLikes from '../../../components/contributor/AllLikes/AllLikes' 
+import AllPurchase from '../../../components/contributor/AllPurchse/AllPurchase' 
+import ImageUploadForm from '../../../components/contributor/PhotoUpload/ImageUploadForm'
 
-// routes config
-// import routes from '../../../routes'
   
 const loading = (
   <div className="pt-3 text-center">
@@ -27,31 +28,14 @@ const TheContent = () => {
       <CContainer fluid>
         <Suspense fallback={loading}>
           <Switch>
-            <Route path="/profile/imageuploadform" render={props => (<CFade><ImageUploadForm/></CFade>)}/>
+            <Route path="/profile/contributorprofile" render={props => (<CFade><ContributorProfile/></CFade>)}/>
+            <Route path="/profile/contributorphotos" render={props => (<CFade><ContributorPhotos/></CFade>)}/>
             <Route path="/profile/allcomments" render={props => (<CFade><AllComments/></CFade>)}/>
             <Route path="/profile/alllikes" render={props => (<CFade><AllLikes/></CFade>)}/>
+            <Route path="/profile/allpurchase" render={props => (<CFade><AllPurchase/></CFade>)}/>
+            <Route path="/profile/imageuploadform" render={props => (<CFade><ImageUploadForm/></CFade>)}/>
           </Switch>
         </Suspense>
-        {/* <Suspense fallback={loading}>
-          <Switch>
-            <Route path="/profile/imageuploadform" component={ImageUploadForm} exact/>
-            {/* {routes.map((route, idx) => {
-              return route.component && (
-                <Route
-                  key={idx}
-                  path={route.path}
-                  exact={route.exact}
-                  name={route.name}
-                  render={props => (
-                    <CFade>
-                      <route.component {...props} />
-                    </CFade>
-                  )} />
-              )
-            })} */}
-            {/* <Redirect exact from="/" to="/profile" />
-          </Switch>
-        </Suspense> */} 
       </CContainer>
     </main>
   )

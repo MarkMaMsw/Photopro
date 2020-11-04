@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { Link, useHistory } from 'react-router-dom'
 import Axios from 'axios'
 import {
   CButton,
@@ -33,6 +33,8 @@ const Login = () => {
   const [warning, setWarning] = useState(false)
   const [info, setInfo] = useState(false);
 
+  const history = useHistory();
+
   const sendUserInfo = () => {
     console.log(username, password, usertype);
     if (username && password && usertype){
@@ -43,7 +45,8 @@ const Login = () => {
         })
         .then(res => {
           console.log(res)
-          sessionStorage.setItem('token', res.data.access_token)
+          sessionStorage.setItem('token', res.data.access_token);
+          history.push("/profile/contributorprofile");
         })
         .catch(err => {
           console.log(err)
@@ -53,6 +56,10 @@ const Login = () => {
       setInfo(!info)
     }
   }
+
+  useEffect(() => {
+    sessionStorage.clear();
+  });
 
   return (
     // <div className="c-app c-default-layout flex-row align-items-center">

@@ -6,13 +6,13 @@ export default [
   {
     _tag: 'CSidebarNavItem',
     name: 'Profile',
-    to: '/profile',
+    to: '/profile/contributorprofile',
     icon: <CIcon content={freeSet.cilUser} customClasses="c-sidebar-nav-icon"/>
   },
   {
     _tag: 'CSidebarNavItem',
     name: 'My Photoes',
-    to: '/profile',
+    to: '/profile/contributorphotos',
     icon: <CIcon content={freeSet.cilFilterPhoto} customClasses="c-sidebar-nav-icon"/>
   },
   {
@@ -30,7 +30,7 @@ export default [
   {
     _tag: 'CSidebarNavItem',
     name: 'Purchase History',
-    to: '/profile',
+    to: '/profile/allpurchase',
     icon: <CIcon content={freeSet.cilDollar} customClasses="c-sidebar-nav-icon"/>
   },
   {

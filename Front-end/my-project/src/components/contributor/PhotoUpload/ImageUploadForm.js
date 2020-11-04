@@ -89,16 +89,18 @@ const ImageUploadForm = () => {
     formData.append('status', status);
     formData.append('tag', tags.join(','));
 
+    console.log(sessionStorage.getItem('token'));
+
     Axios.post('http://34.87.211.156:5000/image', formData, {
       headers: {
         "Content-type": "multipart/form-data",
-        // 'Authorization': `Bearer ${sessionStorage.getItem('token')}}`
-        'Authorization': `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDM5Njk5NTQsIm5iZiI6MTYwMzk2OTk1NCwianRpIjoiZjYwODA2ZjQtYjAyZC00NjJiLWFiMmUtZDIxMTI2OWQyMDE4IiwiaWRlbnRpdHkiOnsidXNlciI6InJpY2tAZ21haWwuY29tIiwidHlwZSI6ImNvbnRyaWJ1dG9yIiwiaWQiOiIyIn0sImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.VQjztnQByO2ddzfXzeAFOkH5AcOmCjjzBLNLwxaesO0`
+        'Authorization': `Bearer ${sessionStorage.getItem('token')}`
       }
     })
     .then(res=>{
       console.log(res);
       setSuccess(!success);
+      resetClick();
     })
     .catch(err=>{
       console.log(err);
@@ -118,8 +120,8 @@ const ImageUploadForm = () => {
   }
 
   return <>
-      <CRow>
-        <CCol xs="12" md="6">
+      <CRow alignHorizontal='center'>
+        <CCol xs="12" md="10">
           <CCard>
             <CCardHeader>
               Contributor Image Upload

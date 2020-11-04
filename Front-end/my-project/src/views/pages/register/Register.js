@@ -40,15 +40,15 @@ const Register = () => {
 
   const createAccount = () => {
     console.log('clicked');
+    console.log(username, email, password, usertype)
     if (username && email && password && confirmPass){
       if (password === confirmPass){
-        // setSuccess(true);
         Axios.post('http://34.87.211.156:5000/register', {
           id: '',
           username: username,
           email: email,
           password: password,
-          description: '',
+          description: "This guy doesn't hava any description",
           photoURL: '',
           balance: 0,
           userType: usertype

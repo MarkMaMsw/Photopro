@@ -10,6 +10,7 @@ import {
   CSidebarMinimizer,
   CSidebarNavDropdown,
   CSidebarNavItem,
+  CImg
 } from '@coreui/react'
 import styles from './Profile.module.css'
 
@@ -30,7 +31,12 @@ const ProfileSidebar = () => {
         <h1 className="c-sidebar-brand-minimized">P</h1>
       </CSidebarBrand>
       <div className={styles.sidebar_avatar}>
-        <img src='https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/golden-retriever-puppy-lying-down-on-grass-royalty-free-image-1587052215.jpg?crop=1.00xw:0.754xh;0,0.166xh&resize=980:*' className={styles.avatar}></img>
+        {/* <img src='' className={styles.avatar}></img> */}
+        <CImg
+            src={'avatars/9.jpg'}
+            className="c-avatar-img"
+            alt="avatars"
+          />
       </div>
       <CSidebarNav>
         <CCreateElement

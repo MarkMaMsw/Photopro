@@ -24,16 +24,16 @@ import {
     {id: 9, name: 'John Doe', time: '2018/01/01', image: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/golden-retriever-puppy-lying-down-on-grass-royalty-free-image-1587052215.jpg?crop=1.00xw:0.754xh;0,0.166xh&resize=980:*', comment: 'I like this cute dog! Soooooo CUTE!'},
   ]
   
-  const fields = ['name', 'time', 'image']
+  const fields = ['name', 'time', 'comment', 'image']
   
-  const AllLikes = () => {
+  const AllComments = () => {
     return (
       <>
-        <CRow>  
-          <CCol xs="12" lg="8">
+        <CRow alignHorizontal='center'>  
+          <CCol xs="12" md="10">
             <CCard>
               <CCardHeader>
-                All Likes from explorers
+                All Comments from explorer
               </CCardHeader>
               <CCardBody>
               <CDataTable
@@ -59,4 +59,4 @@ import {
     )
   }
   
-  export default AllLikes;
+  export default AllComments;
