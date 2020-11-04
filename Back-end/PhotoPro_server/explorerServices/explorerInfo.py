@@ -16,7 +16,7 @@ class ExplorerInfo(Resource):
             return "The user not exists", 400, None
         
         newUser = {}
-        attributes = ["username","email","description","balance"]
+        attributes = ["username","email","description","balance","userType"]
         for i in attributes:
             newUser[i] = user[i]
         newUser = json.dumps(newUser)
