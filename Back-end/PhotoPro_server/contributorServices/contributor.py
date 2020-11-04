@@ -16,7 +16,7 @@ class ContributorInfo(Resource):
             return "The user not exists", 400, None
         
         newUser = {}
-        attributes = ["username","email","description","photoURL","balance"]
+        attributes = ["username","email","description","balance"]
         for i in attributes:
             newUser[i] = user[i]
         newUser = json.dumps(newUser)
