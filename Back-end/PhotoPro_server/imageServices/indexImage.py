@@ -7,19 +7,8 @@ class IndexImage(Resource):
     def get_detail_from_db(self):
         image = db.db.image.find()
         result = []
-        print(image[1])
         for i in image:
-            image_url = config.ip_address + config.image_file_url + i['image_name']
-            tem_result = {
-                'image_id': i['image_id'], 
-                'contributor_id': i['contributor_id'], 
-                'title': i['title'], 
-                'price': i['price'], 
-                'status': i['status'], 
-                'tag': i['tag'], 
-                'image_name': i['image_name'],
-                'image_url': image_url
-            }
+            tem_result = imageDetail.get_image_detail_from_db(i['image_id'])
             result.append(tem_result)
         return result
     #get image detail
