@@ -11,7 +11,7 @@ class AuthRegister(Resource):
 
     def post(self):
         g.user = request.json
-        requiredValues = ["username","password","email","description","userType"]
+        requiredValues = ["username","password","email","description","userType","photoURL"]
         for i in requiredValues:
             if i in g.user.keys():
                 if g.user[i] == "":
