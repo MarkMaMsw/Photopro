@@ -38,6 +38,9 @@ const Widgets = React.lazy(() => import('./views/widgets/Widgets'));
 const Users = React.lazy(() => import('./views/users/Users'));
 const User = React.lazy(() => import('./views/users/User'));
 
+// const ImageUploadForm = React.lazy(() => import('./components/ImageUploadForm'));
+// const Profile = React.lazy(() => import('./views/pages/profile/Profile'));
+
 const routes = [
   { path: '/', exact: true, name: 'Home' },
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
@@ -78,7 +81,9 @@ const routes = [
   { path: '/notifications/toaster', name: 'Toaster', component: Toaster },
   { path: '/widgets', name: 'Widgets', component: Widgets },
   { path: '/users', exact: true,  name: 'Users', component: Users },
-  { path: '/users/:id', exact: true, name: 'User Details', component: User }
+  { path: '/users/:id', exact: true, name: 'User Details', component: User },
+  // { path: '/profile', exact: true, name: 'Profile', component: Profile },
+  // { path: '/profile/imageuploadform', exact: true, name: 'Image Upload', component: ImageUploadForm },
 ];
 
 export default routes;

@@ -1,0 +1,8 @@
+.container{
+    background-image: url('../../../images/LoginBcakground.jpg');
+    width: 100%;
+    height: calc(100vh);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
