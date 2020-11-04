@@ -436,7 +436,39 @@ paths:
             type: "array"
             items:
               $ref: "#/definitions/User"
-                  
+  /explorer/shoppingcart:
+    get:
+      tags:
+      - "explorer"
+      summary: "get shoppingcart detail"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Image"
+    post:
+      tags:
+      - "explorer"
+      summary: "add photo into shopping cart"
+      produces:
+      - "application/json"
+      parameters: #path parameter
+        - in: body
+          name: body
+          required: true
+          schema:
+            type: "object"
+            properties:
+              image_id:
+                type: "string"
+                description: "user ID"
+      responses:
+        "200":
+          description: "successful operation"
 definitions:
   Tag:
     type: "object"
