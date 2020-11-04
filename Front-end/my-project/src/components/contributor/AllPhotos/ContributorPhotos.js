@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import Axios from 'axios'
 import { CRow } from  '@coreui/react'
 import ImageCard from '../../resueable/ImageCard/ImageCard'

@@ -1,19 +1,22 @@
 import React from 'react'
-import ProfileSidebar from './ProfileSidebar';
-import ProfileHeader from './ProfileHeader';
+import MainpBeforeHeader from './MainpBeforeHeader';
 import Footer from '../../../components/resueable/Footer/Footer';
-import ProfileContent from './ProfileContent';
+import MainpBeforeContent from './MainpBeforeContent';
 
 const Profile = () => {
 
   return (
     <div className="c-app c-default-layout">
-      <ProfileSidebar/>
       <div className="c-wrapper">
-        <ProfileHeader/>
+        <MainpBeforeHeader/>
+
         <div className="c-body">
-          <ProfileContent/>
+          <MainpBeforeContent/>
         </div>
+        <div className="c-body">
+          
+        </div>
+
         <Footer/>
       </div>
     </div>
