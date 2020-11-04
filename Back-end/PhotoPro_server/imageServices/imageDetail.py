@@ -25,5 +25,5 @@ class ImageDetail(Resource):
     def get(self,imageId):
         
         #image_id = int(imageId)
-        result = self.get_image_detail_from_db(imageId)
+        result = get_image_detail_from_db(imageId)
         return result, 200, None
