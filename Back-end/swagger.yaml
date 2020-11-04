@@ -68,7 +68,7 @@ paths:
       - in: "body"
         name: "body"
         schema:
-          $ref: "#/definitions/User"
+          $ref: "#/definitions/UserRegister"
       responses:
         "200":
           description: "successfully register"
@@ -458,10 +458,24 @@ definitions:
         type: "string"
       description:
         type: "string"
-      photoURL:
-        type: "string"
       balance:
         type: "integer"
+      userType:
+        type: "string"
+        enum:
+        - "contributor"
+        - "explorer"
+  UserRegister:
+    type: "object"
+    properties:
+      username:
+        type: "string"
+      email:
+        type: "string"
+      password:
+        type: "string"
+      description:
+        type: "string"
       userType:
         type: "string"
         enum:
@@ -472,8 +486,9 @@ definitions:
     properties:
       image_id:
         type: "string"
-      contributor_id:
-        type: "string"
+      contributor:
+        items:
+          $ref: "#/definitions/User"
       title:
         type: "string"
       price:
@@ -488,6 +503,10 @@ definitions:
       image_name:
         type: "string"
       image_url:
+        type: "string"
+      like_num:
+        type: "string"
+      comment_num:
         type: "string"
       
   Order:

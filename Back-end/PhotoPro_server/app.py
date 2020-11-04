@@ -23,7 +23,7 @@ from explorerServices.explorerComment import ExplorerComment
 from explorerServices.explorerLike import ExplorerLike
 from userServices.userInfo import UserInfo
 from shoppingServices.shoppingCartPhoto import ShoppingCartPhoto
-
+from contributorServices.indexContributor import IndexContributor
 app = Flask(__name__)
 
 CORS(app, resources={r"/*": {"origins": "*"}}, send_wildcard=True)
@@ -51,14 +51,14 @@ restful_api.add_resource(ImageCollection, '/image/collection')
 restful_api.add_resource(ContributorInfo, '/contributor')
 restful_api.add_resource(ExplorerInfo, '/explorerInfo')
 restful_api.add_resource(ContributorImage, '/contributor/image/<string:contributorId>')
-restful_api.add_resource(IndexImage, '/index')
+restful_api.add_resource(IndexImage, '/index/image')
 restful_api.add_resource(ContributorComment, '/contributor/commentfromothers')
 restful_api.add_resource(ContributorLike, '/contributor/likefromothers')
 restful_api.add_resource(ExplorerComment, '/explorer/mycomment')
 restful_api.add_resource(ExplorerLike, '/explorer/mylike')
 restful_api.add_resource(UserInfo, '/user/<string:userId>')
 restful_api.add_resource(ShoppingCartPhoto, '/explorer/shoppingcart')
-
+restful_api.add_resource(IndexContributor, '/index/contributor')
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5000, debug=True, threaded=True)
