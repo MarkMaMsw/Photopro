@@ -24,6 +24,7 @@ from explorerServices.explorerLike import ExplorerLike
 from userServices.userInfo import UserInfo
 from shoppingServices.shoppingCartPhoto import ShoppingCartPhoto
 from contributorServices.indexContributor import IndexContributor
+from searchServices.searchKeyword import searchImage
 app = Flask(__name__)
 
 CORS(app, resources={r"/*": {"origins": "*"}}, send_wildcard=True)
@@ -59,6 +60,7 @@ restful_api.add_resource(ExplorerLike, '/explorer/mylike')
 restful_api.add_resource(UserInfo, '/user/<string:userId>')
 restful_api.add_resource(ShoppingCartPhoto, '/explorer/shoppingcart')
 restful_api.add_resource(IndexContributor, '/index/contributor')
+restful_api.add_resource(searchImage, '/search')
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5000, debug=True, threaded=True)
