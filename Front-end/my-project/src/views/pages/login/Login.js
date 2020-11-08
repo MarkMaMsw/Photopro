@@ -46,7 +46,13 @@ const Login = () => {
         .then(res => {
           console.log(res)
           sessionStorage.setItem('token', res.data.access_token);
-          history.push("/profile/contributorprofile");
+          if (usertype === 'explorer'){
+            sessionStorage.setItem('usertype', 'explorer');
+            history.push("/mainpbefore");
+          } else if (usertype === 'contributor'){
+            history.push("/profile/contributorprofile");
+            sessionStorage.setItem('usertype', 'contributor');
+          }
         })
         .catch(err => {
           console.log(err)

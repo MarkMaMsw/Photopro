@@ -9,7 +9,7 @@ import {
 import CIcon from '@coreui/icons-react'
 import { Link } from 'react-router-dom';
 
-const ProfileHeaderDropdown = () => {
+const ExplorerProfileHeaderDropdown = () => {
   return (
     <CDropdown
       inNav
@@ -19,7 +19,7 @@ const ProfileHeaderDropdown = () => {
       <CDropdownToggle className="c-header-nav-link" caret={false}>
         <div className="c-avatar">
           <CImg
-            src={'avatars/9.jpg'}
+            src={'avatars/8.jpg'}
             className="c-avatar-img"
             alt="admin@bootstrapmaster.com"
           />
@@ -27,6 +27,7 @@ const ProfileHeaderDropdown = () => {
       </CDropdownToggle>
       <CDropdownMenu className="pt-0" placement="bottom-end">
         <CDropdownItem>
+          
           <Link to="/login"><CIcon name="cilHome" className="mfe-2" /> Log out</Link>
         </CDropdownItem>
       </CDropdownMenu>
@@ -34,4 +35,4 @@ const ProfileHeaderDropdown = () => {
   )
 }
 
-export default ProfileHeaderDropdown
+export default ExplorerProfileHeaderDropdown;
