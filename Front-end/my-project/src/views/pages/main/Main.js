@@ -1,5 +1,5 @@
 import React from 'react'
-import MainpBeforeHeader from './MainpBeforeHeader';
+import MainpHeader from './MainpHeader';
 import Footer from '../../../components/resueable/Footer/Footer';
 import MainpBeforeContent from './MainpBeforeContent';
 
@@ -8,7 +8,7 @@ const Profile = () => {
   return (
     <div className="c-app c-default-layout">
       <div className="c-wrapper">
-        <MainpBeforeHeader/>
+        <MainpHeader/>
 
         <div className="c-body">
           <MainpBeforeContent/>
