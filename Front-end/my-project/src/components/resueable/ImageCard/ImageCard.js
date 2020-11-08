@@ -25,10 +25,12 @@ class ImageCard extends React.Component {
         super(props);
         this.state = {
             heartcolor: "",
+            collectionColor:"",
             show: false,
             commentList: [],
             img_id : "",
             commentDetail:"",
+            commentState:false,
             likeList:[],
             sumLike: this.props.imageinfo.like_num
         }
@@ -47,11 +49,36 @@ class ImageCard extends React.Component {
         this.setState({likeList:likeArray})
         var likeColor = likeArray.includes(JSON.parse(response1.data.content).username)?"red":"black";
         this.setState({heartcolor: likeColor})
-        console.log(likeArray)
-        console.log(likeColor)
-        console.log(JSON.parse(response1.data.content).username)
+        // console.log(likeArray)
+        // console.log(likeColor)
+        // console.log(JSON.parse(response1.data.content).username)
         // var [username,email] = JSON.parse(response1.data.content)
         // console.log(username,email)
+    }
+
+    async componentDidUpdate (prevProps, prevState){
+        if(prevState.heartcolor != this.state.heartcolor){
+            const response2 = await Axios.get(`http://13.55.8.94:5000/image/detail/${this.props.imageinfo.image_id}`,{
+            headers: {
+                'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+            }
+            })
+            // console.log(response2.data.like_num)
+            this.setState({sumLike:response2.data.like_num})
+        }
+        if(this.state.commentState){
+            const response1 = await Axios.get(`http://13.55.8.94:5000/image/comment/${this.props.imageinfo.image_id}`,
+            {headers: {
+                'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+            }})
+            response1.data.sort(function(a,b){
+                var c = new Date(a.comment_time);
+                var d = new Date(b.comment_time);
+                return d-c;
+            })
+            this.setState({commentList:response1.data})
+            this.setState({commentState:false})
+        }
     }
 
     heartClick = async () => {
@@ -60,7 +87,7 @@ class ImageCard extends React.Component {
         } else {
             this.setState({heartcolor: 'black'});
         }
-        console.log(this.state.heartcolor)
+        // console.log(this.state.heartcolor)
         var body = {
             image_id: this.props.imageinfo.image_id,
             status: this.state.heartcolor==="black"?"active":"inactive"
@@ -70,13 +97,7 @@ class ImageCard extends React.Component {
                 'Authorization': `Bearer ${sessionStorage.getItem('token')}`
             }
         }).then(res=> console.log(res.status))
-        const response2 = await Axios.get(`http://13.55.8.94:5000/image/detail/${this.props.imageinfo.image_id}`,{
-            headers: {
-                'Authorization': `Bearer ${sessionStorage.getItem('token')}`
-            }
-        })
-        console.log(response2.data.like_num)
-        this.setState({sumLike:response2.data.like_num})
+        
     }
 
     toggle = async ()=>{
@@ -87,8 +108,30 @@ class ImageCard extends React.Component {
         {headers: {
             'Authorization': `Bearer ${sessionStorage.getItem('token')}`
         }})
+        response1.data.sort(function(a,b){
+            var c = new Date(a.comment_time);
+            var d = new Date(b.comment_time);
+            return d-c;
+        })
         this.setState({commentList:response1.data})
         
+    }
+
+    addCart = async ()=>{
+        const response1 = await Axios.get('http://13.55.8.94:5000/explorer/shoppingcart', {
+            headers: {
+                'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+            }
+        })
+        console.log(response1)
+        // var body = {
+        //     image_id: this.props.imageinfo.image_id,
+        // }
+        // const response2 = await Axios.post('http://13.55.8.94:5000/explorer/shoppingcart',body, {
+        //     headers: {
+        //         'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+        //     }
+        // }).then(res=> console.log(res.status))
     }
 
     inputComment= (e) =>{
@@ -110,7 +153,7 @@ class ImageCard extends React.Component {
             }
             })
         }
-        
+        this.setState({commentState:true})
         e.preventDefault();
 
     }
@@ -164,7 +207,7 @@ class ImageCard extends React.Component {
                                     </header><br/>
                                     <detail>
                                         {`Price: $${price}`}<br/>
-                                        <button><CIcon content={freeSet.cilCart}/>{" "}Purchase</button>
+                                        <button onClick={this.addCart}><CIcon content={freeSet.cilCart} />{" "}Add To Cart</button>
                                     </detail>
                                 </article>
                             </div>
