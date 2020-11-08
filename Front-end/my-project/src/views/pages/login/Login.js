@@ -38,7 +38,7 @@ const Login = () => {
   const sendUserInfo = () => {
     console.log(username, password, usertype);
     if (username && password && usertype){
-      Axios.post('http://34.87.211.156:5000/login', {
+      Axios.post('http://13.55.8.94:5000/login', {
           username: username,
           password: password,
           userType: usertype
@@ -48,7 +48,7 @@ const Login = () => {
           sessionStorage.setItem('token', res.data.access_token);
           if (usertype === 'explorer'){
             sessionStorage.setItem('usertype', 'explorer');
-            history.push("/mainpbefore");
+            history.push("/main");
           } else if (usertype === 'contributor'){
             history.push("/profile/contributorprofile");
             sessionStorage.setItem('usertype', 'contributor');

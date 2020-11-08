@@ -30,7 +30,7 @@ class MainpBeforeContent extends React.Component {
   }
 
   componentDidMount(){
-    Axios.get(`http://34.87.211.156:5000/index/image`)
+    Axios.get(`http://13.55.8.94:5000/index/image`)
     .then(res => {
       console.log(res.data);
       const newArr = res.data.filter( d => d.contributer_detail !== false );
