@@ -21,6 +21,7 @@ const Mainpage = React.lazy(() => import('./views/pages/mainpage/Mainpage'));
 const Mainp = React.lazy(() => import('./views/pages/Main/MainP'));
 const MainpBefore = React.lazy(() => import('./views/pages/mainpbefore/MainpBefore'));
 const Profile = React.lazy(() => import('../src/views/pages/profile/Profile'));
+const ExplorerProfile = React.lazy(() => import('../src/views/pages/explorerprofile/ExplorerProfile'));
 
 class App extends Component {
 
@@ -37,6 +38,7 @@ class App extends Component {
               <Route exact path="/mainp" name="Search Result Page" render={props => <Mainp {...props}/>} />
               <Route exact path="/mainpbefore" name="Page before Sign in " render={props => <MainpBefore {...props}/>} />
               <Route path="/profile" name="profile" render={props => <Profile {...props}/>} />
+              <Route path="/explorerprofile" name="profile" render={props => <ExplorerProfile {...props}/>} />
               <Route path="/" name="Home" render={props => <TheLayout {...props}/>} />
             </Switch>
           </React.Suspense>

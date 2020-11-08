@@ -11,12 +11,9 @@ import {
   CSelect
 } from '@coreui/react'
 import MainpBeforeHeaderDropdown from './MainpBeforeHeaderDropdown'
-import MainpAfterHeaderDropdown from './MainpAfterHeaderDropdown'
 import styles from './MainpBefore.module.css'
 
 const MainpBeforeHeader = () => {
-  const usertype = sessionStorage.getItem('usertype');
-
   return (
     <CHeader withSubheader>
       <h1 className={styles.brand}>PhotoPro</h1>
@@ -36,7 +33,7 @@ const MainpBeforeHeader = () => {
         </CCol>
       </CFormGroup>
       </CForm>
-        {usertype === 'explorer' ? <MainpAfterHeaderDropdown/> : <MainpBeforeHeaderDropdown/>}
+        <MainpBeforeHeaderDropdown/>
       </CHeaderNav>
     </CHeader>
   )
