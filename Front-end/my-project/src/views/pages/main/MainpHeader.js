@@ -14,7 +14,7 @@ import MainpBeforeHeaderDropdown from './MainpBeforeHeaderDropdown'
 import MainpAfterHeaderDropdown from './MainpAfterHeaderDropdown'
 import styles from './MainpBefore.module.css'
 
-const MainpBeforeHeader = () => {
+const MainpHeader = () => {
   const usertype = sessionStorage.getItem('usertype');
 
   return (
@@ -42,4 +42,4 @@ const MainpBeforeHeader = () => {
   )
 }
 
-export default MainpBeforeHeader;
+export default MainpHeader;
