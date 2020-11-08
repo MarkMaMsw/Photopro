@@ -91,7 +91,7 @@ const ImageUploadForm = () => {
 
     console.log(sessionStorage.getItem('token'));
 
-    Axios.post('http://34.87.211.156:5000/image', formData, {
+    Axios.post('http://13.55.8.94:5000/image', formData, {
       headers: {
         "Content-type": "multipart/form-data",
         'Authorization': `Bearer ${sessionStorage.getItem('token')}`

@@ -43,7 +43,7 @@ const Register = () => {
     console.log(username, email, password, usertype)
     if (username && email && password && confirmPass){
       if (password === confirmPass){
-        Axios.post('http://34.87.211.156:5000/register', {
+        Axios.post('http://13.55.8.94:5000/register', {
           id: '',
           username: username,
           email: email,
