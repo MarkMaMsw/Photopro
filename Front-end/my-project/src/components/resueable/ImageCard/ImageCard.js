@@ -27,11 +27,13 @@ class ImageCard extends React.Component {
             heartcolor: "",
             collectionColor:"",
             show: false,
+            showCollection:false,
             commentList: [],
             img_id : "",
             commentDetail:"",
             commentState:false,
             likeList:[],
+            collectionList:[],
             sumLike: this.props.imageinfo.like_num
         }
     }
@@ -115,6 +117,17 @@ class ImageCard extends React.Component {
         })
         this.setState({commentList:response1.data})
         
+    }
+
+    toggleCollection = async ()=>{
+        this.setState({showCollection:!this.state.showCollection})
+        const response1 = await Axios.get(`http://13.55.8.94:5000/image/collection`,
+        {headers: {
+            'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+        }})
+        console.log(response1)
+        // this.setState({collectionList:response1.data})
+
     }
 
     addCart = async ()=>{
@@ -201,7 +214,7 @@ class ImageCard extends React.Component {
                                         {`By ${contributor_detail["username"]} (${contributor_detail["email"]})`}<br/>
                                         Tags: {tag}
                                         <div>
-                                            <CIcon className="iconItem" size={'xl'} content={freeSet.cilPlaylistAdd}  onClick={()=>console.log('clicked')}/> &nbsp;
+                                            <CIcon className="iconItem" size={'xl'} content={freeSet.cilPlaylistAdd}  onClick={this.toggleCollection}/> &nbsp;
                                             <CIcon className="iconItem" size={'xl'} content={freeSet.cilHeart} onClick={this.heartClick} style={{color: this.state.heartcolor}} className={styles.icon_click}/> {this.state.sumLike} 
                                         </div>
                                     </header><br/>
@@ -239,6 +252,24 @@ class ImageCard extends React.Component {
                             onClick={this.toggle}
                         >Cancel</CButton>
                         </CModalFooter> */}
+                    </CModal>
+                    <CModal
+                    show={this.state.showCollection}
+                    onClose={this.toggleCollection}
+                    >
+                    <CModalHeader closeButton>Add to collection</CModalHeader>
+                    <CModalBody>
+                        <ul style={{"list-style-type":"none"}}>
+                            <li><CIcon className="iconItem" size={'xl'} content={freeSet.cilPlus} /></li>  
+                        </ul>
+                    </CModalBody>
+                    {/* <CModalFooter>
+                    <CButton color="primary">Submit</CButton>{' '}
+                    <CButton
+                        color="secondary"
+                        onClick={this.toggleCollection}
+                    >Cancel</CButton>
+                    </CModalFooter> */}
                     </CModal>
                 </CCol>
             // </CRow>
