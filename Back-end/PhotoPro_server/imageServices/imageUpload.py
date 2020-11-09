@@ -46,17 +46,6 @@ class ImageUpload(Resource):
             f.save(os.path.join(file_store_path, image_newfilename))
             #add watermark
             img = Image.open(os.path.join(file_store_path, image_newfilename))
-            '''
-            draw = ImageDraw.Draw(img)
-            ttfront = ImageFont.truetype(os.path.join('/dev/', 'Chalkduster.ttf'), 30)
-            #print(get_raw_jwt()["identity"])
-            bottomRight = (int(img.size[0]/2 - 150), int(img.size[1]/2))
-            #print(bottomRight)
-            #draw.text((100, 100),get_raw_jwt()["identity"]["user"],fill=(195,195,195), font=ttfront)
-            draw.text(bottomRight,"PhotoPro - " + get_raw_jwt()["identity"]["user"],fill=(195,195,195), font=ttfront)
-            watermark_image_name = "watermark_" + image_newfilename
-            img.save(os.path.join(file_store_path, watermark_image_name))
-            '''
             watermark = Image.open(os.path.join('upload/static/', 'watermark.png'))
             r,g,b,a = watermark.split()
             img.convert("RGBA")
@@ -85,3 +74,26 @@ class ImageUpload(Resource):
         db.db.image.insert_one(image_detail)
         result = {'status':'upload success'}
         return result, 200, None
+    @jwt_required
+    def put(self):
+        if get_raw_jwt()["identity"]["type"] != 'contributor':
+                result = {'status':'you are not contributor'}
+                return result, 403, None
+        try:
+            input_data = request.json
+            image_id = input_data['image_id']
+            image_status = input_data['image_status']
+            if image_status == 'on_shop' or image_status == 'off_shop':
+                update = db.db.image.update_one({"image_id":image_id},{"$set": { "status": image_status }})
+                if update:
+                    result = {'status':'update success'}
+                    return result, 200, None
+                else:
+                    result = {'status':'record not found'}
+                    return result, 404, None
+            else:
+                result = {'status':'update status error'}
+                return result, 409, None
+        except:
+            result = {'status':'update error'}
+            return result, 409, None

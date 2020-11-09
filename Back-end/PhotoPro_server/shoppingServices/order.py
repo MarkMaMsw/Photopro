@@ -7,7 +7,7 @@ import db
 import time
 import dev.config as config
 import imageServices.imageDetail as ImageDetail
-class ShoppingCartPhoto(Resource):
+class Order(Resource):
     #upload image
     @jwt_required
     def post(self):
