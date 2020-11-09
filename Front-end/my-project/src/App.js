@@ -19,6 +19,7 @@ const Page500 = React.lazy(() => import('./views/pages/page500/Page500'));
 const Main = React.lazy(() => import('./views/pages/main/Main'));
 const Profile = React.lazy(() => import('../src/views/pages/profile/Profile'));
 const ExplorerProfile = React.lazy(() => import('../src/views/pages/explorerprofile/ExplorerProfile'));
+const AuthorDetail = React.lazy(() => import('../src/views/pages/authordetail/AuthorDetail'));
 
 class App extends Component {
 
@@ -34,6 +35,7 @@ class App extends Component {
               <Route exact path="/main" name="Main Page" render={props => <Main {...props}/>} />
               <Route path="/profile" name="profile" render={props => <Profile {...props}/>} />
               <Route path="/explorerprofile" name="profile" render={props => <ExplorerProfile {...props}/>} />
+              <Route path="/authordetail/:id" name="profile" render={props => <AuthorDetail {...props}/>} />
               <Route path="/" name="Home" render={props => <TheLayout {...props}/>} />
             </Switch>
           </React.Suspense>

@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Axios from 'axios';
+import { Link } from 'react-router-dom';
 import {
   CCard,
   CCardBody,
@@ -15,9 +16,7 @@ import {
   CContainer,
   CImg
 } from '@coreui/react'
-import { DocsLink } from 'src/reusable'
 import ImageCard from '../../../components/resueable/ImageCard/ImageCard';
-
 import styles from './MainpBefore.module.css'
 
 class MainpBeforeContent extends React.Component {
@@ -26,11 +25,12 @@ class MainpBeforeContent extends React.Component {
     this.state = {
       isloading: true,
       photoArr: [],
+      authorArr: []
     }
   }
 
   componentDidMount(){
-    Axios.get(`http://34.87.211.156:5000/index/image`)
+    Axios.get(`http://13.55.8.94:5000/index/image`)
     .then(res => {
       console.log(res.data);
       const newArr = res.data.filter( d => d.contributer_detail !== false );
@@ -38,13 +38,26 @@ class MainpBeforeContent extends React.Component {
       this.setState({
         photoArr: newArr.slice(0, 6),
       });
-    });
+    })
+    .catch(err => console.log(err));
+
+    Axios.get(`http://13.55.8.94:5000/index/contributor`)
+    .then(res => {
+      console.log(res);
+      const newArr = res.data.filter( d => d.userType === 'contributor' );
+      console.log(newArr);
+      this.setState({
+        authorArr: newArr.slice(0, 6)
+      });
+    })
+    .catch(err => console.log(err));
   }
 
   render(){
     return (
       <main className="c-main">
         <CContainer fluid>
+          {/* selected photo */}
           <CRow alignHorizontal='center'>
             <CCol xs="10">
               <CCard>
@@ -55,17 +68,15 @@ class MainpBeforeContent extends React.Component {
                   <CCarousel animate autoSlide={3000}>
                     <CCarouselIndicators/>
                     <CCarouselInner>
-                      {this.state.photoArr.map( p => {
+                      {this.state.photoArr.map( (p, index) => {
                         return (
-                          <CCarouselItem>
-                            {/* <img className="d-block w-100" src={p.image_url} alt="slide 2"/> */}
-                            {/* <img className="d-block w-100" src='LoginBcakground.jpg' alt="slide 2"/> */}
+                          <CCarouselItem key={index}>
                             <CImg
                               src={'avatars/004.jpg'}
                               className="d-block w-100"
                               alt="avatars"
                             />
-                        <CCarouselCaption><h3>{p.title}</h3><p>{p.title}</p></CCarouselCaption>
+                            <CCarouselCaption><h3>{p.title}</h3><p>{p.title}</p></CCarouselCaption>
                           </CCarouselItem>
                         )
                       })}
@@ -78,7 +89,7 @@ class MainpBeforeContent extends React.Component {
             </CCol>
           </CRow>
 
-          {/* <h5 style={{textAlign: 'center'}}>Photo Recommendation</h5> */}
+          {/* Photo Recommendation */}
           <CRow alignHorizontal='center'>
             <CCol xs="10">
               <CCard>
@@ -95,6 +106,7 @@ class MainpBeforeContent extends React.Component {
             </CCol>
           </CRow>
           
+          {/* author Recommendation */}
           <CRow alignHorizontal='center'>
             <CCol xs="10">
               <CCard>
@@ -103,48 +115,9 @@ class MainpBeforeContent extends React.Component {
                 </CCardHeader>
                 <CCardBody>
                   <CRow>
-                    <CCol className={styles.hot_author} xs='2'>
-                      <CImg
-                        src={'avatars/9.jpg'}
-                        className="c-avatar-img"
-                        alt="admin@bootstrapmaster.com"
-                      />
-                    </CCol>
-                    <CCol className={styles.hot_author} xs='2'>
-                      <CImg
-                        src={'avatars/9.jpg'}
-                        className="c-avatar-img"
-                        alt="admin@bootstrapmaster.com"
-                      />
-                    </CCol>
-                    <CCol className={styles.hot_author} xs='2'>
-                      <CImg
-                        src={'avatars/9.jpg'}
-                        className="c-avatar-img"
-                        alt="admin@bootstrapmaster.com"
-                      />
-                    </CCol>
-                    <CCol className={styles.hot_author} xs='2'>
-                      <CImg
-                        src={'avatars/9.jpg'}
-                        className="c-avatar-img"
-                        alt="admin@bootstrapmaster.com"
-                      />
-                    </CCol>
-                    <CCol className={styles.hot_author} xs='2'>
-                      <CImg
-                        src={'avatars/9.jpg'}
-                        className="c-avatar-img"
-                        alt="admin@bootstrapmaster.com"
-                      />
-                    </CCol>
-                    <CCol className={styles.hot_author} xs='2'>
-                      <CImg
-                        src={'avatars/9.jpg'}
-                        className="c-avatar-img"
-                        alt="admin@bootstrapmaster.com"
-                      />
-                    </CCol>
+                    {this.state.authorArr.map((author, index) => {
+                      return <AuthorCard key={index} author={author} imgsrc={'avatars/3.jpg'}/>
+                    })}
                   </CRow>
                 </CCardBody>
               </CCard>
@@ -154,6 +127,23 @@ class MainpBeforeContent extends React.Component {
       </main>
     );
   }
+}
+
+// Hot Author Card
+const AuthorCard = (props) => {
+  const [path] = useState(`/authordetail/${props.author.id}`)
+  return (
+    <CCol className={styles.hot_author} xs='1'>
+      <Link to={path} >
+        <h5 className={styles.authorname}>{props.author.username}</h5>
+        <CImg
+          src={props.imgsrc}
+          className="c-avatar-img"
+          alt={props.author.username}
+        />
+      </Link>
+    </CCol>
+  );
 }
 
 export default MainpBeforeContent;

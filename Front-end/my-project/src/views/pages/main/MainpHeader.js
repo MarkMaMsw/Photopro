@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState } from 'react'
+import Axios from 'axios';
 import {
   CHeader,
   CHeaderNav,
@@ -16,6 +17,29 @@ import styles from './MainpBefore.module.css'
 
 const MainpHeader = () => {
   const usertype = sessionStorage.getItem('usertype');
+  const [searchtype, setSearchtype] = useState('photo');
+  const [keyword, setKeyword] = useState('');
+
+  const handleOnchange = (e) => {
+    console.log(e.target.value);
+    setSearchtype(e.target.value);
+  }
+
+  const handleKeywordChange = (e) => {
+    console.log(e.target.value);
+    setKeyword(e.target.value);
+  }
+
+  const submitSearch = () => {
+    // http://13.55.8.94:5000
+    const json = {
+      type: searchtype,
+      keyword: keyword
+    }
+    console.log(json);
+    Axios.post('http://13.55.8.94:5000/search', json)
+    .then(res => console.log(res));
+  }
 
   return (
     <CHeader withSubheader>
@@ -25,13 +49,12 @@ const MainpHeader = () => {
       <CFormGroup row>
         <CCol md="12">
           <CInputGroup style={{width: '400px'}}>
-            <CSelect custom name="ccmonth" id="ccmonth">
+            <CSelect custom name="ccmonth" id="ccmonth" onChange={handleOnchange} value={searchtype}>
               <option value="photo">Photo</option>
               <option value="author">Author</option>
             </CSelect>
-            <CInput id="input1-group3" name="input1-group3" placeholder="Search" style={{width: '200px'}}/>
-
-            <CButton color="info" className="my-2 my-sm-0">Search</CButton>
+            <CInput id="input1-group3" name="input1-group3" placeholder="Search" style={{width: '200px'}} onChange={handleKeywordChange} value={keyword}/>
+            <CButton color="info" className="my-2 my-sm-0" onClick={submitSearch}>Search</CButton>
           </CInputGroup>
         </CCol>
       </CFormGroup>

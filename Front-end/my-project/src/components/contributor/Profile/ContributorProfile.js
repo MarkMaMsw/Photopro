@@ -27,7 +27,7 @@ const ContributorProfile = () => {
 
     
     useEffect(() => {
-      axios.get('http://34.87.211.156:5000/contributor', {
+      axios.get('http://13.55.8.94:5000/contributor', {
         headers: {   
               'Authorization': `Bearer ${sessionStorage.getItem('token')}`
           },

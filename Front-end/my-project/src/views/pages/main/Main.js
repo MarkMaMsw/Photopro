@@ -13,10 +13,7 @@ const Profile = () => {
         <div className="c-body">
           <MainpBeforeContent/>
         </div>
-        <div className="c-body">
-          
-        </div>
-
+        
         <Footer/>
       </div>
     </div>

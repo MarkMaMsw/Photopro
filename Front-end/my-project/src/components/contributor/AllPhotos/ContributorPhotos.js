@@ -13,7 +13,7 @@ class ContributorPhotos extends React.Component {
   }
 
   componentDidMount(){
-    Axios.get(`http://34.87.211.156:5000/contributor/image/${sessionStorage.getItem('userid')}`, {
+    Axios.get(`http://13.55.8.94:5000/contributor/image/${sessionStorage.getItem('userid')}`, {
       header: {
         'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
       }
