@@ -18,7 +18,8 @@ class ImageCollection(Resource):
             "id": str(int(time.time())),
             "explorer_id" : get_raw_jwt()["identity"]["id"],
             "collection_name" : input_request["name"],
-            "collection_details" : input_request["detail"]
+            "collection_details" : input_request["detail"],
+            "collection_images": []
         }
         db.db.collection.insert_one(collection_info)
         result = {'status':'create collection successfully'}
@@ -55,7 +56,7 @@ class ImageCollection(Resource):
                 image.pop("_id")
                 images.append(image)
             i["collection_images"] = images
-            attributes = ["_id","id","explorer_id"]
+            attributes = ["_id","explorer_id"]
             for k in attributes:
                 i.pop(k)
             result.append(i)

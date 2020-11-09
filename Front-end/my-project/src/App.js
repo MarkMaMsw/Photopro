@@ -16,8 +16,9 @@ const Login = React.lazy(() => import('./views/pages/login/Login'));
 const Register = React.lazy(() => import('./views/pages/register/Register'));
 const Page404 = React.lazy(() => import('./views/pages/page404/Page404'));
 const Page500 = React.lazy(() => import('./views/pages/page500/Page500'));
-const Mainpage = React.lazy(() => import('./views/pages/mainpage/Mainpage'));
-const MainP = React.lazy(() => import('./views/pages/Main/MainP'));
+const Main = React.lazy(() => import('./views/pages/main/Main'));
+const Profile = React.lazy(() => import('../src/views/pages/profile/Profile'));
+const ExplorerProfile = React.lazy(() => import('../src/views/pages/explorerprofile/ExplorerProfile'));
 
 class App extends Component {
 
@@ -30,8 +31,10 @@ class App extends Component {
               <Route exact path="/register" name="Register Page" render={props => <Register {...props}/>} />
               <Route exact path="/404" name="Page 404" render={props => <Page404 {...props}/>} />
               <Route exact path="/500" name="Page 500" render={props => <Page500 {...props}/>} />
-              <Route exact path="/mainpage" name="Main Page" render={props => <Mainpage {...props}/>} />
-              <Route exact path="/" name="Main P" render={props => <MainP {...props}/>} />
+              <Route exact path="/main" name="Main Page" render={props => <Main {...props}/>} />
+              <Route path="/profile" name="profile" render={props => <Profile {...props}/>} />
+              <Route path="/explorerprofile" name="profile" render={props => <ExplorerProfile {...props}/>} />
+              <Route path="/" name="Home" render={props => <TheLayout {...props}/>} />
             </Switch>
           </React.Suspense>
       </HashRouter>
