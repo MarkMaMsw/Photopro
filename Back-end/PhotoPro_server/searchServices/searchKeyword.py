@@ -31,9 +31,13 @@ class searchImage(Resource):
         return result
     #get image detail
     def post(self):
-        search = request.json
-        search_type = search['type']
-        search_keyword = search['keyword']
+        try:
+            search = request.json
+            search_type = search['type']
+            search_keyword = search['keyword']
+            explorer_id = search['explorer_id']
+        except:
+            return "miss some data", 409, None
         if search_type == 'image':
             result = {
                 'search_type' : 'image',
@@ -46,4 +50,5 @@ class searchImage(Resource):
                 }
         else:
             return 'search type error', 409, None
+        db.db.search.insert_one({'search_type':search_type,'explorer_id':explorer_id,'search_keyword':search_keyword})
         return result, 200, None

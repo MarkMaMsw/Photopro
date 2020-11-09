@@ -13,7 +13,7 @@ class ContributorInfo(Resource):
         user = db.db.user.find_one({"id":contributorID})
 
         if not user:
-            return "The user not exists", 400, None
+            return "The user not exists", 404, None
         
         newUser = {}
         attributes = ["id","username","email","description","balance","userType"]

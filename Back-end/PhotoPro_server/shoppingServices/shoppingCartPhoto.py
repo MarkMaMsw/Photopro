@@ -20,7 +20,6 @@ class ShoppingCartPhoto(Resource):
         if not image:
             return "image not found", 409, None
         shopping_info = {
-            "id" 
             "explorer_id" : get_raw_jwt()["identity"]["id"],
             "image_id" : input_request["image_id"],
             "status" : "on",#1,on;2,off
