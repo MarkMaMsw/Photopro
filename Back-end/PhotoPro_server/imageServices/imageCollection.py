@@ -56,7 +56,7 @@ class ImageCollection(Resource):
                 image.pop("_id")
                 images.append(image)
             i["collection_images"] = images
-            attributes = ["_id","id","explorer_id"]
+            attributes = ["_id","explorer_id"]
             for k in attributes:
                 i.pop(k)
             result.append(i)

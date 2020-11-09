@@ -28,12 +28,15 @@ class ImageCard extends React.Component {
             collectionColor:"",
             show: false,
             showCollection:false,
+            showAddCollection:false,
             commentList: [],
             img_id : "",
             commentDetail:"",
             commentState:false,
             likeList:[],
             collectionList:[],
+            collectionName:"",
+            collectionDetail:"",
             sumLike: this.props.imageinfo.like_num
         }
     }
@@ -126,8 +129,7 @@ class ImageCard extends React.Component {
             'Authorization': `Bearer ${sessionStorage.getItem('token')}`
         }})
         console.log(response1)
-        // this.setState({collectionList:response1.data})
-
+        this.setState({collectionList:response1.data})
     }
 
     addCart = async ()=>{
@@ -146,6 +148,8 @@ class ImageCard extends React.Component {
         //     }
         // }).then(res=> console.log(res.status))
     }
+
+    
 
     inputComment= (e) =>{
         // console.log(e.target.name)
@@ -169,6 +173,29 @@ class ImageCard extends React.Component {
         this.setState({commentState:true})
         e.preventDefault();
 
+    }
+
+    inputCollectionInfo = (e)=>{
+        if(e.target.name=="name"){
+            this.setState({collectionName:e.target.value})
+        }else{
+            this.setState({collectionDetail:e.target.value})
+        }
+    }
+
+    createCollection = async (e)=>{
+        e.preventDefault();
+        var body = {
+            name: this.state.collectionName,
+            detail: this.state.collectionDetail
+        }
+        const response1 = await Axios.post('http://13.55.8.94:5000/image/collection',body, {
+            headers: {
+                'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+            }
+        }).then(res=> console.log(res.status))
+        this.setState({showAddCollection:false})
+        
     }
 
     render(){
@@ -259,8 +286,33 @@ class ImageCard extends React.Component {
                     >
                     <CModalHeader closeButton>Add to collection</CModalHeader>
                     <CModalBody>
+                        <CIcon className="iconItem" size={'xl'} content={freeSet.cilPlus} onClick={()=>this.setState({showAddCollection:!this.state.showAddCollection})}/>
+                        <div style={this.state.showAddCollection?{"display":"block"}:{"display":"none"}}>
+                            <form >
+                                <h5>Create collection</h5>
+                                <label htmlFor="name">name</label>{" "}
+                                <input 
+                                    type="text"
+                                    id="name"
+                                    name="name"
+                                    placeholder="input collection name"
+                                    size="30"
+                                    onChange={this.inputCollectionInfo}
+                                /><br/>
+                                <label htmlFor="detail">detail</label>{" "}
+                                <input 
+                                    type="text"
+                                    id="detail"
+                                    name="detail"
+                                    placeholder="input collection detail"
+                                    size="30"
+                                    onChange={this.inputCollectionInfo}
+                                /><br/>
+                                <button type="submit" onClick={this.createCollection}>submit</button>
+                            </form>
+                        </div>
                         <ul style={{"list-style-type":"none"}}>
-                            <li><CIcon className="iconItem" size={'xl'} content={freeSet.cilPlus} /></li>  
+                            <li></li>  
                         </ul>
                     </CModalBody>
                     {/* <CModalFooter>
