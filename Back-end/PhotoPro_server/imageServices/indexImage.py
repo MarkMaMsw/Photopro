@@ -6,12 +6,21 @@ import dev.config as config
 import imageServices.imageDetail as imageDetail
 class IndexImage(Resource):
     def get_detail_from_db(self):
-        image = db.db.image.find()
-        result = []
-        for i in image:
-            tem_result = imageDetail.get_image_detail_from_db(i['image_id'])
-            result.append(tem_result)
-        return result[0:11]
+        imageList = []
+        images = db.db.image.find({'status': 'on_shop'})
+        # print(like)
+        for i in images:
+            # print(i)
+            i.pop("_id")
+            i["like_sum"] = db.db.like.find({"image_id":i["image_id"]}).count()
+            imageList.append(i)
+        imageList = sorted(imageList,key = lambda x: x["like_sum"],reverse=True)
+        imageArray = []
+        # print(imageList[:12])
+        for i in imageList:
+            i.pop("like_sum")
+            imageArray.append(i)
+        return imageArray[:12]
     #get image detail
     def get(self):
         all_image = self.get_detail_from_db()
