@@ -25,6 +25,10 @@ from userServices.userInfo import UserInfo
 from shoppingServices.shoppingCartPhoto import ShoppingCartPhoto
 from contributorServices.indexContributor import IndexContributor
 from searchServices.searchKeyword import searchImage
+from userServices.userInfo import UserDetail
+from shoppingServices.order import Order
+from explorerServices.explorerOrder import ExplorerOrder
+from contributorServices.contributorOrder import ContributorOrder
 app = Flask(__name__)
 
 CORS(app, resources={r"/*": {"origins": "*"}}, send_wildcard=True)
@@ -61,6 +65,10 @@ restful_api.add_resource(UserInfo, '/user/<string:userId>')
 restful_api.add_resource(ShoppingCartPhoto, '/explorer/shoppingcart')
 restful_api.add_resource(IndexContributor, '/index/contributor')
 restful_api.add_resource(searchImage, '/search')
+restful_api.add_resource(UserDetail, '/user')
+restful_api.add_resource(Order, '/order')
+restful_api.add_resource(ExplorerOrder, '/explorer/order')
+restful_api.add_resource(ContributorOrder, '/contributor/order')
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5000, debug=True, threaded=True)
