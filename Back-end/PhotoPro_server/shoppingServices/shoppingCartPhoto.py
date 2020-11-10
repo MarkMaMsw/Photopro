@@ -34,12 +34,15 @@ class ShoppingCartPhoto(Resource):
         if get_raw_jwt()["identity"]["type"] != 'explorer':
             result = {'status':'you are not explorer'}
             return result, 403, None
-        shoppingcart = db.db.shoppingcart.find({"explorer_id" : get_raw_jwt()["identity"]["id"],"status":"on"})
-        result = []
-        for cart in shoppingcart:
-            image_detail = ImageDetail.get_image_detail_from_db(cart['image_id'])
-            result.append(image_detail)
-        return result, 200, None
+        try:
+            shoppingcart = db.db.shoppingcart.find({"explorer_id" : get_raw_jwt()["identity"]["id"],"status":"on"})
+            result = []
+            for cart in shoppingcart:
+                image_detail = ImageDetail.get_image_detail_from_db(cart['image_id'])
+                result.append(image_detail)
+            return result, 200, None
+        except:
+            return "error", 409, None
 
             
 
