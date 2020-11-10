@@ -1,7 +1,8 @@
 from flask import Flask
 from flask_pymongo import pymongo
+import dev.config as config
 # from app import app
-CONNECTION_STRING = "mongodb+srv://COMP9900_group:comp9900@cluster0.okzv2.mongodb.net/<dbname>?retryWrites=true&w=majority"
+CONNECTION_STRING = config.database_address
 client = pymongo.MongoClient(CONNECTION_STRING)
 db = client.get_database('flask_mongodb_atlas')
 user_collection = pymongo.collection.Collection(db, 'user')
@@ -9,3 +10,5 @@ image_collection = pymongo.collection.Collection(db, 'image')
 comment_collection = pymongo.collection.Collection(db, 'comment')
 like_collection = pymongo.collection.Collection(db, 'like')
 shoppingcart_collection = pymongo.collection.Collection(db, 'shoppingcart')
+search_collection = pymongo.collection.Collection(db, 'search')
+order_collection = pymongo.collection.Collection(db, 'order')
