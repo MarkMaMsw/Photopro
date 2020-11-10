@@ -35,7 +35,7 @@ class ImageUpload(Resource):
         try:
             image_filename = secure_filename(f.filename)
             ext = image_filename.rsplit('.',1)[1]
-            image_id = str(int(time.time()))
+            image_id = str(int(round(time.time() * 1000000)))
             image_newfilename = str(image_id) + '.' + ext
             #get contributor id
             contributer_id = get_raw_jwt()["identity"]["id"]

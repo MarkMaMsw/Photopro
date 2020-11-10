@@ -26,7 +26,7 @@ class AuthRegister(Resource):
 
         g.user["password"] = encrypt.generate_hash(request.json["password"])
         g.user["balance"] = 1000
-        g.user["id"] = str(int(time.time()))
+        g.user["id"] = str(int(round(time.time() * 1000000)))
         db.db.user.insert_one(g.user)
 
         access_token = create_access_token({"user":g.user["email"],"type":g.user["userType"],"id":g.user["id"]},expires_delta=False)
