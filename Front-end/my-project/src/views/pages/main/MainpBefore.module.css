@@ -1,6 +1,11 @@
 .brand{
     padding: 5px 20px;
 }
+.brand:hover{
+    cursor: pointer;
+    color: #3399FF;
+    text-shadow: 0 0 3px #3399FF;
+}
 .hot_author{
     border: 1px solid gray;
     background: linear-gradient(to right, #74dcff 0%, #7e9df3 100%);;
