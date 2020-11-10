@@ -166,6 +166,26 @@ paths:
           description: "update success"
           schema:
             type: "string"
+    delete:
+      tags:
+      - "image"
+      summary: "delete image"
+      description: "need JWT"
+      produces:
+      - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          schema:
+            type: "object"
+            properties:
+              "image_id":
+                type: "string"
+      responses:
+        "200":
+          description: "update success"
+          schema:
+            type: "string"
   /contributor:
     get:
       tags:
@@ -761,8 +781,6 @@ definitions:
           properties:
             imageid:
               type: "string"
-
-          
   Search:
     type: "object"
     properties:
