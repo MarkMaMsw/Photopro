@@ -546,10 +546,30 @@ paths:
             properties:
               image_id:
                 type: "string"
-                description: "user ID"
+                description: "image ID"
       responses:
         "200":
           description: "successful operation"
+    delete:
+      tags:
+      - "explorer"
+      summary: "delete photo into shopping cart"
+      produces:
+      - "application/json"
+      parameters: #path parameter
+        - in: body
+          name: body
+          required: true
+          schema:
+            type: "object"
+            properties:
+              image_id:
+                type: "string"
+                description: "image ID"
+      responses:
+        "200":
+          description: "successful operation"
+    
   /search:
     post:
       tags:
@@ -781,6 +801,8 @@ definitions:
           properties:
             imageid:
               type: "string"
+
+          
   Search:
     type: "object"
     properties:
