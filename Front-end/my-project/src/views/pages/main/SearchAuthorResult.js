@@ -1,23 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
-// import { Link } from 'react-router-dom';
-// import {
-//   CCard,
-//   CCardBody,
-//   CCardHeader,
-//   CCarousel,
-//   CCarouselCaption,
-//   CCarouselControl,
-//   CCarouselIndicators,
-//   CCarouselInner,
-//   CCarouselItem,
-//   CCol,
-//   CRow,
-//   CContainer,
-//   CImg
-// } from '@coreui/react'
-// import ImageCard from '../../../components/resueable/ImageCard/ImageCard';
-// import styles from './MainpBefore.module.css'
+import { Link } from 'react-router-dom';
+import {
+  CCard,
+  CCardBody,
+  CCardHeader,
+  CCarousel,
+  CCarouselCaption,
+  CCarouselControl,
+  CCarouselIndicators,
+  CCarouselInner,
+  CCarouselItem,
+  CCol,
+  CRow,
+  CContainer,
+  CImg
+} from '@coreui/react'
+
+import styles from './MainpBefore.module.css'
 
 const SearchAuthorResult = (props) => {
     const [authorArr, setAuthorArr] = useState([]);
@@ -44,13 +44,43 @@ const SearchAuthorResult = (props) => {
         .catch(err => console.log(err));
     }, [props.keyword]);
 
-    return (<>
-        <h1>SearchAuthorResult</h1>
-        <h1>{props.keyword}</h1>
-    {authorArr.map(auth => <p>{auth.username} {auth.userType} {auth.id} {auth.image_num}</p>)}
-    </>
+    return (
+        <CContainer fluid>
+            <CRow alignHorizontal='center'>
+                <CCol xs="12" md='10'>
+                    <CCard>
+                    <CCardHeader>
+                        <h4 className={styles.searchtitle}>Search Type: Author</h4>
+                        <h4>Keywords: <span className={styles.keyword}>{props.keyword}</span> </h4>
+                        <h5>Result:</h5>
+                    </CCardHeader>
+                    <CCardBody>
+                        <CRow className={styles.firstrow}>
+                            <CCol>Username</CCol>
+                            <CCol>Email</CCol>
+                            <CCol>Number of Photos</CCol>
+                        </CRow>
+                        {authorArr.map(auth => <AuthorCard author={auth}/>)}
+                    </CCardBody>
+                    </CCard>
+                </CCol>
+            </CRow>
+        </CContainer>
     );
 
+}
+
+const AuthorCard = (props) => {
+    const [path] = useState(`/authordetail/${props.author.id}`)
+    return (
+        <CRow className={styles.datarow}>
+            <CCol>
+                <Link to={path} target="_blank">{props.author.username}</Link>
+            </CCol>
+            <CCol>{props.author.email}</CCol>
+            <CCol>{props.author.image_num}</CCol>
+        </CRow>
+    );
 }
 
 export default SearchAuthorResult;

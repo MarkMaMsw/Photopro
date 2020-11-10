@@ -1,23 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 // import { Link } from 'react-router-dom';
-// import {
-//   CCard,
-//   CCardBody,
-//   CCardHeader,
-//   CCarousel,
-//   CCarouselCaption,
-//   CCarouselControl,
-//   CCarouselIndicators,
-//   CCarouselInner,
-//   CCarouselItem,
-//   CCol,
-//   CRow,
-//   CContainer,
-//   CImg
-// } from '@coreui/react'
-// import ImageCard from '../../../components/resueable/ImageCard/ImageCard';
-// import styles from './MainpBefore.module.css'
+import {
+  CCard,
+  CCardBody,
+  CCardHeader,
+  CCol,
+  CRow,
+  CContainer,
+  CImg
+} from '@coreui/react'
+import ImageCard from '../../../components/resueable/ImageCard/ImageCard';
+import styles from './MainpBefore.module.css'
 
 const SearchPhotoResult = (props) => {
     const [imageArr, setImageArr] = useState([]);
@@ -44,10 +38,26 @@ const SearchPhotoResult = (props) => {
         .catch(err => console.log(err));
     }, [props.keyword]);
 
-    return (<>
-        <h1>SearchPhotoResult</h1>
-        <h1>{props.keyword}</h1>
-        {imageArr.map(img => <img src={img.image_url}/>)}</>
+    return (
+        <CContainer fluid>
+            <CRow alignHorizontal='center'>
+                <CCol xs="10">
+                <CCard>
+                    <CCardHeader>
+                        <h4 className={styles.searchtitle}>Search Type: Photo</h4>
+                        <h4>Keywords: <span className={styles.keyword}>{props.keyword}</span> </h4>
+                        <h5>Result:</h5>
+                    </CCardHeader>
+
+                    <CCardBody>
+                    <CRow>
+                        {imageArr.map(p => <ImageCard key={p.image_id} imageinfo={p}/>)}
+                    </CRow>
+                    </CCardBody>
+                </CCard>
+                </CCol>
+            </CRow>
+        </CContainer>
     );
 
 }

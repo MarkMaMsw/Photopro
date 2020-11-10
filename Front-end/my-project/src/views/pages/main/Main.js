@@ -8,8 +8,8 @@ import SearchAuthorResult from './SearchAuthorResult'
 const Main = () => {
   const [searchtype, setSearchtype] = useState('image');
   const [keyword, setKeyword] = useState('123');
-  // const [currentContent, setCurrentContent] = useState('mainpage')
-  const [currentContent, setCurrentContent] = useState('searchphoto')
+  const [currentContent, setCurrentContent] = useState('mainpage')
+  // const [currentContent, setCurrentContent] = useState('searchphoto')
   // const [currentContent, setCurrentContent] = useState('searchauthor')
   console.log(keyword)
   return (

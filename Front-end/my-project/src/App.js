@@ -19,7 +19,8 @@ const Page500 = React.lazy(() => import('./views/pages/page500/Page500'));
 const Main = React.lazy(() => import('./views/pages/main/Main'));
 const Profile = React.lazy(() => import('../src/views/pages/profile/Profile'));
 const ExplorerProfile = React.lazy(() => import('../src/views/pages/explorerprofile/ExplorerProfile'));
-const AuthorDetail = React.lazy(() => import('../src/views/pages/authordetail/AuthorDetail'));
+// const AuthorDetail = React.lazy(() => import('../src/views/pages/authordetail/AuthorDetail'));
+const AuthorDetail = React.lazy(() => import('../src/views/pages/author_detail/Authordetail'));
 
 class App extends Component {
 

@@ -1,0 +1,34 @@
+.sidebar_avatar{
+    margin: 10px;
+    margin-right: 150px;
+    margin-left:300px;
+    width: 14%;
+}
+.avatar{
+    width: 100%;
+}
+
+.header_info{
+    text-size-adjust: 20px;
+}
+
+.brand{
+    padding: 5px 20px;
+}
+
+.subheader{
+    display: flex;
+    justify-content: center;
+    font-size: 30px ;
+    font-weight: bold;
+    color: brown;
+}
+.author_cheader{
+    /* background-image:url('../../../images/12.jpg'); */
+    width: 100%;
+    /* height: 50%; */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+}

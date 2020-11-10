@@ -134,7 +134,7 @@ const AuthorCard = (props) => {
   const [path] = useState(`/authordetail/${props.author.id}`)
   return (
     <CCol className={styles.hot_author} xs='1'>
-      <Link to={path} >
+      <Link to={path} target='_blank'>
         <h5 className={styles.authorname}>{props.author.username}</h5>
         <CImg
           src={props.imgsrc}

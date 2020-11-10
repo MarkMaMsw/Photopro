@@ -15,3 +15,20 @@
 .authorname{
     text-align: center;
 }
+.searchtitle{
+    text-align: center;
+}
+.keyword{
+    background-color: lightgreen;
+    border-radius: 4px;
+    padding: 0 5px;
+}
+.firstrow{
+    font-size: 20px;
+    font-weight: bold;
+    margin: 10px;
+}
+.datarow{
+    font-size: 20px;
+    margin: 10px;
+}
