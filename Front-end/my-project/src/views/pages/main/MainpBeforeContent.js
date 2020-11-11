@@ -31,17 +31,35 @@ class MainpBeforeContent extends React.Component {
   }
 
   componentDidMount(){
-    Axios.get(`http://13.55.8.94:5000/index/image`)
-    .then(res => {
-      console.log(res.data);
-      const newArr = res.data.filter( d => d.contributer_detail !== false );
-      console.log(newArr);
-      this.setState({
-        selectedArr: newArr.slice(0, 6),
-        photoArr: newArr.slice(6, 12),
-      });
-    })
-    .catch(err => console.log(err));
+    if (sessionStorage.getItem('usertype') === 'explorer'){
+      Axios.get(`http://13.55.8.94:5000/image/recommend`, {
+        headers: {
+          'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
+        }
+      })
+      .then(res => {
+        console.log(res.data);
+        const newArr = res.data.filter( d => d.contributer_detail !== false );
+        console.log(newArr);
+        this.setState({
+          selectedArr: newArr.slice(0, 6),
+          photoArr: newArr.slice(6, 12),
+        });
+      })
+      .catch(err => console.log(err));
+    } else {
+      Axios.get(`http://13.55.8.94:5000/index/image`)
+      .then(res => {
+        console.log(res.data);
+        const newArr = res.data.filter( d => d.contributer_detail !== false );
+        console.log(newArr);
+        this.setState({
+          selectedArr: newArr.slice(0, 6),
+          photoArr: newArr.slice(6, 12),
+        });
+      })
+      .catch(err => console.log(err));
+    }
 
     Axios.get(`http://13.55.8.94:5000/index/contributor`)
     .then(res => {

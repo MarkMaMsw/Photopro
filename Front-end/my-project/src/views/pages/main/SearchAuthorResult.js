@@ -16,16 +16,32 @@ const SearchAuthorResult = (props) => {
     const [authorArr, setAuthorArr] = useState([]);
 
     useEffect(() => {
-        Axios.get('http://13.55.8.94:5000/explorerInfo', {
-          headers: {
-            'Authorization': `Bearer ${sessionStorage.getItem('token')}`
-          }
-        })
-        .then(res => {
+        if (sessionStorage.getItem('token')){
+            Axios.get('http://13.55.8.94:5000/explorerInfo', {
+              headers: {
+                'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+              }
+            })
+            .then(res => {
+                const json = {
+                    type: 'contributor',
+                    keyword: props.keyword,
+                    explorer_id: res.data.content.id
+                };
+                Axios.post('http://13.55.8.94:5000/search', json)
+                .then(res => {
+                    console.log(res);
+                    const newArr = res.data.result.filter( a => a.userType === 'contributor');
+                    setAuthorArr(newArr);
+                })
+                .catch(err => console.log(err));
+            })
+            .catch(err => console.log(err));
+        } else {
             const json = {
                 type: 'contributor',
                 keyword: props.keyword,
-                explorer_id: res.data.content.id
+                explorer_id: ""
             };
             Axios.post('http://13.55.8.94:5000/search', json)
             .then(res => {
@@ -34,8 +50,7 @@ const SearchAuthorResult = (props) => {
                 setAuthorArr(newArr);
             })
             .catch(err => console.log(err));
-        })
-        .catch(err => console.log(err));
+        }
     }, [props.keyword]);
 
     return (
@@ -55,7 +70,7 @@ const SearchAuthorResult = (props) => {
                             <CCol>Email</CCol>
                             <CCol>Number of Photos</CCol>
                         </CRow>
-                        {authorArr.map((auth, index) => <AuthorCard author={auth} key={index}/>)}
+                        {authorArr.map((auth) => <AuthorCard author={auth} key={auth.id}/>)}
                     </CCardBody>
                     </CCard>
                 </CCol>

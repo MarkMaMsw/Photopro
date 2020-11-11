@@ -69,7 +69,7 @@ const MainpHeader = (props) => {
         <Link to='main'>
           <CIcon name="cil-cart" className={styles.shoppingcart}/>
         </Link>
-        {usertype === 'explorer' ? <MainpAfterHeaderDropdown/> : <MainpBeforeHeaderDropdown/>};
+        {usertype === 'explorer' ? <MainpAfterHeaderDropdown/> : <MainpBeforeHeaderDropdown/>}
       </CHeaderNav>
     </CHeader>
   )

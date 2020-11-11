@@ -14,7 +14,7 @@ import {
   CCol,
   CRow,
   CCardImg,
-
+  CModalTitle
 } from  '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { freeSet } from '@coreui/icons'
@@ -39,6 +39,8 @@ class ImageCard extends React.Component {
             collectionName:"",
             collectionDetail:"",
             sumLike: this.props.imageinfo.like_num,
+            deleteSuccess: false,
+            deleteFail: false,
         }
     }
 
@@ -239,16 +241,30 @@ class ImageCard extends React.Component {
     }
 
     deletePhoto = (image_id) => {
-        console.log(image_id);
-        console.log(sessionStorage.getItem('token'));
-        
-        Axios.delete('http://13.55.8.94:5000/image', 
-            { "image_id": `${image_id}` }, 
-            { headers: {
+        const json = {
+            "image_id": image_id,
+        }
+
+        Axios.delete('http://13.55.8.94:5000/image', { 
+            data: json,
+            headers: {
                 'Content-type': 'application/json',
                 'Authorization': `Bearer ${sessionStorage.getItem('token')}`
             }})
-            .then(res => console.log(res));
+            .then(res => {
+                console.log(res.data);
+                if (res.data === "delete success"){
+                    this.setState({
+                        deleteSuccess: !this.state.deleteSuccess,
+                    });
+                } 
+            })
+            .catch(err => {
+                console.log(err);
+                this.setState({
+                    deleteFail: !this.state.deleteFail,
+                });
+            });
     }
 
     render(){
@@ -368,6 +384,44 @@ class ImageCard extends React.Component {
                         <button type="submit" onClick={this.addConfirm}>Confirm</button>
                     </form>
                 </CModalBody>
+            </CModal>
+
+
+            <CModal 
+            show={this.state.deleteSuccess} 
+            onClose={() => this.setState({deleteSuccess: !this.state.deleteSuccess})}
+            color="success"
+            >
+                <CModalHeader closeButton>
+                <CModalTitle>Success</CModalTitle>
+                </CModalHeader>
+                <CModalBody>
+                    Your Photo is Deleted.
+                </CModalBody>
+                <CModalFooter>
+                <CButton color="success" onClick={() => {
+                    this.setState({deleteSuccess: !this.state.deleteSuccess});
+                    window.location.reload();
+                    }}>OK</CButton>
+                </CModalFooter>
+            </CModal>
+
+            <CModal 
+            show={this.state.deleteFail} 
+            onClose={() => this.setState({deleteFail: !this.state.deleteFail})}
+            color="warning"
+            >
+                <CModalHeader closeButton>
+                <CModalTitle>Fail</CModalTitle>
+                </CModalHeader>
+                <CModalBody>
+                    Cannot delete now.
+                </CModalBody>
+                <CModalFooter>
+                <CButton color="warning" onClick={() => {
+                    this.setState({deleteFail: !this.state.deleteFail});
+                    }}>Try Later</CButton>
+                </CModalFooter>
             </CModal>
         
         </CCol>

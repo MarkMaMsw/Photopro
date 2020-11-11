@@ -15,16 +15,31 @@ const SearchPhotoResult = (props) => {
     const [imageArr, setImageArr] = useState([]);
 
     useEffect(() => {
-        Axios.get('http://13.55.8.94:5000/explorerInfo', {
-          headers: {
-            'Authorization': `Bearer ${sessionStorage.getItem('token')}`
-          }
-        })
-        .then(res => {
+        if (sessionStorage.getItem('token')){
+            Axios.get('http://13.55.8.94:5000/explorerInfo', {
+              headers: {
+                'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+              }
+            })
+            .then(res => {
+                const json = {
+                    type: 'image',
+                    keyword: props.keyword,
+                    explorer_id: res.data.content.id
+                };
+                Axios.post('http://13.55.8.94:5000/search', json)
+                .then(res => {
+                    console.log(res);
+                    setImageArr(res.data.result);
+                })
+                .catch(err => console.log(err));
+            })
+            .catch(err => console.log(err));
+        } else {
             const json = {
                 type: 'image',
                 keyword: props.keyword,
-                explorer_id: res.data.content.id
+                explorer_id: ""
             };
             Axios.post('http://13.55.8.94:5000/search', json)
             .then(res => {
@@ -32,8 +47,7 @@ const SearchPhotoResult = (props) => {
                 setImageArr(res.data.result);
             })
             .catch(err => console.log(err));
-        })
-        .catch(err => console.log(err));
+        }
     }, [props.keyword]);
 
     return (
