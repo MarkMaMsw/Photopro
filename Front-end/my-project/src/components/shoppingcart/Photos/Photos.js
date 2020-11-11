@@ -8,6 +8,11 @@ import {
   CCardImg,
   CButton,
   CInput,
+  CModal,
+  CModalHeader,
+  CModalTitle,
+  CModalBody,
+  CModalFooter,
 } from  '@coreui/react'
 // import styles from '../mainpage/ImageCard'
 import styles from './Photos.module.css'
@@ -17,7 +22,8 @@ class Photo extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-          checkoutList : []
+          checkoutList : [],
+          warning:false
         }
         }         
       // const comment = 'http://34.87.211.156:5000/image/comment/1604292601';
@@ -45,6 +51,27 @@ class Photo extends React.Component{
     //       props.addPhoto(name)
     //   }
 
+    warningChange= ()=>{
+      this.setState({warning:!this.state.warning})
+      console.log(this.state.warning);
+    }
+
+    removeItem = async ()=>{
+      
+      var body = {
+        image_id: this.props.imageinfo.image_id
+      }
+      await Axios.delete('http://13.55.8.94:5000/explorer/shoppingcart', {
+      data:body,    
+      headers: {
+              'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+          }
+      }).then(res=> {this.props.updateArr()})
+        .catch(error => {
+          console.log(error.response.status)
+        });
+    }
+
       checkB = (e)=>{
         this.props.checkBox(this.props.imageinfo.image_id,this.props.imageinfo.price)
       }
@@ -54,7 +81,7 @@ class Photo extends React.Component{
         const {image_id,contributor_detail, title, price, tag, image_url} = this.props.imageinfo;
         
       return (
-              <CCol xs="8">
+           <CCol xs="8">
                   <CCard>
                     <CCardHeader className={styles.card_header}>      
                       <CRow>  
@@ -91,14 +118,30 @@ class Photo extends React.Component{
                           </CRow>
 
                           <CRow alignHorizontal='center' className={styles.side_height}>
-                            <CButton color="primary" className="px-4" >Remove</CButton>
+                            <CButton color="primary" className="px-4" onClick={this.warningChange}>Remove</CButton>
                           </CRow>
                         </CCol>
                       </CRow>
                     </CCardBody>
-
                   </CCard>
+                  <CModal 
+                  show={this.state.warning} 
+                  onClose={() => this.warningChange}
+                  color="warning"
+                  >
+                    <CModalHeader closeButton>
+                      <CModalTitle>Remove Confirm</CModalTitle>
+                    </CModalHeader>
+                    <CModalBody>
+                      Are you sure to remove this item?
+                    </CModalBody>
+                    <CModalFooter>
+                      <CButton color="warning" onClick={() => {this.warningChange();this.removeItem(); }}>Of Course</CButton>
+                      <CButton color="secondary" onClick={() => this.warningChange()}>Cancel</CButton>
+                    </CModalFooter>
+                  </CModal>
               </CCol>
+                                    
         );
         }   
     }

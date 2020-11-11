@@ -54,6 +54,25 @@ class Shoppingcart extends React.Component{
           this.setState({checkoutList:checkoutList,totalPrice:totalPrice})
         }
 
+        updateArr = ()=>{
+          Axios.get(`http://13.55.8.94:5000/explorer/shoppingcart`, {
+                headers: {
+                    'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+                }
+            })
+            .then(res => {
+                console.log(res.data);
+                // res.data.map(function(imagelist) {
+                //     // imagedata.push(imagelist.image_id)
+                //   });
+                this.setState({
+                    photoArr:res.data,
+                    // image_list:res.data,
+                });
+                // console.log(this.state.image_list);
+            })
+            .catch(err => console.log(err));
+        }
          
         componentDidMount(){
             Axios.get(`http://13.55.8.94:5000/explorer/shoppingcart`, {
@@ -91,6 +110,7 @@ class Shoppingcart extends React.Component{
               imageinfo={p}
               checkBox={this.checkBox}
               price={p.price}
+              updateArr={this.updateArr}
               />)
               }
 
