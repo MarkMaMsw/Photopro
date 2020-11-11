@@ -5,11 +5,11 @@ import {
   CDropdownMenu,
   CDropdownToggle,
   CImg
-} from '@coreui/react'
-import CIcon from '@coreui/icons-react'
+} from '@coreui/react';
+import CIcon from '@coreui/icons-react';
 import { Link } from 'react-router-dom';
 
-const AuthorHeaderDropdown = () => {
+const AfterHeaderDropdown = () => {
   return (
     <CDropdown
       inNav
@@ -26,7 +26,10 @@ const AuthorHeaderDropdown = () => {
         </div>
       </CDropdownToggle>
       <CDropdownMenu className="pt-0" placement="bottom-end">
-        <CDropdownItem>
+        <CDropdownItem> 
+          <Link to="/explorerprofile/profile"><CIcon name="cilUser" className="mfe-2" />Profile</Link>
+        </CDropdownItem>
+        <CDropdownItem> 
           <Link to="/login"><CIcon name="cilHome" className="mfe-2" /> Log out</Link>
         </CDropdownItem>
       </CDropdownMenu>
@@ -34,4 +37,4 @@ const AuthorHeaderDropdown = () => {
   )
 }
 
-export default AuthorHeaderDropdown
+export default AfterHeaderDropdown;

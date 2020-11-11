@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
-// import { Link } from 'react-router-dom';
 import {
   CCard,
   CCardBody,
   CCardHeader,
   CCol,
   CRow,
-  CContainer,
-  CImg
+  CContainer
 } from '@coreui/react'
 import ImageCard from '../../../components/resueable/ImageCard/ImageCard';
 import styles from './MainpBefore.module.css'
@@ -51,7 +49,7 @@ const SearchPhotoResult = (props) => {
 
                     <CCardBody>
                     <CRow>
-                        {imageArr.map(p => <ImageCard key={p.image_id} imageinfo={p}/>)}
+                        {imageArr.map((p, index) => <ImageCard key={index} imageinfo={p}/>)}
                     </CRow>
                     </CCardBody>
                 </CCard>

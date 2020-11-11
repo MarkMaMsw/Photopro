@@ -29,7 +29,7 @@ class ContributorPhotos extends React.Component {
     return (
     <>
       <CRow>
-        {this.state.photoArr.map(p => <ImageCard key={p.image_id} imageinfo={p}/>)}
+        {this.state.photoArr.map((p, index) => <ImageCard key={index} imageinfo={p}/>)}
       </CRow>
     </>
   )}

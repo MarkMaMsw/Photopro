@@ -1,11 +1,13 @@
 import React from 'react'
 import styles from './author.module.css';
 import {
-  CHeader,
   CRow,
   CCol,
-  CSubheader,
   CImg,
+  CContainer,
+  CCard,
+  CCardBody,
+  CCardHeader,
 } from '@coreui/react'
 import Axios from 'axios'
 import ImageCard from '../../../components/resueable/ImageCard/ImageCard'
@@ -55,37 +57,40 @@ class AuthorContent extends React.Component{
 
 
     render(){
-        // console.log(this.state.authorid);
         return (
-            <>
-              <CHeader className={styles.author_cheader}>
-                <div className={styles.sidebar_avatar}>
-                <CImg
-                  src={'avatars/9.jpg'}
-                  className="c-avatar-img"
-                  alt="avatars"
-                />
-                </div>
-                <CRow alignVertical='start' className={styles.header_info}>
-                  <CCol>
-                    <h1>Username: {this.state.username}</h1>
-                    <h1>Email: {this.state.email}</h1>
-                    <h2>Description: {this.state.description} </h2>
-                    <h2>Portfolio: {this.state.portfolio} </h2>
-                  </CCol>
-                </CRow>
-              </CHeader>
-              <CSubheader className={styles.subheader}>
-                <div className={"d-md-down-none mfe-2 c-subheader-nav"}>
-                  Portfolio
-                </div>
-              </CSubheader>
-              <div>
-                <CRow>
-                  {this.state.photoArr.map(p => <ImageCard key={p.image_id} imageinfo={p}/>)}
-                </CRow>
-              </div>
-            </>
+          <main className="c-main">
+            <CContainer fluid>
+              <CRow alignHorizontal='center'>
+                <CCol xs="12">
+                  <CCard>
+                    <CCardHeader>
+                      <CRow alignHorizontal='center' >
+                        <CCol xs='4' md='2'>
+                          <CImg
+                          src={'avatars/9.jpg'}
+                          className="c-avatar-img"
+                          alt="avatars"/>
+                        </CCol>
+                        <CCol xs='10' md='4' className={styles.info_container}>
+                          <div>
+                              <h1>Username: {this.state.username}</h1>
+                              <h4>Email: {this.state.email}</h4>
+                              <h4>Description: {this.state.description} </h4>
+                              <h4>Number of Photos: {this.state.portfolio} </h4>
+                          </div>
+                        </CCol>
+                      </CRow>
+                    </CCardHeader>
+                    <CCardBody>
+                      <CRow>
+                        {this.state.photoArr.map(p => <ImageCard key={p.image_id} imageinfo={p}/>)}
+                      </CRow>
+                    </CCardBody>
+                  </CCard>
+                </CCol>
+              </CRow>
+            </CContainer>
+          </main>
         );
     }
 }

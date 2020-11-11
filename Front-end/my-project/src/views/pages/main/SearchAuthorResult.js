@@ -5,16 +5,9 @@ import {
   CCard,
   CCardBody,
   CCardHeader,
-  CCarousel,
-  CCarouselCaption,
-  CCarouselControl,
-  CCarouselIndicators,
-  CCarouselInner,
-  CCarouselItem,
   CCol,
   CRow,
-  CContainer,
-  CImg
+  CContainer
 } from '@coreui/react'
 
 import styles from './MainpBefore.module.css'
@@ -57,10 +50,11 @@ const SearchAuthorResult = (props) => {
                     <CCardBody>
                         <CRow className={styles.firstrow}>
                             <CCol>Username</CCol>
+                            <CCol>Description</CCol>
                             <CCol>Email</CCol>
                             <CCol>Number of Photos</CCol>
                         </CRow>
-                        {authorArr.map(auth => <AuthorCard author={auth}/>)}
+                        {authorArr.map((auth, index) => <AuthorCard author={auth} key={index}/>)}
                     </CCardBody>
                     </CCard>
                 </CCol>
@@ -77,6 +71,7 @@ const AuthorCard = (props) => {
             <CCol>
                 <Link to={path} target="_blank">{props.author.username}</Link>
             </CCol>
+            <CCol>{props.author.description}</CCol>
             <CCol>{props.author.email}</CCol>
             <CCol>{props.author.image_num}</CCol>
         </CRow>

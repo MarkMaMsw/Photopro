@@ -9,15 +9,7 @@ import {
     CCol,
     CDataTable,
     CRow
-  } from '@coreui/react'
-
-
-
-  
-  // const usersData = [
-  //   {id: 0, name: 'John Doe', time: '2018/01/01', image: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/golden-retriever-puppy-lying-down-on-grass-royalty-free-image-1587052215.jpg?crop=1.00xw:0.754xh;0,0.166xh&resize=980:*'},
-  // ]
-  
+  } from '@coreui/react'  
   
   class AllLikes extends React.Component {
     constructor(){
