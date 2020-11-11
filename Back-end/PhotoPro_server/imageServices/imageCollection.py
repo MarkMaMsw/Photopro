@@ -6,6 +6,7 @@ from werkzeug.utils import secure_filename
 import db
 import time
 import dev.config as config
+import imageServices.imageDetail as imageDetail
 class ImageCollection(Resource):
     @jwt_required
     def post(self):
@@ -52,8 +53,11 @@ class ImageCollection(Resource):
             images = []
             image_list = i["collection_images"]
             for j in image_list:
+                image = imageDetail.get_image_detail_from_db(j)
+                '''
                 image = db.db.image.find_one({"image_id":j})
                 image.pop("_id")
+                '''
                 images.append(image)
             i["collection_images"] = images
             attributes = ["_id","explorer_id"]

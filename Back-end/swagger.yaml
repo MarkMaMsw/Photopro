@@ -237,6 +237,21 @@ paths:
             type: "array"
             items:
               $ref: "#/definitions/Image"
+  /image/recommend:
+    get:
+      tags:
+      - "image"
+      summary: "get recommend Image"
+      operationId: "getrecommendImage"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Image"
   /index/contributor:
     get:
       tags:
@@ -643,7 +658,7 @@ paths:
           schema:
             type: "array"
             items:
-              $ref: "#/definitions/Image"
+              $ref: "#/definitions/listOrder"
               
   /contributor/order:
     get:
@@ -658,7 +673,7 @@ paths:
           schema:
             type: "array"
             items:
-              $ref: "#/definitions/Image"
+              $ref: "#/definitions/listOrder"
 definitions:
   Tag:
     type: "object"
@@ -802,7 +817,20 @@ definitions:
             imageid:
               type: "string"
 
-          
+  listOrder:
+    type: "object"
+    properties:
+      image:
+        items:
+          $ref: "#/definitions/Image"
+      order_price:
+        type: "string"
+      order_time:
+        type: "string"
+      explorer: 
+        items:
+          $ref: "#/definitions/User"
+      
   Search:
     type: "object"
     properties:

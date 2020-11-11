@@ -8,6 +8,7 @@ import time
 import dev.config as config
 import imageServices.imageDetail as ImageDetail
 import userServices.userInfo as userInfo
+import time
 def add_balance_contributor(contributor_id,money):
     contributor = userInfo.get_user_info(contributor_id)
     now_balance = contributor["balance"]
@@ -66,6 +67,7 @@ class Order(Resource):
                     #print(2)
                     add_balance_contributor(i['contributor_id'],i['image_price'])
                     #print(3)
+                    i["order_time"] = str(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
                     db.db.order.insert_one(i)
                 return 'finish order', 200, None
             except:

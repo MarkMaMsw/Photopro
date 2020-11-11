@@ -35,7 +35,6 @@ class PostImageLike(Resource):
         return result, 200, None
 
 class GetImageLike(Resource):
-    @jwt_required
     def get(self,imageId):
         like = db.db.like.find({"image_id":imageId})
         result = []
