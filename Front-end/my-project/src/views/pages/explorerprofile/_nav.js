@@ -30,7 +30,7 @@ export default [
   {
     _tag: 'CSidebarNavItem',
     name: 'My Purchase',
-    to: '/explorerprofile',
+    to: '/explorerprofile/purchase',
     icon: <CIcon content={freeSet.cilDollar} customClasses="c-sidebar-nav-icon"/>
   },
 ]

@@ -24,6 +24,7 @@ class MainpBeforeContent extends React.Component {
     super();
     this.state = {
       isloading: true,
+      selectedArr: [],
       photoArr: [],
       authorArr: []
     }
@@ -36,7 +37,8 @@ class MainpBeforeContent extends React.Component {
       const newArr = res.data.filter( d => d.contributer_detail !== false );
       console.log(newArr);
       this.setState({
-        photoArr: newArr.slice(0, 6),
+        selectedArr: newArr.slice(0, 6),
+        photoArr: newArr.slice(6, 12),
       });
     })
     .catch(err => console.log(err));
@@ -60,19 +62,19 @@ class MainpBeforeContent extends React.Component {
           {/* selected photo */}
           <CRow alignHorizontal='center'>
             <CCol xs="10">
-              <CCard>
-                <CCardHeader>
-                  <h5 style={{textAlign: 'center'}}>Selected Photo</h5>
+              <CCard color="gradient-secondary">
+                <CCardHeader className={styles.card_header}>
+                  <h4 style={{textAlign: 'center'}}>Selected Photo</h4>
                 </CCardHeader>
                 <CCardBody>
                   <CCarousel animate autoSlide={3000}>
                     <CCarouselIndicators/>
-                    <CCarouselInner>
-                      {this.state.photoArr.map( (p, index) => {
+                    <CCarouselInner className={styles.carousel}>
+                      {this.state.selectedArr.map( (p, index) => {
                         return (
                           <CCarouselItem key={index}>
                             <CImg
-                              src={'avatars/004.jpg'}
+                              src={p.image_url}
                               className="d-block w-100"
                               alt="avatars"
                             />
@@ -92,9 +94,9 @@ class MainpBeforeContent extends React.Component {
           {/* Photo Recommendation */}
           <CRow alignHorizontal='center'>
             <CCol xs="10">
-              <CCard>
-                <CCardHeader>
-                Photo Recommendation
+              <CCard color="gradient-secondary">
+                <CCardHeader className={styles.card_header}>
+                  <h4 style={{textAlign: 'center'}}>Photo Recommendation</h4>
                 </CCardHeader>
                 
                 <CCardBody>
@@ -109,14 +111,14 @@ class MainpBeforeContent extends React.Component {
           {/* author Recommendation */}
           <CRow alignHorizontal='center'>
             <CCol xs="10">
-              <CCard>
-                <CCardHeader>
-                  Hot Author
+              <CCard color="gradient-secondary">
+                <CCardHeader className={styles.card_header}>
+                  <h4 style={{textAlign: 'center'}}>Hot Author</h4>
                 </CCardHeader>
                 <CCardBody>
-                  <CRow>
+                  <CRow alignHorizontal='center'>
                     {this.state.authorArr.map((author, index) => {
-                      return <AuthorCard key={index} author={author} imgsrc={'avatars/3.jpg'}/>
+                      return <AuthorCard key={index} author={author} imgsrc={`avatars/9.jpg`}/>
                     })}
                   </CRow>
                 </CCardBody>

@@ -6,9 +6,15 @@
     color: #3399FF;
     text-shadow: 0 0 3px #3399FF;
 }
+.card_header{
+    background-color: pink;
+}
+.carousel{
+    height: 500px;
+}
 .hot_author{
     border: 1px solid gray;
-    background: linear-gradient(to right, #74dcff 0%, #7e9df3 100%);;
+    background: linear-gradient(to right, #fff2e5 0%, #fbffd6 100%);;
     border-radius: 5px;
     margin: 10px;
 }
@@ -31,4 +37,7 @@
 .datarow{
     font-size: 20px;
     margin: 10px;
+}
+.shoppingcart{
+    margin: 0 10px 0 20px;
 }

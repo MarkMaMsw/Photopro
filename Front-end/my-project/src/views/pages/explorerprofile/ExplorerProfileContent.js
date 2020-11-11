@@ -12,6 +12,7 @@ import ContributorProfile from '../../../components/contributor/Profile/Contribu
 import Collection from '../../../components/explorer/collection/Collection'
 import AllComment from '../../../components/explorer/mycomments/AllComment'
 import AllLike from '../../../components/explorer/mylikes/AllLike'
+import AllPurchase from '../../../components/explorer/mypurchase/AllPurchase'
 
   
 const loading = (
@@ -30,6 +31,7 @@ const TheContent = () => {
             <Route path="/explorerprofile/collection" render={props => (<CFade><Collection/></CFade>)}/>
             <Route path="/explorerprofile/comments" render={props => (<CFade><AllComment/></CFade>)}/>
             <Route path="/explorerprofile/likes" render={props => (<CFade><AllLike/></CFade>)}/>
+            <Route path="/explorerprofile/purchase" render={props => (<CFade><AllPurchase/></CFade>)}/>
           </Switch>
         </Suspense>
       </CContainer>

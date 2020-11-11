@@ -30,7 +30,8 @@ const SearchAuthorResult = (props) => {
             Axios.post('http://13.55.8.94:5000/search', json)
             .then(res => {
                 console.log(res);
-                setAuthorArr(res.data.result);
+                const newArr = res.data.result.filter( a => a.userType === 'contributor');
+                setAuthorArr(newArr);
             })
             .catch(err => console.log(err));
         })

@@ -22,6 +22,7 @@ import {
   CModalFooter,
   CModalHeader,
   CModalTitle,
+  CTextarea
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import styles from './Register.module.css'
@@ -32,6 +33,7 @@ const Register = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPass, setConfirmPass] = useState('')
+  const [description, setDescription] = useState('')
   const [usertype, setUsertype] = useState('explorer')
   const [success, setSuccess] = useState(false)
   const [warning, setWarning] = useState(false)
@@ -48,7 +50,7 @@ const Register = () => {
           username: username,
           email: email,
           password: password,
-          description: "This guy doesn't hava any description",
+          description: description,
           photoURL: '',
           balance: 0,
           userType: usertype
@@ -137,6 +139,7 @@ const Register = () => {
                 <CForm>
                   <h1>Register</h1>
                   <p className="text-muted">Create your account</p>
+
                   <CInputGroup className="mb-3">
                     <CInputGroupPrepend>
                       <CInputGroupText>
@@ -145,12 +148,14 @@ const Register = () => {
                     </CInputGroupPrepend>
                     <CInput type="text" placeholder="Username" autoComplete="username" value={username} onChange={e => setUsername(e.target.value)}/>
                   </CInputGroup>
+
                   <CInputGroup className="mb-3">
                     <CInputGroupPrepend>
                       <CInputGroupText>@</CInputGroupText>
                     </CInputGroupPrepend>
                     <CInput type="text" placeholder="Email" autoComplete="email" value={email} onChange={e => setEmail(e.target.value)}/>
                   </CInputGroup>
+
                   <CInputGroup className="mb-3">
                     <CInputGroupPrepend>
                       <CInputGroupText>
@@ -159,6 +164,7 @@ const Register = () => {
                     </CInputGroupPrepend>
                     <CInput type="password" placeholder="Password" autoComplete="new-password" value={password} onChange={e => setPassword(e.target.value)}/>
                   </CInputGroup>
+
                   <CInputGroup className="mb-4">
                     <CInputGroupPrepend>
                       <CInputGroupText>
@@ -167,6 +173,16 @@ const Register = () => {
                     </CInputGroupPrepend>
                     <CInput type="password" placeholder="Repeat password" autoComplete="new-password" value={confirmPass} onChange={e => setConfirmPass(e.target.value)}/>
                   </CInputGroup>
+
+                  <CInputGroup className="mb-4">
+                    <CInputGroupPrepend>
+                      <CInputGroupText>
+                        <CIcon name="cil-file" />
+                      </CInputGroupText>
+                    </CInputGroupPrepend>
+                    <CInput type="text" placeholder="Describe yourself" value={description} onChange={e => setDescription(e.target.value)}/>
+                  </CInputGroup>
+
                   <CFormGroup row onChange={e => setUsertype(e.target.value)}>
                     <CCol md="3">
                       <CLabel>User Type</CLabel>
@@ -187,14 +203,14 @@ const Register = () => {
               </CCardBody>
               <CCardFooter className="p-4">
                 <p className="text-muted">Already have account? <Link to="/login">Log in</Link></p>
-                <CRow>
+                {/* <CRow>
                   <CCol xs="12" sm="6">
                     <CButton className="btn-facebook mb-1" block><span>facebook</span></CButton>
                   </CCol>
                   <CCol xs="12" sm="6">
                     <CButton className="btn-twitter mb-1" block><span>twitter</span></CButton>
                   </CCol>
-                </CRow>
+                </CRow> */}
               </CCardFooter>
             </CCard>
           </CCol>
