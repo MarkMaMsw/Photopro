@@ -63,7 +63,7 @@ const SearchPhotoResult = (props) => {
 
                     <CCardBody>
                     <CRow>
-                        {imageArr.map((p, index) => <ImageCard key={index} imageinfo={p}/>)}
+                        {imageArr.map((p) => <ImageCard key={p.image_id} imageinfo={p}/>)}
                     </CRow>
                     </CCardBody>
                 </CCard>

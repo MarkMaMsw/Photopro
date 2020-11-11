@@ -1,44 +1,44 @@
 
-.upperContainer {
-    height: 250px;
-    display:flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
+// .upperContainer {
+//     height: 250px;
+//     display:flex;
+//     flex-direction: row;
+//     justify-content: space-between;
+// }
 
-.upperItem {
-    flex:1;
-    margin: 0px 30px;
-    font:20px;
-}
+// .upperItem {
+//     flex:1;
+//     margin: 0px 30px;
+//     height: 20px;
+// }
 
-.upperRight {
-    margin-top: 25px;
-}
+// .upperRight {
+//     margin-top: 25px;
+// }
 
-.upperItem detail button{
-    background-color: rgb(51,153,255);
-    border-radius: 5px;
-}
-.iconItem:hover{
-    cursor: pointer;
-}
+// .upperItem detail button{
+//     background-color: rgb(51,153,255);
+//     border-radius: 5px;
+// }
+// .iconItem:hover{
+//     cursor: pointer;
+// }
 
-.middleContainer {
-    height: 45px; 
-    margin: 20px 0px;
-    // border: 1px solid beige;
-    text-align: center;
-}
+// .middleContainer {
+//     height: 45px; 
+//     margin: 20px 0px;
+//     // border: 1px solid beige;
+//     text-align: center;
+// }
 
-.lowerContainer{
-    margin: 0px 30px;
-}
+// .lowerContainer{
+//     margin: 0px 30px;
+// }
 
-.lowerContainer ul{
-    height:150px;
-    overflow:hidden; 
-    overflow-y:scroll;
-}
+// .lowerContainer ul{
+//     height:150px;
+//     overflow:hidden; 
+//     overflow-y:scroll;
+// }
 
 

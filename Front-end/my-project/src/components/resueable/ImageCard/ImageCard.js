@@ -14,7 +14,9 @@ import {
   CCol,
   CRow,
   CCardImg,
-  CModalTitle
+  CModalTitle,
+  CInput,
+  CLabel
 } from  '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { freeSet } from '@coreui/icons'
@@ -41,6 +43,7 @@ class ImageCard extends React.Component {
             sumLike: this.props.imageinfo.like_num,
             deleteSuccess: false,
             deleteFail: false,
+            deleteCheck: false,
         }
     }
 
@@ -291,7 +294,7 @@ class ImageCard extends React.Component {
                 </div>
                 <CCardFooter className={styles.card_footer}>
                     {usertype === 'contributor' ? 
-                        <CButton type="reset" size="sm" color="danger" onClick={() => this.deletePhoto(image_id)}><CIcon name="cil-trash" /> Delete</CButton> : 
+                        <CButton type="reset" size="sm" color="danger" onClick={() => {this.setState({deleteCheck: !this.state.deleteCheck});}}><CIcon name="cil-trash" /> Delete</CButton> : 
                         <span>Author: <Link to={authorpath} target='_blank'>{contributor_detail.username}</Link></span>}
                     <span className={styles.price}>${price}</span>
                 </CCardFooter>
@@ -302,44 +305,52 @@ class ImageCard extends React.Component {
                     <h3>Image Details</h3> 
                 </CModalHeader>
                 <CModalBody>
-                    <div className="upperContainer">
-                        <img className="upperItem" src={image_url}/>
-                        <article className="upperItem upperRight">
-                            <header>
-                                <h3>{title}</h3>
-                                {`By ${contributor_detail["username"]} (${contributor_detail["email"]})`}<br/>
-                                Tags: {tag}
-                                <div>
-                                    <CIcon className="iconItem" size={'xl'} content={freeSet.cilPlaylistAdd}  onClick={this.toggleCollection}/> &nbsp;
-                                    <CIcon className="iconItem" size={'xl'} content={freeSet.cilHeart} onClick={this.heartClick} style={{color: this.state.heartcolor}} className={styles.icon_click}/> {this.state.sumLike} 
-                                </div>
-                            </header><br/>
-                            <detail>
-                                {`Price: $${price}`}<br/>
-                                <button onClick={this.addCart}><CIcon content={freeSet.cilCart} />{" "}Add To Cart</button>
-                            </detail>
-                        </article>
+                    <div>
+                        <CRow>
+                            <CCol xs="12" md="8" className={styles.detail_photo_container}>
+                                <CCardImg className={styles.detail_photo} src={image_url}/>
+                            </CCol>
+                            <CCol xs="12" md="4">
+                                <article className="upperItem upperRight">
+                                <header>
+                                    <h3>Title: {title}</h3>
+                                    <p>{`By ${contributor_detail["username"]} (${contributor_detail["email"]})`}</p>
+                                    <p>Tags: {tag}</p>
+                                    <div className={styles.collect_like}>
+                                        <CIcon className="iconItem" size={'xl'} content={freeSet.cilPlaylistAdd}  onClick={this.toggleCollection}/>  &nbsp;&nbsp;&nbsp;&nbsp;Add to collection
+                                    </div>
+                                    <div className={styles.collect_like}>
+                                        <CIcon className="iconItem" size={'xl'} content={freeSet.cilHeart} onClick={this.heartClick} style={{color: this.state.heartcolor}} className={styles.icon_click}/> {this.state.sumLike} &nbsp;&nbsp;&nbsp;Like it
+                                    </div>
+                                </header><br/>
+                                <detail>
+                                    <h5 className={styles.photo_price}>{`Price: $${price}`}</h5>
+                                    <CButton onClick={this.addCart} color="success"><CIcon content={freeSet.cilCart} />{" "}Add To Cart</CButton>
+                                </detail>
+                            </article>
+                            </CCol>
+                        </CRow>
                     </div>
-                    <div className="middleContainer">
+                    <CRow alignHorizontal='center'>
                         <form>
                             <label htmlFor="comment">comment</label>&nbsp;&nbsp;
                             <input 
                                 type="text"
                                 id="comment"
                                 name={image_id}
-                                placeholder="input your comment"
+                                placeholder="Leave your comment"
                                 size="120"
                                 onChange={this.inputComment}
                             /> &nbsp; &nbsp;
-                            <button type="submit" onClick={this.commentSubmit}>submit</button>
+                            <button type="submit" color="primary" onClick={this.commentSubmit}>submit</button>
                         </form>      
-                    </div>
-                    <div className="lowerContainer">
-                        <h5>Comment List</h5>
-                        <ul>
-                            {this.state.commentList.map((d,index)=><li key={index}>{d.explorer_name}: {d.comment_detail}  -{d.comment_time}`</li>)}
-                        </ul>
-                    </div>
+                    </CRow>
+                    <h5 style={{textAlign: 'center'}}>Comment List</h5>
+                    <CRow alignHorizontal='center'>
+                        <CCol xs="9">
+                            {this.state.commentList.map((d,index)=><CommentCard key={index} data={d}/>)}
+                        </CCol>
+                    </CRow>
                 </CModalBody>
             </CModal>
 
@@ -386,6 +397,29 @@ class ImageCard extends React.Component {
                 </CModalBody>
             </CModal>
 
+            {/* Shaowei Add some modal below */}
+            <CModal 
+            show={this.state.deleteCheck} 
+            onClose={() => this.setState({deleteCheck: !this.state.deleteCheck})}
+            color="warning"
+            >
+                <CModalHeader closeButton>
+                <CModalTitle>Delete</CModalTitle>
+                </CModalHeader>
+                <CModalBody>
+                    Do you want to delete this photo?
+                </CModalBody>
+                <CModalFooter>
+                <CButton type="reset" size="sm" color="danger" 
+                    onClick={() => {
+                        this.deletePhoto(image_id);
+                        this.setState({deleteCheck: !this.state.deleteCheck});
+                        }}><CIcon name="cil-trash" /> Delete</CButton>
+                <CButton color="secondary" onClick={() => {
+                    this.setState({deleteCheck: !this.state.deleteCheck});
+                    }}>Cancel</CButton>
+                </CModalFooter>
+            </CModal>
 
             <CModal 
             show={this.state.deleteSuccess} 
@@ -423,10 +457,21 @@ class ImageCard extends React.Component {
                     }}>Try Later</CButton>
                 </CModalFooter>
             </CModal>
+
         
         </CCol>
         );
     }
+}
+
+const CommentCard = (props) => {
+    return (
+        <CRow alignHorizontal='center' className={styles.comment}>
+            <CCol xs='2'>{props.data.explorer_name}</CCol>
+            <CCol xs='7'>{props.data.comment_detail}</CCol>
+            <CCol xs='3'>{props.data.comment_time}</CCol>
+        </CRow>
+    );
 }
 
 export default ImageCard;

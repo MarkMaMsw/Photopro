@@ -32,6 +32,7 @@ class MainpBeforeContent extends React.Component {
 
   componentDidMount(){
     if (sessionStorage.getItem('usertype') === 'explorer'){
+      console.log("here!!!!!!!!");
       Axios.get(`http://13.55.8.94:5000/image/recommend`, {
         headers: {
           'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
@@ -151,7 +152,7 @@ class MainpBeforeContent extends React.Component {
 
 // Hot Author Card
 const AuthorCard = (props) => {
-  const [path] = useState(`/authordetail/${props.author.id}`)
+  const path = `/authordetail/${props.author.id}`;
   return (
     <CCol className={styles.hot_author} xs='1'>
       <Link to={path} target='_blank'>
