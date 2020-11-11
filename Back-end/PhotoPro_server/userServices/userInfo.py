@@ -6,16 +6,19 @@ from flask_restful import Resource
 from flask_jwt_extended import jwt_required,get_raw_jwt
 
 def get_user_info(user_id):
-    user = db.db.user.find_one({"id":user_id})
-    image_num = db.db.image.find({"contributor_id":user_id,"status":"on_shop"}).count()
-    if not user:
-        return False
-    attributes = ["username","email","description","balance","id","userType"]
-    result = {}
-    for i in attributes:
-        result[i] = user[i]
-    result["image_num"]=image_num
-    return result
+    try:
+        user = db.db.user.find_one({"id":user_id})
+        image_num = db.db.image.find({"contributor_id":user_id,"status":"on_shop"}).count()
+        if not user:
+            return False
+        attributes = ["username","email","description","balance","id","userType"]
+        result = {}
+        for i in attributes:
+            result[i] = user[i]
+        result["image_num"]=image_num
+        return result
+    except:
+        return []
 
 class UserDetail(Resource):
     @jwt_required

@@ -16,9 +16,9 @@ class ShoppingCartPhoto(Resource):
             result = {'status':'you are not explorer'}
             return result, 403, None
         input_request = request.json
-        image = db.db.image.find_one({"image_id":input_request["image_id"]})
+        image = db.db.image.find_one({"image_id":input_request["image_id"],"status":"on_shop"})
         if not image:
-            return "image not found", 409, None
+            return "image not found", 404, None
         shopping_info = {
             "explorer_id" : get_raw_jwt()["identity"]["id"],
             "image_id" : input_request["image_id"],

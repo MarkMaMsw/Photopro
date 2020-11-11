@@ -11,10 +11,9 @@ class ContributorInfo(Resource):
     def get(self):
         contributorID = get_raw_jwt()["identity"]["id"]
         user = db.db.user.find_one({"id":contributorID})
-        image_num = db.db.image.find({"contributor_id":contributorID}).count()
+        image_num = db.db.image.find({"contributor_id":contributorID,"status":"on_shop"}).count()
         if not user:
             return "The user not exists", 404, None
-        
         newUser = {}
         attributes = ["id","username","email","description","balance","userType"]
         for i in attributes:

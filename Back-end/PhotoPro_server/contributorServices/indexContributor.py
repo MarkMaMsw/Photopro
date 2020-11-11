@@ -17,7 +17,7 @@ class IndexContributor(Resource):
         for i in like:
             # print(i)
             i.pop("_id")
-            image = db.db.image.find_one({"image_id":i["image_id"]})
+            image = db.db.image.find_one({"image_id":i["image_id"],"status":"on_shop"})
             # print(image)
             if image != None:
                 author = db.db.user.find_one({"id":image["contributor_id"]})

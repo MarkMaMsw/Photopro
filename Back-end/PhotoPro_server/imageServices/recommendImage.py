@@ -16,8 +16,12 @@ class RecommendImage(Resource):
         tag = ''
         for i in like:
             image_id = i["image_id"]
-            image = imageDetail.get_image_detail_from_db(image_id)
-            tag = tag + ',' + image["tag"]
+            try:
+                image = imageDetail.get_image_detail_from_db(image_id)
+                tag = tag + ',' + image["tag"]
+            except:
+                image = {"tag":""}
+                tag = tag + ',' + image["tag"]
         for i in search:
             tag = tag + ',' + i["search_keyword"]
         tag_list = tag.split(',')
