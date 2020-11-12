@@ -71,9 +71,10 @@ const Tabs = () => {
 }
 
 const CollectionContainer = (props) => {
+    const filterArr = props.images.filter(img => img.image_id);
     return(
         <CRow className={styles.collection_body}>
-            {props.images.map((img, index) => {
+            {filterArr.map((img, index) => {
                 return(
                     <ImageCard key={index} imageinfo={img}/>
                 );
