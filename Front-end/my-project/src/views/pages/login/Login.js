@@ -114,7 +114,9 @@ const Login = () => {
             <CCard id="login-left-card" className="text-white bg-primary py-5 d-md-down-none">
                 <CCardBody className="text-center">
                   <div>
-                    <h1 id="photo-pro-icon" className="dark">PhotoPro</h1>
+                    <Link to='/main' style={{color: 'white'}}>
+                      <h1 id="photo-pro-icon" className="dark">PhotoPro</h1>
+                    </Link>
                     <p>Find your favourite photo!</p>
                   </div>
                 </CCardBody>

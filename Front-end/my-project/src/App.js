@@ -33,12 +33,12 @@ class App extends Component {
             <Switch>
               <Route exact path="/login" name="Login Page" render={props => <Login {...props}/>} />
               <Route exact path="/register" name="Register Page" render={props => <Register {...props}/>} />
-              <Route exact path="/main" name="Main Page" render={props => <Main {...props}/>} />
               <Route path="/profile" name="profile" render={props => <Profile {...props}/>} />
               <Route path="/explorerprofile" name="profile" render={props => <ExplorerProfile {...props}/>} />
               <Route path="/authordetail/:id" name="profile" render={props => <AuthorDetail {...props}/>} />
               <Route path="/shoppingcart" name="shopping_cart" render={props => <Shoppingcart{...props}/>}/>
-              <Route path="/" name="404" render={props => <Page404 {...props}/>} />
+              <Route path="/404" name="404" render={props => <Page404 {...props}/>} />
+              <Route path="/" name="Main Page" render={props => <Main {...props}/>} />
             </Switch>
           </React.Suspense>
       </HashRouter>
