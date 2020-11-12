@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import Axios from 'axios'
+import axios from 'axios'
 import styles from './AllComments.module.css'
 
 import {
@@ -11,22 +11,39 @@ import {
     CRow
   } from '@coreui/react'
   
-  const usersData = [
-    {id: 0, name: 'John Doe', time: '2018/01/01', image: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/golden-retriever-puppy-lying-down-on-grass-royalty-free-image-1587052215.jpg?crop=1.00xw:0.754xh;0,0.166xh&resize=980:*', comment: 'I like this cute dog! Soooooo CUTE!'},
-    {id: 1, name: 'John Doe', time: '2018/01/01', image: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/golden-retriever-puppy-lying-down-on-grass-royalty-free-image-1587052215.jpg?crop=1.00xw:0.754xh;0,0.166xh&resize=980:*', comment: 'I like this cute dog! Soooooo CUTE!'},
-    {id: 2, name: 'John Doe', time: '2018/01/01', image: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/golden-retriever-puppy-lying-down-on-grass-royalty-free-image-1587052215.jpg?crop=1.00xw:0.754xh;0,0.166xh&resize=980:*', comment: 'I like this cute dog! Soooooo CUTE!'},
-    {id: 3, name: 'John Doe', time: '2018/01/01', image: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/golden-retriever-puppy-lying-down-on-grass-royalty-free-image-1587052215.jpg?crop=1.00xw:0.754xh;0,0.166xh&resize=980:*', comment: 'I like this cute dog! Soooooo CUTE!'},
-    {id: 4, name: 'John Doe', time: '2018/01/01', image: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/golden-retriever-puppy-lying-down-on-grass-royalty-free-image-1587052215.jpg?crop=1.00xw:0.754xh;0,0.166xh&resize=980:*', comment: 'I like this cute dog! Soooooo CUTE!'},
-    {id: 5, name: 'John Doe', time: '2018/01/01', image: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/golden-retriever-puppy-lying-down-on-grass-royalty-free-image-1587052215.jpg?crop=1.00xw:0.754xh;0,0.166xh&resize=980:*', comment: 'I like this cute dog! Soooooo CUTE!'},
-    {id: 6, name: 'John Doe', time: '2018/01/01', image: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/golden-retriever-puppy-lying-down-on-grass-royalty-free-image-1587052215.jpg?crop=1.00xw:0.754xh;0,0.166xh&resize=980:*', comment: 'I like this cute dog! Soooooo CUTE!'},
-    {id: 7, name: 'John Doe', time: '2018/01/01', image: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/golden-retriever-puppy-lying-down-on-grass-royalty-free-image-1587052215.jpg?crop=1.00xw:0.754xh;0,0.166xh&resize=980:*', comment: 'I like this cute dog! Soooooo CUTE!'},
-    {id: 8, name: 'John Doe', time: '2018/01/01', image: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/golden-retriever-puppy-lying-down-on-grass-royalty-free-image-1587052215.jpg?crop=1.00xw:0.754xh;0,0.166xh&resize=980:*', comment: 'I like this cute dog! Soooooo CUTE!'},
-    {id: 9, name: 'John Doe', time: '2018/01/01', image: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/golden-retriever-puppy-lying-down-on-grass-royalty-free-image-1587052215.jpg?crop=1.00xw:0.754xh;0,0.166xh&resize=980:*', comment: 'I like this cute dog! Soooooo CUTE!'},
-  ]
+
+  const fields = ['name', 'comment_time', 'comment', 'image']
   
-  const fields = ['name', 'time', 'comment', 'image']
-  
-  const AllComments = () => {
+  class AllComments extends React.Component {
+    //class AllLikes extends React.Component {
+      constructor(){
+        super();
+        this.state = {
+          userData: [],
+        }
+      }
+       
+      componentDidMount(){
+        const userdata =[]
+        axios.get('http://13.55.8.94:5000/contributor/commentfromothers', {
+          headers: {   
+            'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+          },
+        })
+        .then(res => {
+          res.data.map(function(thumbup,id) {
+            userdata.push({id,name:thumbup["explorer"]["username"],comment_time:thumbup["comment_time"],comment:thumbup["comment_detail"],image:thumbup["image"]["image_url"]})
+          });
+          console.log(userdata);
+          this.setState({
+            userData: userdata,
+          });
+        })
+        .catch(err => {
+          console.log(err)
+        });
+      }
+    render(){ 
     return (
       <>
         <CRow alignHorizontal='center'>  
@@ -37,7 +54,7 @@ import {
               </CCardHeader>
               <CCardBody>
               <CDataTable
-                items={usersData}
+                items={this.state.userData}
                 fields={fields}
                 striped
                 itemsPerPage={5}
@@ -57,6 +74,7 @@ import {
         </CRow>
       </>
     )
+              }
   }
   
   export default AllComments;

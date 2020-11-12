@@ -100,7 +100,7 @@ const ImageUploadForm = () => {
     .then(res=>{
       console.log(res);
       setSuccess(!success);
-      resetClick();
+      // resetClick();
     })
     .catch(err=>{
       console.log(err);
