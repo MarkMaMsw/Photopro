@@ -29,9 +29,6 @@ const Checkout = (props) => {
     const [warning1,setWarning1] = useState(false)
     const history = useHistory();
     const payment = async ()=>{
-      if (checkoutList.length==0){
-        setWarning1(!warning1)
-      }else{
         var body = {
           image: checkoutList
         }
@@ -43,13 +40,22 @@ const Checkout = (props) => {
           setSuccess(!success)
         })
         .catch(error => {
+          console.log(error.response);
           if(error.response.status==410){
             setDanger(!danger)
           }
         });
-      }
       
     }
+
+    const warningCheck = ()=>{
+      if (checkoutList.length==0){
+        setWarning1(!warning1)
+      }else{
+        setWarning(!warning)
+      }
+    }
+
     return (
               <div>
                 <CCard>
@@ -57,7 +63,7 @@ const Checkout = (props) => {
                     <CCol>
 
                       <CRow alignHorizontal='center'>
-                      <CButton color="primary" className="px-4" onClick={() => setWarning(!warning)}>Check Out</CButton>                    
+                      <CButton color="primary" className="px-4" onClick={() => warningCheck()}>Check Out</CButton>                    
                       </CRow>
 
                       <CRow>
