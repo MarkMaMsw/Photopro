@@ -105,18 +105,14 @@ class ImageUpload(Resource):
         try:
             input_data = request.json
             image_id = input_data['image_id']
-            image_status = input_data['image_status']
-            if image_status == 'on_shop' or image_status == 'off_shop':
-                delete = db.db.image.update_one({"image_id":image_id,"status":image_status},{"$set": { "status": "delete" }})
-                if update:
-                    result = {'status':'delete success'}
-                    return result, 200, None
-                else:
-                    result = {'status':'record not found'}
-                    return result, 404, None
+            delete = db.db.image.update_one({"image_id":image_id},{"$set": { "status": "delete" }})
+            if delete:
+                result = {'status':'delete success'}
+                return result, 200, None
             else:
-                result = {'status':'delete error'}
-                return result, 409, None
+                result = {'status':'record not found'}
+                return result, 404, None
         except:
             result = {'status':'delete error'}
             return result, 409, None
+        

@@ -12,6 +12,8 @@ class IndexImage(Resource):
             tem_image = imageDetail.get_image_detail_from_db(i['image_id'])
             imageList.append(tem_image)
         imageList = sorted(imageList,key = lambda x: x["like_num"],reverse=True)
+        if len(imageList) < 12:
+            return imageList
         return imageList[:12]
     #get image detail
     def get(self):

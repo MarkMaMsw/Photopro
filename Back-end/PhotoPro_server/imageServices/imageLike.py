@@ -9,7 +9,7 @@ import dev.config as config
 class PostImageLike(Resource):
     @jwt_required
     def post(self):
-        print(get_raw_jwt()["identity"])
+        #print(get_raw_jwt()["identity"])
         if get_raw_jwt()["identity"]["type"] != 'explorer':
             result = {'status':'you are not explorer'}
             return result, 403, None

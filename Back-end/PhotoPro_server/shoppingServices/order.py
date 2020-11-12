@@ -56,7 +56,7 @@ class Order(Resource):
                     return 'error', 409, None
 
             if explorer['balance'] - total_price < 0:
-                return "balance not enought", 409, None
+                return "balance not enought", 410, None
             #remove from shopping cart
             try:
                 for i in order_result:

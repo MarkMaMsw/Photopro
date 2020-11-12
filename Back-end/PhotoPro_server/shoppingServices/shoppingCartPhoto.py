@@ -19,6 +19,12 @@ class ShoppingCartPhoto(Resource):
         image = db.db.image.find_one({"image_id":input_request["image_id"],"status":"on_shop"})
         if not image:
             return "image not found", 404, None
+        image_buy = db.db.order.find_one({"image_id":input_request["image_id"],"explorer_id":get_raw_jwt()["identity"]["id"]})
+        if image_buy:
+            return "you have bought it", 409, None
+        image_buy = db.db.shoppingcart.find_one({"image_id":input_request["image_id"],"explorer_id":get_raw_jwt()["identity"]["id"],"status":"on"})
+        if image_buy:
+            return "you have added it into shoppingcart", 410, None
         shopping_info = {
             "explorer_id" : get_raw_jwt()["identity"]["id"],
             "image_id" : input_request["image_id"],

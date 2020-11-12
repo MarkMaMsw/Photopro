@@ -31,7 +31,7 @@ class IndexContributor(Resource):
             conList.append(value)
         # print(conList)
         conList = sorted(conList,key = lambda x: x["like_sum"],reverse=True)
-        print(conList)
+        #(conList)
         contriList = []
         for i in conList:
             contriList.append(userInfo.get_user_info(i["id"]))

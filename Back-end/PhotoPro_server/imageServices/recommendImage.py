@@ -36,4 +36,6 @@ class RecommendImage(Resource):
             tem_result = searchKeyword.get_image_detail_from_db('')
             tem_result = list(reversed(tem_result))
             recommend_result.extend(tem_result)
+        if len(recommend_result) < 12:
+            recommend_result, 200, None
         return recommend_result[:12], 200, None
