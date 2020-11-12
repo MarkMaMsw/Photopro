@@ -17,7 +17,7 @@ class IndexContributor(Resource):
         for i in like:
             # print(i)
             i.pop("_id")
-            image = db.db.image.find_one({"image_id":i["image_id"]})
+            image = db.db.image.find_one({"image_id":i["image_id"],"status":"on_shop"})
             # print(image)
             if image != None:
                 author = db.db.user.find_one({"id":image["contributor_id"]})
@@ -31,7 +31,7 @@ class IndexContributor(Resource):
             conList.append(value)
         # print(conList)
         conList = sorted(conList,key = lambda x: x["like_sum"],reverse=True)
-        print(conList)
+        #(conList)
         contriList = []
         for i in conList:
             contriList.append(userInfo.get_user_info(i["id"]))

@@ -16,9 +16,15 @@ class ShoppingCartPhoto(Resource):
             result = {'status':'you are not explorer'}
             return result, 403, None
         input_request = request.json
-        image = db.db.image.find_one({"image_id":input_request["image_id"]})
+        image = db.db.image.find_one({"image_id":input_request["image_id"],"status":"on_shop"})
         if not image:
-            return "image not found", 409, None
+            return "image not found", 404, None
+        image_buy = db.db.order.find_one({"image_id":input_request["image_id"],"explorer_id":get_raw_jwt()["identity"]["id"]})
+        if image_buy:
+            return "you have bought it", 409, None
+        image_buy = db.db.shoppingcart.find_one({"image_id":input_request["image_id"],"explorer_id":get_raw_jwt()["identity"]["id"],"status":"on"})
+        if image_buy:
+            return "you have added it into shoppingcart", 410, None
         shopping_info = {
             "explorer_id" : get_raw_jwt()["identity"]["id"],
             "image_id" : input_request["image_id"],
@@ -43,6 +49,30 @@ class ShoppingCartPhoto(Resource):
             return result, 200, None
         except:
             return "error", 409, None
+    @jwt_required
+    def delete(self):
+        #print(get_raw_jwt()["identity"])
+        try:
+            if get_raw_jwt()["identity"]["type"] != 'explorer':
+                result = {'status':'you are not explorer'}
+                return result, 403, None
+            input_request = request.json
+            explorer_id = get_raw_jwt()["identity"]["id"]
+            image = db.db.shoppingcart.find_one({"image_id":input_request["image_id"],"explorer_id":explorer_id})
+            if not image:
+                return "image not found", 409, None
+            else:
+                delete = db.db.shoppingcart.delete_one({"image_id":input_request["image_id"],"explorer_id":explorer_id})
+                if delete:
+                    result = {'status':'add success'}
+                    return result, 200, None
+                else:
+                    result = {'status':'delete fail'}
+                    return result, 409, None
+        except:
+            result = {'status':'delete error'}
+            return result, 409, None
+
 
             
 

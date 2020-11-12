@@ -97,3 +97,22 @@ class ImageUpload(Resource):
         except:
             result = {'status':'update error'}
             return result, 409, None
+    @jwt_required
+    def delete(self):
+        if get_raw_jwt()["identity"]["type"] != 'contributor':
+                result = {'status':'you are not contributor'}
+                return result, 403, None
+        try:
+            input_data = request.json
+            image_id = input_data['image_id']
+            delete = db.db.image.update_one({"image_id":image_id},{"$set": { "status": "delete" }})
+            if delete:
+                result = {'status':'delete success'}
+                return result, 200, None
+            else:
+                result = {'status':'record not found'}
+                return result, 404, None
+        except:
+            result = {'status':'delete error'}
+            return result, 409, None
+        

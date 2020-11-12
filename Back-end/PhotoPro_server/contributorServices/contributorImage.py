@@ -6,9 +6,13 @@ import dev.config as config
 import imageServices.imageDetail as imageDetail
 class ContributorImage(Resource):
     def get_detail_from_db(self,contributorId):
-        image = db.db.image.find({"contributor_id":contributorId})
+        image_on_shop = db.db.image.find({"contributor_id":contributorId,"status":"on_shop"})
+        image_off_shop = db.db.image.find({"contributor_id":contributorId,"status":"off_shop"})
         result = []
-        for i in image:
+        for i in image_on_shop:
+            tem_result = imageDetail.get_image_detail_from_db(i['image_id'])
+            result.append(tem_result)
+        for i in image_off_shop:
             tem_result = imageDetail.get_image_detail_from_db(i['image_id'])
             result.append(tem_result)
         return result
