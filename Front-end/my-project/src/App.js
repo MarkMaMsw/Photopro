@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { HashRouter, Route, Switch } from 'react-router-dom';
 import './scss/style.scss';
+import Shoppingcart from './views/pages/shoppingcart/Shoppingcart';
 
 const loading = (
   <div className="pt-3 text-center">
@@ -19,6 +20,9 @@ const Page500 = React.lazy(() => import('./views/pages/page500/Page500'));
 const Main = React.lazy(() => import('./views/pages/main/Main'));
 const Profile = React.lazy(() => import('../src/views/pages/profile/Profile'));
 const ExplorerProfile = React.lazy(() => import('../src/views/pages/explorerprofile/ExplorerProfile'));
+// const AuthorDetail = React.lazy(() => import('../src/views/pages/authordetail/AuthorDetail'));
+const AuthorDetail = React.lazy(() => import('../src/views/pages/author_detail/Authordetail'));
+const ShoppingCart = React.lazy(()=>import("./views/pages/shoppingcart/Shoppingcart"));
 
 class App extends Component {
 
@@ -29,12 +33,12 @@ class App extends Component {
             <Switch>
               <Route exact path="/login" name="Login Page" render={props => <Login {...props}/>} />
               <Route exact path="/register" name="Register Page" render={props => <Register {...props}/>} />
-              <Route exact path="/404" name="Page 404" render={props => <Page404 {...props}/>} />
-              <Route exact path="/500" name="Page 500" render={props => <Page500 {...props}/>} />
               <Route exact path="/main" name="Main Page" render={props => <Main {...props}/>} />
               <Route path="/profile" name="profile" render={props => <Profile {...props}/>} />
               <Route path="/explorerprofile" name="profile" render={props => <ExplorerProfile {...props}/>} />
-              <Route path="/" name="Home" render={props => <TheLayout {...props}/>} />
+              <Route path="/authordetail/:id" name="profile" render={props => <AuthorDetail {...props}/>} />
+              <Route path="/shoppingcart" name="shopping_cart" render={props => <Shoppingcart{...props}/>}/>
+              <Route path="/" name="404" render={props => <Page404 {...props}/>} />
             </Switch>
           </React.Suspense>
       </HashRouter>

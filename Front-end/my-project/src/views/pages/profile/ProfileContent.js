@@ -12,7 +12,8 @@ import ContributorProfile from '../../../components/contributor/Profile/Contribu
 import ContributorPhotos from '../../../components/contributor/AllPhotos/ContributorPhotos'
 import AllComments from '../../../components/contributor/AllComments/AllComments'
 import AllLikes from '../../../components/contributor/AllLikes/AllLikes' 
-import AllPurchase from '../../../components/contributor/AllPurchse/AllPurchase' 
+// import AllPurchase from '../../../components/contributor/AllPurchse/AllPurchase' 
+import AllPurchases from '../../../components/contributor/AllPurchse/AllPurchases' 
 import ImageUploadForm from '../../../components/contributor/PhotoUpload/ImageUploadForm'
 
   
@@ -32,7 +33,7 @@ const TheContent = () => {
             <Route path="/profile/contributorphotos" render={props => (<CFade><ContributorPhotos/></CFade>)}/>
             <Route path="/profile/allcomments" render={props => (<CFade><AllComments/></CFade>)}/>
             <Route path="/profile/alllikes" render={props => (<CFade><AllLikes/></CFade>)}/>
-            <Route path="/profile/allpurchase" render={props => (<CFade><AllPurchase/></CFade>)}/>
+            <Route path="/profile/allpurchase" render={props => (<CFade><AllPurchases/></CFade>)}/>
             <Route path="/profile/imageuploadform" render={props => (<CFade><ImageUploadForm/></CFade>)}/>
           </Switch>
         </Suspense>

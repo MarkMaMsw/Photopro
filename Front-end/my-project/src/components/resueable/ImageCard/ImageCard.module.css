@@ -16,12 +16,32 @@
     height: 250px;
     text-align: center;
     box-shadow: 0px 0px 9px 0px #e4e4e4;
+    overflow: hidden;
 }
 .card_image{
-    width: auto;
     height: 100%;
-    max-height: 250px;
+    object-fit: contain;
 }
 .card_image:hover{
     cursor: pointer;
+}
+.detail_photo_container{
+    height: 500px;
+    overflow: hidden;
+}
+.detail_photo{
+    height: 400px;
+    object-fit: contain;
+}
+.photo_price{
+    color: orangered;
+}
+.collect_like{
+    margin: 15px 0;
+}
+.comment{
+    background-color: rgb(238, 226, 226);
+    margin: 5px 0;
+    font-size: 16px;
+
 }
