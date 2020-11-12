@@ -30,6 +30,7 @@ class AllComment extends React.Component {
         },
       })
       .then(res => {
+        console.log(res);
         res.data.map(function(thumbup,id) {
           userdata.push({id,Contributor:thumbup["image_detail"]["contributor_detail"]["username"],Comment_time:thumbup["comment_time"],Comment:thumbup["comment_detail"],image:thumbup["image_detail"]["image_url"]})
         });
