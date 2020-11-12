@@ -8,11 +8,12 @@ import {
     CCardHeader,
     CCol,
     CDataTable,
-    CRow
+    CRow,
+    CButton
   } from '@coreui/react'
   
   
-const fields = ['Contributor', 'Time', 'image', 'Price']
+const fields = ['Contributor', 'Time', 'image', 'Price','Download']
   
   class AllPurchase extends React.Component{
     constructor(){
@@ -31,7 +32,7 @@ const fields = ['Contributor', 'Time', 'image', 'Price']
       })
       .then(res => {
         res.data.map(function(thumbup,id) {
-          userdata.push({id,Contributor:thumbup["image"]["contributor_detail"]["username"],Time:thumbup["time"],image:thumbup["image"]["image_no_watermark_url"], Price:thumbup["order_price"]})
+          userdata.push({id,Contributor:thumbup["image"]["contributor_detail"]["username"],Time:thumbup["time"],image:thumbup["image"]["image_no_watermark_url"], Price:thumbup["order_price"],Download:"download"})
         });
         console.log(userdata);
         this.setState({
@@ -63,6 +64,12 @@ const fields = ['Contributor', 'Time', 'image', 'Price']
                     (item)=>(
                       <td>
                         <img src={item.image} alt="" className={styles.commentImage}></img>
+                      </td>
+                    ),
+                    'Download':
+                    (item)=>(
+                      <td>
+                        <a href={item.image} download target='_blank'><CButton color='success'>Download</CButton></a>
                       </td>
                     )
                 }}

@@ -1,9 +1,7 @@
 import React,{ useState, useEffect } from 'react';
 import {
-    CButton,
     CCard,
     CCardBody,
-    CCardFooter,
     CCardHeader,
     CRow,
     CCol,
@@ -12,7 +10,6 @@ import {
     CInput,
     CLabel,
 } from '@coreui/react'
-import CIcon from '@coreui/icons-react'
 import axios from 'axios'
 
 
@@ -21,7 +18,7 @@ const ContributorProfile = () => {
     const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
     const [usertype, setUsertype] = useState('')
-    const [balance, setBalance] = useState(0)
+    const [balance, setBalance] = useState('')
     const [description, setDescription] = useState('')
     const [warning, setWarning] = useState(false)
 
@@ -102,9 +99,6 @@ const ContributorProfile = () => {
                   </CCol>
                 </CFormGroup>
               </CCardBody>
-              {/* <CCardFooter>
-                <CButton type="submit" size="sm" color="success" ><CIcon name="cil-scrubber" /> Submit</CButton>
-              </CCardFooter> */}
             </CCard>
             
           </CCol>

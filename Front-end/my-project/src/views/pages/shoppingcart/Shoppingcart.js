@@ -22,13 +22,6 @@ class Shoppingcart extends React.Component{
             }
         }
 
-
-        // addPhoto = (data) => {
-        //     this.setState({
-        //         photoArr: [data, ...this.state.photoArr]
-        //     });
-        // }
-
         arrayRemove = (array,value)=> {
           var index=0;
           for (index of array.keys()){
@@ -50,7 +43,6 @@ class Shoppingcart extends React.Component{
             checkoutList.push(key)
             totalPrice+=parseInt(price)
           }
-          // console.log(checkoutList,totalPrice);
           this.setState({checkoutList:checkoutList,totalPrice:totalPrice})
         }
 
@@ -62,14 +54,9 @@ class Shoppingcart extends React.Component{
             })
             .then(res => {
                 console.log(res.data);
-                // res.data.map(function(imagelist) {
-                //     // imagedata.push(imagelist.image_id)
-                //   });
                 this.setState({
                     photoArr:res.data,
-                    // image_list:res.data,
                 });
-                // console.log(this.state.image_list);
             })
             .catch(err => console.log(err));
         }
@@ -82,14 +69,9 @@ class Shoppingcart extends React.Component{
             })
             .then(res => {
                 console.log(res.data);
-                // res.data.map(function(imagelist) {
-                //     // imagedata.push(imagelist.image_id)
-                //   });
                 this.setState({
                     photoArr:res.data,
-                    // image_list:res.data,
                 });
-                // console.log(this.state.image_list);
             })
             .catch(err => console.log(err));
         }
@@ -97,14 +79,13 @@ class Shoppingcart extends React.Component{
   return (
     <>    
     <div className='c-wrapper'>      
-      <ShoppingcartHeader/>
+      {/* <ShoppingcartHeader/> */}
       <h1>Shopping Cart</h1>
       <div className="col">
         <CRow>
           
           <CCol xs='6'>
             <CRow alignHorizontal='center'>
-              {/* <Photo addPhoto={this.addPhoto}/>  */}
               {this.state.photoArr.map(p => <Photo 
               key={p.image_id} 
               imageinfo={p}
@@ -125,7 +106,7 @@ class Shoppingcart extends React.Component{
           </CCol>
         </CRow>
       </div>
-      <ShoppingcartFooter/>
+      {/* <ShoppingcartFooter/> */}
     </div>
     </>
   )

@@ -33,5 +33,11 @@ export default [
     to: '/explorerprofile/purchase',
     icon: <CIcon content={freeSet.cilDollar} customClasses="c-sidebar-nav-icon"/>
   },
+  {
+    _tag: 'CSidebarNavItem',
+    name: 'My Shopping Cart',
+    to: '/explorerprofile/shoppingcart',
+    icon: <CIcon content={freeSet.cilCart} customClasses="c-sidebar-nav-icon"/>
+  },
 ]
 

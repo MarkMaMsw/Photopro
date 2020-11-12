@@ -66,7 +66,7 @@ const MainpHeader = (props) => {
             </CCol>
           </CFormGroup>
         </CForm>
-        <Link to='/shoppingcart'>
+        <Link to='/explorerprofile/shoppingcart'>
           <CIcon name="cil-cart" className={styles.shoppingcart}/>
         </Link>
         {usertype === 'explorer' ? <MainpAfterHeaderDropdown/> : <MainpBeforeHeaderDropdown/>}

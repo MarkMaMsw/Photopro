@@ -44,6 +44,9 @@ class ImageCard extends React.Component {
             deleteSuccess: false,
             deleteFail: false,
             deleteCheck: false,
+            addCartSuccess: false,
+            addCartFail: false,
+            addCartAlready: false,
         }
     }
 
@@ -151,9 +154,18 @@ class ImageCard extends React.Component {
                 headers: {
                     'Authorization': `Bearer ${sessionStorage.getItem('token')}`
                 }
-            }).then(res=> console.log(res.status))
+            }).then(res=> {
+                if (res.status === 200){
+                    this.setState({addCartSuccess: !this.state.addCartSuccess});
+                }
+            })
+            .catch(err => {
+                this.setState({
+                    addCartFail: !this.state.addCartFail,
+                })
+            });
         }else{
-            alert("This image has been added in the shopping cart")
+            this.setState({addCartAlready: !this.state.addCartAlready});
         }
         
     }
@@ -256,7 +268,7 @@ class ImageCard extends React.Component {
             }})
             .then(res => {
                 console.log(res.data);
-                if (res.data === "delete success"){
+                if (res.data.status === "delete success"){
                     this.setState({
                         deleteSuccess: !this.state.deleteSuccess,
                     });
@@ -458,7 +470,60 @@ class ImageCard extends React.Component {
                 </CModalFooter>
             </CModal>
 
+            <CModal 
+            show={this.state.addCartSuccess} 
+            onClose={() => this.setState({addCartSuccess: !this.state.addCartSuccess})}
+            color="success"
+            >
+                <CModalHeader closeButton>
+                <CModalTitle>Success</CModalTitle>
+                </CModalHeader>
+                <CModalBody>
+                    Successfully add to shopping cart
+                </CModalBody>
+                <CModalFooter>
+                <CButton color="success" onClick={() => {
+                    this.setState({addCartSuccess: !this.state.addCartSuccess});
+                    }}>OK</CButton>
+                </CModalFooter>
+            </CModal>
         
+            <CModal 
+            show={this.state.addCartFail} 
+            onClose={() => this.setState({addCartFail: !this.state.addCartFail})}
+            color="warning"
+            >
+                <CModalHeader closeButton>
+                <CModalTitle>Fail</CModalTitle>
+                </CModalHeader>
+                <CModalBody>
+                    Cannot add to cart.
+                </CModalBody>
+                <CModalFooter>
+                <CButton color="warning" onClick={() => {
+                    this.setState({addCartFail: !this.state.addCartFail});
+                    }}>Try Later</CButton>
+                </CModalFooter>
+            </CModal>
+
+            <CModal 
+            show={this.state.addCartAlready} 
+            onClose={() => this.setState({addCartAlready: !this.state.addCartAlready})}
+            color="warning"
+            >
+                <CModalHeader closeButton>
+                <CModalTitle>Conflict</CModalTitle>
+                </CModalHeader>
+                <CModalBody>
+                    This photo is already in shopping cart.
+                </CModalBody>
+                <CModalFooter>
+                <CButton color="warning" onClick={() => {
+                    this.setState({addCartAlready: !this.state.addCartAlready});
+                    }}>OK</CButton>
+                </CModalFooter>
+            </CModal>
+
         </CCol>
         );
     }
