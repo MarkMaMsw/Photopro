@@ -46,12 +46,14 @@ class ImageUpload(Resource):
             f.save(os.path.join(file_store_path, image_newfilename))
             #add watermark
             img = Image.open(os.path.join(file_store_path, image_newfilename))
-            watermark = Image.open(os.path.join('upload/static/', 'watermark.png'))
+            if img.size[0] > 1000:
+                watermark = Image.open(os.path.join('upload/static/', 'watermark2.png'))
+                bottomRight = (int(img.size[0]/2 - 150), int(img.size[1]/2))
+            else:
+                watermark = Image.open(os.path.join('upload/static/', 'watermark.png'))
+                bottomRight = (int(img.size[0]/2 - 150), int(img.size[1]/2))
             r,g,b,a = watermark.split()
             img.convert("RGBA")
-            bottomRight = (int(img.size[0]/2 - 150), int(img.size[1]/2))
-            
-            
             watermark.convert("RGBA")
             img.paste(watermark, bottomRight, mask=a)
             watermark_image_name = "watermark_" + image_newfilename
@@ -105,7 +107,7 @@ class ImageUpload(Resource):
         try:
             input_data = request.json
             image_id = input_data['image_id']
-            delete = db.db.image.update_one({"image_id":image_id},{"$set": { "status": "delete" }})
+            delete = db.db.image.update_one({"contributor_id":get_raw_jwt()["identity"]["id"],"image_id":image_id},{"$set": { "status": "delete" }})
             if delete:
                 result = {'status':'delete success'}
                 return result, 200, None

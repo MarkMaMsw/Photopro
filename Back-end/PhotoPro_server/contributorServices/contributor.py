@@ -15,7 +15,7 @@ class ContributorInfo(Resource):
         if not user:
             return "The user not exists", 404, None
         newUser = {}
-        attributes = ["id","username","email","description","balance","userType"]
+        attributes = ["id","username","email","description","balance","userType","photoURL"]
         for i in attributes:
             newUser[i] = user[i]
         newUser['image_num'] = image_num
