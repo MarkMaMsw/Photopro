@@ -1,4 +1,5 @@
-import React, { useState,Component } from 'react'
+import React from 'react'
+import url from '../../api/url'
 import {
   CCard,
   CCardBody,
@@ -14,7 +15,6 @@ import {
   CModalBody,
   CModalFooter,
 } from  '@coreui/react'
-// import styles from '../mainpage/ImageCard'
 import styles from './Photos.module.css'
 import Axios from 'axios'
 
@@ -26,30 +26,6 @@ class Photo extends React.Component{
           warning:false
         }
         }         
-      // const comment = 'http://34.87.211.156:5000/image/comment/1604292601';
-      // const stateChange =(e) =>{
-      //   console.log(e.target.value);
-      //   setState(e.target.value);
-      // }
-
-      // //判断哪些被选中了
-      // const Checked =(e)=>{
-      //   console.log(e.target.value);
-      //   setChecked(e.target.value);
-      // }
-
-      // //click 后校验合格，传输imageID给后端
-      // const checkoutClick = () =>{
-      //   console.log(sessionStorage.getItem('token'));
-      //   Axios.post() 
-      
-      // //点击remove button, 删除单笔订单信息
-      // const removeHandler =() =>{
-
-      // } 
-    //   onclick = () => {
-    //       props.addPhoto(name)
-    //   }
 
     warningChange= ()=>{
       this.setState({warning:!this.state.warning})
@@ -61,7 +37,7 @@ class Photo extends React.Component{
       var body = {
         image_id: this.props.imageinfo.image_id
       }
-      await Axios.delete('http://13.55.8.94:5000/explorer/shoppingcart', {
+      await Axios.delete(`${url}/explorer/shoppingcart`, {
       data:body,    
       headers: {
               'Authorization': `Bearer ${sessionStorage.getItem('token')}`

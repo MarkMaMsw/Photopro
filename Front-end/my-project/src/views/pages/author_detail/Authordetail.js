@@ -1,7 +1,6 @@
 import React from 'react'
 import AuthorContent from './AuthorContent';
 import AuthorHeader from './AuthorHeader';
-// import Header from '../../../components/resueable/Header/Header';
 import Footer from '../../../components/resueable/Footer/Footer';
 
 const Authordetail = (props) => {

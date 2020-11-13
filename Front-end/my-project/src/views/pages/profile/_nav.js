@@ -35,6 +35,12 @@ export default [
   },
   {
     _tag: 'CSidebarNavItem',
+    name: 'Statistic',
+    to: '/profile/statistic',
+    icon: <CIcon content={freeSet.cilChart} customClasses="c-sidebar-nav-icon"/>
+  },
+  {
+    _tag: 'CSidebarNavItem',
     name: 'Upload Photo',
     to: '/profile/imageuploadform',
     icon: <CIcon content={freeSet.cilCloudUpload} customClasses="c-sidebar-nav-icon"/>

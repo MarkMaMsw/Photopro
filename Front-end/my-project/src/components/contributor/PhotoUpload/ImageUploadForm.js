@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Axios from 'axios'
+import serverurl from '../../api/url'
 import {
   CButton,
   CCard,
@@ -91,7 +92,7 @@ const ImageUploadForm = () => {
 
     console.log(sessionStorage.getItem('token'));
 
-    Axios.post('http://13.55.8.94:5000/image', formData, {
+    Axios.post(`${serverurl}/image`, formData, {
       headers: {
         "Content-type": "multipart/form-data",
         'Authorization': `Bearer ${sessionStorage.getItem('token')}`
@@ -196,7 +197,7 @@ const ImageUploadForm = () => {
                   <CCol xs="12" md="9">
                     <CCard>
                       <CCardBody>
-                        {url && <img src={url} alt="dogs" className="uploadImage" className={styles.uploadImage}></img>}
+                        {url && <img src={url} alt="dogs" className={styles.uploadImage}></img>}
                       </CCardBody>
                     </CCard>
                   </CCol>

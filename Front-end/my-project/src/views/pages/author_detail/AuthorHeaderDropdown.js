@@ -26,7 +26,10 @@ const AuthorHeaderDropdown = () => {
         </div>
       </CDropdownToggle>
       <CDropdownMenu className="pt-0" placement="bottom-end">
-        <CDropdownItem>
+        <CDropdownItem> 
+          <Link to="/explorerprofile/profile"><CIcon name="cilUser" className="mfe-2" />Profile</Link>
+        </CDropdownItem>
+        <CDropdownItem> 
           <Link to="/login"><CIcon name="cilHome" className="mfe-2" /> Log out</Link>
         </CDropdownItem>
       </CDropdownMenu>

@@ -18,7 +18,6 @@ import styles from './MainpBefore.module.css'
 
 const MainpHeader = (props) => {
   const usertype = sessionStorage.getItem('usertype');
-
   const [searchtype, setSearchtype] = useState('image');
   const [keyword, setKeyword] = useState('');
 
@@ -66,9 +65,12 @@ const MainpHeader = (props) => {
             </CCol>
           </CFormGroup>
         </CForm>
-        <Link to='/shoppingcart'>
-          <CIcon name="cil-cart" className={styles.shoppingcart}/>
-        </Link>
+        {usertype && 
+          <Link to='/explorerprofile/shoppingcart'>
+            <CIcon name="cil-cart" className={styles.shoppingcart}/>
+          </Link>
+        }
+        
         {usertype === 'explorer' ? <MainpAfterHeaderDropdown/> : <MainpBeforeHeaderDropdown/>}
       </CHeaderNav>
     </CHeader>

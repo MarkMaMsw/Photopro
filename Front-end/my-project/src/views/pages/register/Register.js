@@ -22,7 +22,6 @@ import {
   CModalFooter,
   CModalHeader,
   CModalTitle,
-  CTextarea
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import styles from './Register.module.css'

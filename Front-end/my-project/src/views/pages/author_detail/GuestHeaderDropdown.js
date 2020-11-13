@@ -4,11 +4,11 @@ import {
   CDropdownItem,
   CDropdownMenu,
   CDropdownToggle,
-} from '@coreui/react';
-import CIcon from '@coreui/icons-react';
+} from '@coreui/react'
+import CIcon from '@coreui/icons-react'
 import { Link } from 'react-router-dom';
 
-const BeforeHeaderDropdown = () => {
+const GuestHeaderDropdown = () => {
   return (
     <CDropdown
       inNav
@@ -32,4 +32,4 @@ const BeforeHeaderDropdown = () => {
   )
 }
 
-export default BeforeHeaderDropdown;
+export default GuestHeaderDropdown;
