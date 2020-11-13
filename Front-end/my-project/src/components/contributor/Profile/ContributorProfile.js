@@ -1,4 +1,5 @@
 import React,{ useState, useEffect } from 'react';
+import url from '../../api/url';
 import {
     CCard,
     CCardBody,
@@ -24,7 +25,7 @@ const ContributorProfile = () => {
 
     
     useEffect(() => {
-      axios.get('http://13.55.8.94:5000/contributor', {
+      axios.get(`${url}/contributor`, {
         headers: {   
               'Authorization': `Bearer ${sessionStorage.getItem('token')}`
           },

@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import axios from 'axios'
+import url from '../../api/url'
 import styles from '../AllComments/AllComments.module.css'
 
 import {
@@ -21,13 +22,13 @@ import {
     
     componentDidMount(){
       const userdata =[]
-      axios.get('http://13.55.8.94:5000/contributor/likefromothers', {
+      axios.get(`${url}/contributor/likefromothers`, {
         headers: {   
           'Authorization': `Bearer ${sessionStorage.getItem('token')}`
         },
       })
       .then(res => {
-        res.data.map(function(thumbup,id) {
+        res.data.forEach((thumbup,id) => {
           userdata.push({id,name:thumbup["explorer"]["username"],like_time:thumbup["like_time"],image:thumbup["image"]["image_url"]})
         });
         console.log(userdata);

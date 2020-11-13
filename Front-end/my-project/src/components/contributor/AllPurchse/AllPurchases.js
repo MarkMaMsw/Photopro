@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import url from '../../api/url'
 import styles from '../AllComments/AllComments.module.css'
 
 import {
@@ -24,13 +25,13 @@ const fields = ['Explorer', 'Time', 'image', 'Price']
     
     componentDidMount(){
       const userdata =[]
-      axios.get('http://13.55.8.94:5000/contributor/order', {
+      axios.get(`${url}/contributor/order`, {
         headers: {   
           'Authorization': `Bearer ${sessionStorage.getItem('token')}`
         },
       })
       .then(res => {
-        res.data.map(function(thumbup,id) {
+        res.data.forEach((thumbup,id) => {
           userdata.push({id,Explorer:thumbup["explorer"]["username"],Time:thumbup["order_time"],image:thumbup["image"]["image_no_watermark_url"], Price:thumbup["order_price"]})
         });
         console.log(userdata);

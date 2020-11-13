@@ -1,5 +1,6 @@
 import React from 'react'
 import Axios from 'axios'
+import url from '../../api/url'
 import { CRow } from  '@coreui/react'
 import ImageCard from '../../resueable/ImageCard/ImageCard'
 
@@ -13,7 +14,7 @@ class ContributorPhotos extends React.Component {
   }
 
   componentDidMount(){
-    Axios.get(`http://13.55.8.94:5000/contributor/image/${sessionStorage.getItem('userid')}`, {
+    Axios.get(`${url}/contributor/image/${sessionStorage.getItem('userid')}`, {
       header: {
         'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
       }

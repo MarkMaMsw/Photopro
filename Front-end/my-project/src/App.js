@@ -16,13 +16,10 @@ const TheLayout = React.lazy(() => import('./containers/TheLayout'));
 const Login = React.lazy(() => import('./views/pages/login/Login'));
 const Register = React.lazy(() => import('./views/pages/register/Register'));
 const Page404 = React.lazy(() => import('./views/pages/page404/Page404'));
-const Page500 = React.lazy(() => import('./views/pages/page500/Page500'));
 const Main = React.lazy(() => import('./views/pages/main/Main'));
 const Profile = React.lazy(() => import('../src/views/pages/profile/Profile'));
 const ExplorerProfile = React.lazy(() => import('../src/views/pages/explorerprofile/ExplorerProfile'));
-// const AuthorDetail = React.lazy(() => import('../src/views/pages/authordetail/AuthorDetail'));
 const AuthorDetail = React.lazy(() => import('../src/views/pages/author_detail/Authordetail'));
-const ShoppingCart = React.lazy(()=>import("./views/pages/shoppingcart/Shoppingcart"));
 
 class App extends Component {
 
@@ -38,7 +35,8 @@ class App extends Component {
               <Route path="/authordetail/:id" name="profile" render={props => <AuthorDetail {...props}/>} />
               <Route path="/shoppingcart" name="shopping_cart" render={props => <Shoppingcart{...props}/>}/>
               <Route path="/404" name="404" render={props => <Page404 {...props}/>} />
-              <Route path="/" name="Main Page" render={props => <Main {...props}/>} />
+              <Route path="/main" name="Main Page" render={props => <Main {...props}/>} />
+              <Route path="/" name="Main Page" render={props => <TheLayout {...props}/>} />
             </Switch>
           </React.Suspense>
       </HashRouter>

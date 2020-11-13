@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import axios from 'axios'
+import url from '../../api/url'
 import styles from './AllComments.module.css'
 
 import {
@@ -15,7 +16,6 @@ import {
   const fields = ['name', 'comment_time', 'comment', 'image']
   
   class AllComments extends React.Component {
-    //class AllLikes extends React.Component {
       constructor(){
         super();
         this.state = {
@@ -25,14 +25,14 @@ import {
        
       componentDidMount(){
         const userdata =[]
-        axios.get('http://13.55.8.94:5000/contributor/commentfromothers', {
+        axios.get(`${url}/contributor/commentfromothers`, {
           headers: {   
             'Authorization': `Bearer ${sessionStorage.getItem('token')}`
           },
         })
         .then(res => {
-          res.data.map(function(thumbup,id) {
-            userdata.push({id,name:thumbup["explorer"]["username"],comment_time:thumbup["comment_time"],comment:thumbup["comment_detail"],image:thumbup["image"]["image_url"]})
+          res.data.forEach((thumbup, id) => {
+            userdata.push({id, name:thumbup["explorer"]["username"], comment_time:thumbup["comment_time"], comment:thumbup["comment_detail"], image:thumbup["image"]["image_url"]});
           });
           console.log(userdata);
           this.setState({
@@ -73,8 +73,7 @@ import {
           </CCol>
         </CRow>
       </>
-    )
-              }
+    )}
   }
   
   export default AllComments;

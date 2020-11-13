@@ -15,7 +15,7 @@ import AllLikes from '../../../components/contributor/AllLikes/AllLikes'
 // import AllPurchase from '../../../components/contributor/AllPurchse/AllPurchase' 
 import AllPurchases from '../../../components/contributor/AllPurchse/AllPurchases' 
 import ImageUploadForm from '../../../components/contributor/PhotoUpload/ImageUploadForm'
-
+import Statistic from '../../../components/contributor/Statistic/Statistic'
   
 const loading = (
   <div className="pt-3 text-center">
@@ -35,6 +35,7 @@ const TheContent = () => {
             <Route path="/profile/alllikes" render={props => (<CFade><AllLikes/></CFade>)}/>
             <Route path="/profile/allpurchase" render={props => (<CFade><AllPurchases/></CFade>)}/>
             <Route path="/profile/imageuploadform" render={props => (<CFade><ImageUploadForm/></CFade>)}/>
+            <Route path="/profile/statistic" render={props => (<CFade><Statistic/></CFade>)}/>
           </Switch>
         </Suspense>
       </CContainer>

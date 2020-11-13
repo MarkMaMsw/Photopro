@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import url from '../../api/url'
 import styles from './AllPurchase.module.css'
 
 import {
@@ -25,13 +26,13 @@ const fields = ['Contributor', 'Time', 'image', 'Price','Download']
     
     componentDidMount(){
       const userdata =[]
-      axios.get('http://13.55.8.94:5000/explorer/order', {
+      axios.get(`${url}/explorer/order`, {
         headers: {   
           'Authorization': `Bearer ${sessionStorage.getItem('token')}`
         },
       })
       .then(res => {
-        res.data.map(function(thumbup,id) {
+        res.data.forEach((thumbup,id) => {
           userdata.push({id,Contributor:thumbup["image"]["contributor_detail"]["username"],Time:thumbup["time"],image:thumbup["image"]["image_no_watermark_url"], Price:thumbup["order_price"],Download:"download"})
         });
         console.log(userdata);
@@ -69,7 +70,7 @@ const fields = ['Contributor', 'Time', 'image', 'Price','Download']
                     'Download':
                     (item)=>(
                       <td>
-                        <a href={item.image} download target='_blank'><CButton color='success'>Download</CButton></a>
+                        <a href={item.image} download><CButton color='success'>Download</CButton></a>
                       </td>
                     )
                 }}

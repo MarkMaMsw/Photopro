@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import url from '../../api/url';
 import Axios from 'axios';
 import {
   CCol,
@@ -20,7 +21,7 @@ const Tabs = () => {
   const [collections, setCollections] = useState([]);
 
   useEffect(() => {
-    Axios.get('http://13.55.8.94:5000/image/collection', {
+    Axios.get(`${url}/image/collection`, {
         headers: {   
             'Authorization': `Bearer ${sessionStorage.getItem('token')}`
         },

@@ -1,14 +1,12 @@
 import React, { useState } from 'react'
-import { Link, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
+import url from '../../api/url'
 import {
   CCard,
   CCardBody,
   CCardFooter,
-  CCardHeader,
   CCol,
   CRow,
-  CCardImg,
-  CFormGroup,
   CButton,
   CModal,
   CModalHeader,
@@ -32,7 +30,7 @@ const Checkout = (props) => {
         var body = {
           image: checkoutList
         }
-        await Axios.post('http://13.55.8.94:5000/order',body, {
+        await Axios.post(`${url}/order`,body, {
             headers: {
                 'Authorization': `Bearer ${sessionStorage.getItem('token')}`
             }
@@ -41,7 +39,7 @@ const Checkout = (props) => {
         })
         .catch(error => {
           console.log(error.response);
-          if(error.response.status==410){
+          if(error.response.status === 410){
             setDanger(!danger)
           }
         });
@@ -49,7 +47,7 @@ const Checkout = (props) => {
     }
 
     const warningCheck = ()=>{
-      if (checkoutList.length==0){
+      if (checkoutList.length === 0){
         setWarning1(!warning1)
       }else{
         setWarning(!warning)

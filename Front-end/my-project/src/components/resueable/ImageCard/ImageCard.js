@@ -1,5 +1,6 @@
 import React from 'react'
 import Axios from 'axios'
+import url from '../../api/url'
 import { Link } from 'react-router-dom'
 import {
   CButton,
@@ -15,13 +16,11 @@ import {
   CRow,
   CCardImg,
   CModalTitle,
-  CInput,
-  CLabel
+  CSelect
 } from  '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { freeSet } from '@coreui/icons'
 import styles from './ImageCard.module.css'
-import "./modalImage.scss"
 
 class ImageCard extends React.Component {
     constructor(props){
@@ -33,7 +32,7 @@ class ImageCard extends React.Component {
             showCollection:false,
             showAddCollection:false,
             commentList: [],
-            img_id : "",
+            img_id : this.props.imageinfo.image_id,
             commentDetail:"",
             commentState:false,
             likeList:[],
@@ -47,15 +46,16 @@ class ImageCard extends React.Component {
             addCartSuccess: false,
             addCartFail: false,
             addCartAlready: false,
+            photoStatus: this.props.imageinfo.status,
         }
     }
 
     async componentDidMount(){
-        const response1 = await Axios.get(`http://13.55.8.94:5000/explorerInfo`,
+        const response1 = await Axios.get(`${url}/explorerInfo`,
         {headers: {
             'Authorization': `Bearer ${sessionStorage.getItem('token')}`
         }})
-        const response2 = await Axios.get(`http://13.55.8.94:5000/image/like/${this.props.imageinfo.image_id}`,
+        const response2 = await Axios.get(`${url}/image/like/${this.props.imageinfo.image_id}`,
         {headers: {
             'Authorization': `Bearer ${sessionStorage.getItem('token')}`
         }})
@@ -66,17 +66,16 @@ class ImageCard extends React.Component {
     }
 
     async componentDidUpdate (prevProps, prevState){
-        if(prevState.heartcolor != this.state.heartcolor){
-            const response2 = await Axios.get(`http://13.55.8.94:5000/image/detail/${this.props.imageinfo.image_id}`,{
+        if(prevState.heartcolor !== this.state.heartcolor){
+            const response2 = await Axios.get(`${url}/image/detail/${this.props.imageinfo.image_id}`,{
             headers: {
                 'Authorization': `Bearer ${sessionStorage.getItem('token')}`
             }
             })
-            // console.log(response2.data.like_num)
             this.setState({sumLike:response2.data.like_num})
         }
         if(this.state.commentState){
-            const response1 = await Axios.get(`http://13.55.8.94:5000/image/comment/${this.props.imageinfo.image_id}`,
+            const response1 = await Axios.get(`${url}/image/comment/${this.props.imageinfo.image_id}`,
             {headers: {
                 'Authorization': `Bearer ${sessionStorage.getItem('token')}`
             }})
@@ -96,12 +95,11 @@ class ImageCard extends React.Component {
         } else {
             this.setState({heartcolor: 'black'});
         }
-        // console.log(this.state.heartcolor)
         var body = {
             image_id: this.props.imageinfo.image_id,
             status: this.state.heartcolor==="black"?"active":"inactive"
         }
-        const response1 = await Axios.post('http://13.55.8.94:5000/image/like',body, {
+        await Axios.post(`${url}/image/like`, body, {
             headers: {
                 'Authorization': `Bearer ${sessionStorage.getItem('token')}`
             }
@@ -113,7 +111,7 @@ class ImageCard extends React.Component {
         console.log("start modal")
         this.setState({show:!this.state.show})
         console.log(this.props.imageinfo.image_id)
-        const response1 = await Axios.get(`http://13.55.8.94:5000/image/comment/${this.props.imageinfo.image_id}`,
+        const response1 = await Axios.get(`${url}/image/comment/${this.props.imageinfo.image_id}`,
         {headers: {
             'Authorization': `Bearer ${sessionStorage.getItem('token')}`
         }})
@@ -128,7 +126,7 @@ class ImageCard extends React.Component {
 
     toggleCollection = async ()=>{
         this.setState({showCollection:!this.state.showCollection})
-        const response1 = await Axios.get(`http://13.55.8.94:5000/image/collection`,
+        const response1 = await Axios.get(`${url}/image/collection`,
         {headers: {
             'Authorization': `Bearer ${sessionStorage.getItem('token')}`
         }})
@@ -137,7 +135,7 @@ class ImageCard extends React.Component {
     }
 
     addCart = async ()=>{
-        const response1 = await Axios.get('http://13.55.8.94:5000/explorer/shoppingcart', {
+        const response1 = await Axios.get(`${url}/explorer/shoppingcart`, {
             headers: {
                 'Authorization': `Bearer ${sessionStorage.getItem('token')}`
             }
@@ -145,12 +143,12 @@ class ImageCard extends React.Component {
         console.log(response1)
         var imageList = response1.data
         if (imageList.filter((a)=>
-            a.image_id == this.props.imageinfo.image_id
-        ).length == 0){
+            a.image_id === this.props.imageinfo.image_id
+        ).length === 0){
             var body = {
                 image_id: this.props.imageinfo.image_id,
             }
-            const response2 = await Axios.post('http://13.55.8.94:5000/explorer/shoppingcart',body, {
+            await Axios.post(`${url}/explorer/shoppingcart`,body, {
                 headers: {
                     'Authorization': `Bearer ${sessionStorage.getItem('token')}`
                 }
@@ -178,12 +176,12 @@ class ImageCard extends React.Component {
 
     commentSubmit = (e)=>{
         console.log("send")
-        if (this.state.commentDetail != ""){
+        if (this.state.commentDetail !== ""){
             var body={
                 image_id: this.state.img_id,
                 comment_detail: this.state.commentDetail
             }
-            Axios.post('http://13.55.8.94:5000/image/comment',body, {
+            Axios.post(`${url}/image/comment`,body, {
             headers: {
                 'Authorization': `Bearer ${sessionStorage.getItem('token')}`
             }
@@ -195,7 +193,7 @@ class ImageCard extends React.Component {
     }
 
     inputCollectionInfo = (e)=>{
-        if(e.target.name=="name"){
+        if(e.target.name === "name"){
             this.setState({collectionName:e.target.value})
         }else{
             this.setState({collectionDetail:e.target.value})
@@ -208,13 +206,13 @@ class ImageCard extends React.Component {
             name: this.state.collectionName,
             detail: this.state.collectionDetail
         }
-        const response1 = await Axios.post('http://13.55.8.94:5000/image/collection',body, {
+        await Axios.post(`${url}/image/collection`,body, {
             headers: {
                 'Authorization': `Bearer ${sessionStorage.getItem('token')}`
             }
         }).then(res=> console.log(res.status))
         this.setState({showAddCollection:false})
-        const response2 = await Axios.get(`http://13.55.8.94:5000/image/collection`,
+        const response2 = await Axios.get(`${url}/image/collection`,
         {headers: {
             'Authorization': `Bearer ${sessionStorage.getItem('token')}`
         }})
@@ -230,10 +228,9 @@ class ImageCard extends React.Component {
         }else{
             var selectedValue = document.querySelector('input[name="collection"]:checked').value;
             console.log(selectedValue)
-            // console.log(this.collectionList)
-            var target = this.state.collectionList.filter((a)=>a.collection_name==selectedValue)
+            var target = this.state.collectionList.filter((a)=>a.collection_name === selectedValue)
             console.log(target)
-            if (target[0].collection_images == [] || target[0].collection_images.filter((a)=>a.image_id==this.props.imageinfo.image_id).length == 0){
+            if (target[0].collection_images === [] || target[0].collection_images.filter((a)=>a.image_id === this.props.imageinfo.image_id).length === 0){
                 var collList = target[0].collection_images.map((a)=>a.image_id)
                 collList.push(this.props.imageinfo.image_id)
                 var body={
@@ -242,8 +239,7 @@ class ImageCard extends React.Component {
                     detail: target[0].collection_details,
                     images: collList
                 }
-                // console.log(body)
-                const response1 = await Axios.put('http://13.55.8.94:5000/image/collection',body, {
+                await Axios.put(`${url}/image/collection`,body, {
                     headers: {
                         'Authorization': `Bearer ${sessionStorage.getItem('token')}`
                     }
@@ -260,7 +256,7 @@ class ImageCard extends React.Component {
             "image_id": image_id,
         }
 
-        Axios.delete('http://13.55.8.94:5000/image', { 
+        Axios.delete(`${url}/image`, { 
             data: json,
             headers: {
                 'Content-type': 'application/json',
@@ -280,6 +276,26 @@ class ImageCard extends React.Component {
                     deleteFail: !this.state.deleteFail,
                 });
             });
+    }
+
+    changeStatus = (e) => {
+        console.log(e.target.value);
+        const newStatus = e.target.value;
+        Axios.put(`${url}/image`, {
+            "image_id": this.state.img_id,
+            "image_status": newStatus
+        }, {
+            headers: {
+                'Content-type': 'application/json',
+                'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+            }
+        })
+        .then(res => {
+            console.log(res);
+            this.setState({
+                photoStatus: newStatus
+            })
+        });
     }
 
     render(){
@@ -305,9 +321,16 @@ class ImageCard extends React.Component {
                         <CCardImg src={image_url} className={styles.card_image} onClick={this.toggle}></CCardImg>}
                 </div>
                 <CCardFooter className={styles.card_footer}>
-                    {usertype === 'contributor' ? 
-                        <CButton type="reset" size="sm" color="danger" onClick={() => {this.setState({deleteCheck: !this.state.deleteCheck});}}><CIcon name="cil-trash" /> Delete</CButton> : 
-                        <span>Author: <Link to={authorpath} target='_blank'>{contributor_detail.username}</Link></span>}
+                    <CRow>
+                        {usertype === 'contributor' ? 
+                            <CButton type="reset" size="sm" color="danger" onClick={() => {this.setState({deleteCheck: !this.state.deleteCheck});}}><CIcon name="cil-trash" /> Delete</CButton> : 
+                            <span>Author: <Link to={authorpath} target='_blank'>{contributor_detail.username}</Link></span>}
+                        {usertype === 'contributor' && 
+                            <CSelect custom name="photo-status" id="photo-status" value={this.state.photoStatus} onChange={this.changeStatus} className={styles.selectbox}>
+                                <option value="on_shop">On Shop</option>
+                                <option value="off_shop">Off Shop</option>
+                            </CSelect>}
+                    </CRow>
                     <span className={styles.price}>${price}</span>
                 </CCardFooter>
             </CCard>
@@ -328,34 +351,40 @@ class ImageCard extends React.Component {
                                     <h3>Title: {title}</h3>
                                     <p>{`By ${contributor_detail["username"]} (${contributor_detail["email"]})`}</p>
                                     <p>Tags: {tag}</p>
-                                    <div className={styles.collect_like}>
-                                        <CIcon className="iconItem" size={'xl'} content={freeSet.cilPlaylistAdd}  onClick={this.toggleCollection}/>  &nbsp;&nbsp;&nbsp;&nbsp;Add to collection
-                                    </div>
-                                    <div className={styles.collect_like}>
-                                        <CIcon className="iconItem" size={'xl'} content={freeSet.cilHeart} onClick={this.heartClick} style={{color: this.state.heartcolor}} className={styles.icon_click}/> {this.state.sumLike} &nbsp;&nbsp;&nbsp;Like it
-                                    </div>
+                                    {sessionStorage.getItem('token') && <>
+                                        <div className={styles.collect_like}>
+                                            <CIcon size={'xl'} content={freeSet.cilPlaylistAdd} onClick={this.toggleCollection} className={styles.icon_click}/>  &nbsp;&nbsp;&nbsp;&nbsp;Add to collection
+                                        </div>
+                                        <div className={styles.collect_like}>
+                                            <CIcon size={'xl'} content={freeSet.cilHeart} onClick={this.heartClick} style={{color: this.state.heartcolor}} className={styles.icon_click}/> {this.state.sumLike} &nbsp;&nbsp;&nbsp;Like it
+                                        </div></>
+                                    }
                                 </header><br/>
                                 <detail>
                                     <h5 className={styles.photo_price}>{`Price: $${price}`}</h5>
-                                    <CButton onClick={this.addCart} color="success"><CIcon content={freeSet.cilCart} />{" "}Add To Cart</CButton>
+                                    {sessionStorage.getItem('token') && 
+                                        <CButton onClick={this.addCart} color="success"><CIcon content={freeSet.cilCart} />{" "}Add To Cart</CButton>
+                                    }
                                 </detail>
                             </article>
                             </CCol>
                         </CRow>
                     </div>
                     <CRow alignHorizontal='center'>
-                        <form>
-                            <label htmlFor="comment">comment</label>&nbsp;&nbsp;
-                            <input 
-                                type="text"
-                                id="comment"
-                                name={image_id}
-                                placeholder="Leave your comment"
-                                size="120"
-                                onChange={this.inputComment}
-                            /> &nbsp; &nbsp;
-                            <button type="submit" color="primary" onClick={this.commentSubmit}>submit</button>
-                        </form>      
+                        {sessionStorage.getItem('token') && 
+                            <form>
+                                <label htmlFor="comment">comment</label>&nbsp;&nbsp;
+                                <input 
+                                    type="text"
+                                    id="comment"
+                                    name={image_id}
+                                    placeholder="Leave your comment"
+                                    size="120"
+                                    onChange={this.inputComment}
+                                /> &nbsp; &nbsp;
+                                <button type="submit" color="primary" onClick={this.commentSubmit}>submit</button>
+                            </form>
+                        }
                     </CRow>
                     <h5 style={{textAlign: 'center'}}>Comment List</h5>
                     <CRow alignHorizontal='center'>

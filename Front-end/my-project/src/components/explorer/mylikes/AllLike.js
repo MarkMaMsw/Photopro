@@ -1,6 +1,6 @@
-
 import React from 'react'
 import axios from 'axios'
+import url from '../../api/url'
 import styles from './Alllikes.module.css'
 
 import {
@@ -24,13 +24,13 @@ class AllLike extends React.Component {
   
   componentDidMount(){
     const userdata =[]
-    axios.get('http://13.55.8.94:5000/explorer/mylike', {
+    axios.get(`${url}/explorer/mylike`, {
       headers: {   
         'Authorization': `Bearer ${sessionStorage.getItem('token')}`
       },
     })
     .then(res => {
-      res.data.map(function(thumbup,id) {
+      res.data.forEach((thumbup,id) => {
         userdata.push({id,Contributor:thumbup["image_detail"]["contributor_detail"]["username"],Like_time:thumbup["like_time"],image:thumbup["image_detail"]["image_url"]})
       });
       console.log(userdata);
