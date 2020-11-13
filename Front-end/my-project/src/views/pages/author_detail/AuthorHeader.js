@@ -12,7 +12,7 @@ const AuthorHeader = () => {
   const usertype = sessionStorage.getItem('usertype');
   return (
     <CHeader withSubheader>
-      <Link to='/main' className={styles.link}><h1 className={styles.brand}>PhotoPro</h1></Link>
+      <Link to='/' className={styles.link}><h1 className={styles.brand}>PhotoPro</h1></Link>
       <CHeaderNav className="px-3 ml-auto">
         {usertype === 'explorer' ? <AuthorHeaderDropdown/> : <GuestHeaderDropdown/>}
       </CHeaderNav>

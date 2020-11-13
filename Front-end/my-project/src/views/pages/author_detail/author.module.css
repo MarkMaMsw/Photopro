@@ -30,7 +30,13 @@
     align-items: center;
 }
 .link{
+    color: black;
+}
+.link:hover{
     text-decoration: none;
+    cursor: pointer;
+    color: #3399FF;
+    text-shadow: 0 0 3px #3399FF;
 }
 .info_container{
     display: flex;

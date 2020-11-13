@@ -69,7 +69,7 @@ const Checkout = (props) => {
                       </CRow>
                       
                       <CRow>
-                          <h1>Total Price: {totalPrice}</h1>
+                          <h1>Total Price: ${totalPrice}</h1>
                       </CRow>
 
                     </CCol>
