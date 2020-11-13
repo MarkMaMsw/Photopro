@@ -102,9 +102,9 @@ const ContributorProfile = () => {
                   </CCol>
                 </CFormGroup>
               </CCardBody>
-              <CCardFooter>
+              {/* <CCardFooter>
                 <CButton type="submit" size="sm" color="success" ><CIcon name="cil-scrubber" /> Submit</CButton>
-              </CCardFooter>
+              </CCardFooter> */}
             </CCard>
             
           </CCol>

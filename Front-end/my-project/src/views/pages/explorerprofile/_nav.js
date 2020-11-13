@@ -10,44 +10,27 @@ export default [
     icon: <CIcon content={freeSet.cilUser} customClasses="c-sidebar-nav-icon"/>
   },
   {
-    _tag: 'CSidebarNavDropdown',
+    _tag: 'CSidebarNavItem',
     name: 'My Collection',
-    to: '/explorerprofile',
+    to: '/explorerprofile/collection',
     icon: <CIcon content={freeSet.cilFilterPhoto} customClasses="c-sidebar-nav-icon"/>,
-    _children: [
-      {
-        _tag: 'CSidebarNavItem',
-        name: 'Flower',
-        to: '/explorerprofile',
-      },
-      {
-        _tag: 'CSidebarNavItem',
-        name: 'Animal',
-        to: '/explorerprofile',
-      },
-      {
-        _tag: 'CSidebarNavItem',
-        name: 'Sport',
-        to: '/explorerprofile',
-      }
-    ],
   },
   {
     _tag: 'CSidebarNavItem',
     name: 'My Comments',
-    to: '/explorerprofile',
+    to: '/explorerprofile/comments',
     icon: <CIcon content={freeSet.cilCommentSquare} customClasses="c-sidebar-nav-icon"/>
   },
   {
     _tag: 'CSidebarNavItem',
     name: 'My Likes',
-    to: '/explorerprofile',
+    to: '/explorerprofile/likes',
     icon: <CIcon content={freeSet.cilHeart} customClasses="c-sidebar-nav-icon"/>
   },
   {
     _tag: 'CSidebarNavItem',
     name: 'My Purchase',
-    to: '/explorerprofile',
+    to: '/explorerprofile/purchase',
     icon: <CIcon content={freeSet.cilDollar} customClasses="c-sidebar-nav-icon"/>
   },
 ]

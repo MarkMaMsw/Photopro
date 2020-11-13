@@ -23,7 +23,7 @@ const Page500 = () => {
               <h4 className="pt-3">Houston, we have a problem!</h4>
               <p className="text-muted float-left">The page you are looking for is temporarily unavailable.</p>
             </span>
-            <CInputGroup className="input-prepend">
+            {/* <CInputGroup className="input-prepend">
               <CInputGroupPrepend>
                 <CInputGroupText>
                   <CIcon name="cil-magnifying-glass" />
@@ -33,7 +33,7 @@ const Page500 = () => {
               <CInputGroupAppend>
                 <CButton color="info">Search</CButton>
               </CInputGroupAppend>
-            </CInputGroup>
+            </CInputGroup> */}
           </CCol>
         </CRow>
       </CContainer>
