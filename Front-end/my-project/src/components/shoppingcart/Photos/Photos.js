@@ -54,7 +54,7 @@ class Photo extends React.Component{
       
 
       render(){
-        const {image_id,contributor_detail, title, price, tag, image_url} = this.props.imageinfo;
+        const {image_id,contributor_detail, title, price, image_url} = this.props.imageinfo;
         
       return (
            <CCol xs="8">
@@ -75,11 +75,7 @@ class Photo extends React.Component{
                                 <CCardImg src={image_url} className={styles.card_image}></CCardImg>
                               </CRow>
                             </CCol>
-                            <CCol xs='6'>
-                              <CRow alignHorizontal='center'>
-                                    <h6>Tags:{tag}</h6>
-                                    
-                              </CRow>    
+                            <CCol xs='6'>    
                               <CRow alignHorizontal='center'>
                                 <h6>Contributor:{contributor_detail.username}</h6>   
                               </CRow>                    
@@ -90,7 +86,7 @@ class Photo extends React.Component{
                           
                         <CCol xs='4' className={styles.bar}>
                           <CRow alignHorizontal='center'>
-                                <h4>Price:{price}</h4>
+                                <h4>Price: ${price}</h4>
                           </CRow>
 
                           <CRow alignHorizontal='center' className={styles.side_height}>

@@ -30,7 +30,7 @@ const AuthorHeaderDropdown = () => {
           <Link to="/explorerprofile/profile"><CIcon name="cilUser" className="mfe-2" />Profile</Link>
         </CDropdownItem>
         <CDropdownItem> 
-          <Link to="/login"><CIcon name="cilHome" className="mfe-2" /> Log out</Link>
+          <Link to="/"><CIcon name="cilHome" className="mfe-2" /> Log out</Link>
         </CDropdownItem>
       </CDropdownMenu>
     </CDropdown>

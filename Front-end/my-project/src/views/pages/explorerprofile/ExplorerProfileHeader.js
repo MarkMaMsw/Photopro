@@ -7,7 +7,7 @@ import {
   CHeaderNav,
 } from '@coreui/react'
 import ExplorerProfileHeaderDropdown from './ExplorerProfileHeaderDropdown';
-import CIcon from '@coreui/icons-react';
+import styles from './ExplorerProfile.module.css'
 import { Link } from 'react-router-dom';
 
 const ExplorerProfileHeader = () => {
@@ -36,8 +36,8 @@ const ExplorerProfileHeader = () => {
         className="ml-3 d-md-down-none"
         onClick={toggleSidebar}
       />
-      <CHeaderBrand className="mx-auto d-lg-none" to="/main">
-        <h1>PhotoPro</h1>
+      <CHeaderBrand className="mx-auto d-lg-none" to="/">
+        <Link to='/' className={styles.link}><h1>PhotoPro</h1></Link>
       </CHeaderBrand>
 
       <CHeaderNav className="px-3 ml-auto">

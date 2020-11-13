@@ -27,9 +27,9 @@ const ExplorerProfileSidebar = () => {
       show={show}
       onShowChange={(val) => dispatch({type: 'set', sidebarShow: val })}
     >
-      <CSidebarBrand className="d-md-down-none" to="/profile">
-        <h1 className="c-sidebar-brand-full"><Link to="/main" className={styles.link}>PhotoPro</Link></h1>
-        <h1 className="c-sidebar-brand-minimized"><Link to="/main" className={styles.link}>P</Link></h1>
+      <CSidebarBrand className="d-md-down-none" to="/">
+        <h1 className="c-sidebar-brand-full"><Link to="/" className={styles.link}>PhotoPro</Link></h1>
+        <h1 className="c-sidebar-brand-minimized"><Link to="/" className={styles.link}>P</Link></h1>
       </CSidebarBrand>
       <div className={styles.sidebar_avatar}>
         <CImg

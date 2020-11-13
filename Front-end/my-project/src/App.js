@@ -9,9 +9,6 @@ const loading = (
   </div>
 )
 
-// Containers
-const TheLayout = React.lazy(() => import('./containers/TheLayout'));
-
 // Pages
 const Login = React.lazy(() => import('./views/pages/login/Login'));
 const Register = React.lazy(() => import('./views/pages/register/Register'));
@@ -34,9 +31,8 @@ class App extends Component {
               <Route path="/explorerprofile" name="profile" render={props => <ExplorerProfile {...props}/>} />
               <Route path="/authordetail/:id" name="profile" render={props => <AuthorDetail {...props}/>} />
               <Route path="/shoppingcart" name="shopping_cart" render={props => <Shoppingcart{...props}/>}/>
+              <Route exact path="/" name="Main Page" render={props => <Main {...props}/>} />
               <Route path="/404" name="404" render={props => <Page404 {...props}/>} />
-              <Route path="/main" name="Main Page" render={props => <Main {...props}/>} />
-              <Route path="/" name="Main Page" render={props => <TheLayout {...props}/>} />
             </Switch>
           </React.Suspense>
       </HashRouter>

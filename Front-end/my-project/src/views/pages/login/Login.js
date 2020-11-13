@@ -48,7 +48,7 @@ const Login = () => {
           sessionStorage.setItem('token', res.data.access_token);
           if (usertype === 'explorer'){
             sessionStorage.setItem('usertype', 'explorer');
-            history.push("/main");
+            history.push("/");
           } else if (usertype === 'contributor'){
             history.push("/profile/contributorprofile");
             sessionStorage.setItem('usertype', 'contributor');
@@ -114,7 +114,7 @@ const Login = () => {
             <CCard id="login-left-card" className="text-white bg-primary py-5 d-md-down-none">
                 <CCardBody className="text-center">
                   <div>
-                    <Link to='/main' style={{color: 'white'}}>
+                    <Link to='/' style={{color: 'white'}}>
                       <h1 id="photo-pro-icon" className="dark">PhotoPro</h1>
                     </Link>
                     <p>Find your favourite photo!</p>
