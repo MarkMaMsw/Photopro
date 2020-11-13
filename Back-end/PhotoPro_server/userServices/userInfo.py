@@ -11,7 +11,7 @@ def get_user_info(user_id):
         image_num = db.db.image.find({"contributor_id":user_id,"status":"on_shop"}).count()
         if not user:
             return False
-        attributes = ["username","email","description","balance","id","userType"]
+        attributes = ["username","email","description","balance","id","userType","photoURL"]
         result = {}
         for i in attributes:
             result[i] = user[i]

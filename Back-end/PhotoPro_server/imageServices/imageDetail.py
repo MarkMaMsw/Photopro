@@ -9,6 +9,7 @@ def get_image_detail_from_db(image_id):
         image = db.db.image.find_one({"image_id":image_id})
         comment_num = db.db.comment.find({"image_id":image_id}).count()
         like_num = db.db.like.find({"image_id":image_id,"like_status":"active"}).count()
+        buy_num = db.db.order.find({"image_id":image_id}).count()
         #print(comment_num)
         #print(like_num)
         contributor = userInfo.get_user_info(image['contributor_id'])
@@ -31,6 +32,7 @@ def get_image_detail_from_db(image_id):
             'image_url': image_url,
             'like_num' : like_num,
             'comment_num' : comment_num,
+            'buy_num' : buy_num,
             'image_no_watermark_url' : image_no_watermark_url
         }
         return result
