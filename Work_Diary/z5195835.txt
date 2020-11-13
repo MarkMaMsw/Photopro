@@ -20,3 +20,20 @@ Week 3
 2. formatting project proposal
 3. detail system architecture and match feature function and API
 4. schedule week4
+
+Week 4
+1. implement swagger-flask frame
+2. update swagger API yaml file
+3. schedule week5
+
+Week 5
+1. implement swagger-flask frame
+2. implement image update API
+3. prepare Demo A
+4. Retrospective meeting
+5. schedule week6
+
+Week 6
+1. Retrospective report
+2. implement more API
+3. schedule week7
