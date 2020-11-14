@@ -4,6 +4,7 @@ import db
 import json
 from flask_restful import Resource
 from flask_jwt_extended import jwt_required,get_raw_jwt
+import dev.config as config
 
 def get_user_info(user_id):
     try:
@@ -16,6 +17,7 @@ def get_user_info(user_id):
         for i in attributes:
             result[i] = user[i]
         result["image_num"]=image_num
+        result['photoURL'] = config.ip_address + config.image_file_url + 'user/' + result['photoURL']
         return result
     except:
         return []

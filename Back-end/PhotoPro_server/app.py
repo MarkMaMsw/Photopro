@@ -30,6 +30,7 @@ from shoppingServices.order import Order
 from explorerServices.explorerOrder import ExplorerOrder
 from contributorServices.contributorOrder import ContributorOrder
 from imageServices.recommendImage import RecommendImage
+from imageServices.imageFile import UserImage
 app = Flask(__name__)
 
 CORS(app, resources={r"/*": {"origins": "*"}}, send_wildcard=True)
@@ -51,6 +52,7 @@ restful_api.add_resource(PostImageComment, '/image/comment')
 restful_api.add_resource(GetImageComment, '/image/comment/<string:imageId>')
 restful_api.add_resource(ImageUpload, '/image')
 restful_api.add_resource(ImageFile, '/image/file/<string:imageName>')
+restful_api.add_resource(UserImage, '/image/file/user/<string:imageName>')
 restful_api.add_resource(PostImageLike, '/image/like')
 restful_api.add_resource(GetImageLike, '/image/like/<string:imageId>')
 restful_api.add_resource(ImageCollection, '/image/collection')
