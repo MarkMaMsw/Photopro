@@ -381,7 +381,7 @@ class ImageCard extends React.Component {
                                     id="comment"
                                     name={image_id}
                                     placeholder="Leave your comment"
-                                    size="120"
+                                    size="100"
                                     onChange={this.inputComment}
                                 /> &nbsp; &nbsp;
                                 <button type="submit" color="primary" onClick={this.commentSubmit}>submit</button>
