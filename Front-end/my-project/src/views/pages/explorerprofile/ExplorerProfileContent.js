@@ -8,12 +8,12 @@ import {
 } from 'react-router-dom';
 
 import { CContainer, CFade } from '@coreui/react'
-import ContributorProfile from '../../../components/contributor/Profile/ContributorProfile'
+import ExplorerProfile from '../../../components/explorer/myprofile/ExplorerProfile'
 import Collection from '../../../components/explorer/collection/Collection'
 import AllComment from '../../../components/explorer/mycomments/AllComment'
 import AllLike from '../../../components/explorer/mylikes/AllLike'
 import AllPurchase from '../../../components/explorer/mypurchase/AllPurchase'
-import ShoppingCart from '../shoppingcart/Shoppingcart';
+import ShoppingCart from '../../../components/explorer/shoppingcart/Shoppingcart';
 
   
 const loading = (
@@ -28,7 +28,7 @@ const TheContent = () => {
       <CContainer fluid>
         <Suspense fallback={loading}>
           <Switch>
-            <Route path="/explorerprofile/profile" render={props => (<CFade><ContributorProfile/></CFade>)}/>
+            <Route path="/explorerprofile/profile" render={props => (<CFade><ExplorerProfile/></CFade>)}/>
             <Route path="/explorerprofile/collection" render={props => (<CFade><Collection/></CFade>)}/>
             <Route path="/explorerprofile/comments" render={props => (<CFade><AllComment/></CFade>)}/>
             <Route path="/explorerprofile/likes" render={props => (<CFade><AllLike/></CFade>)}/>

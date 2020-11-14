@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Axios from 'axios';
+import url from '../../../components/api/url';
 import { Link } from 'react-router-dom';
 import {
   CCard,
@@ -32,8 +33,7 @@ class MainpBeforeContent extends React.Component {
 
   componentDidMount(){
     if (sessionStorage.getItem('usertype') === 'explorer'){
-      console.log("here!!!!!!!!");
-      Axios.get(`http://13.55.8.94:5000/image/recommend`, {
+      Axios.get(`${url}/image/recommend`, {
         headers: {
           'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
         }
@@ -49,7 +49,7 @@ class MainpBeforeContent extends React.Component {
       })
       .catch(err => console.log(err));
     } else {
-      Axios.get(`http://13.55.8.94:5000/index/image`)
+      Axios.get(`${url}/index/image`)
       .then(res => {
         console.log(res.data);
         const newArr = res.data.filter( d => d.contributer_detail !== false );
@@ -62,7 +62,7 @@ class MainpBeforeContent extends React.Component {
       .catch(err => console.log(err));
     }
 
-    Axios.get(`http://13.55.8.94:5000/index/contributor`)
+    Axios.get(`${url}/index/contributor`)
     .then(res => {
       console.log(res);
       const newArr = res.data.filter( d => d.userType === 'contributor' );
@@ -137,7 +137,7 @@ class MainpBeforeContent extends React.Component {
                 <CCardBody>
                   <CRow alignHorizontal='center'>
                     {this.state.authorArr.map((author, index) => {
-                      return <AuthorCard key={index} author={author} imgsrc={`avatars/9.jpg`}/>
+                      return <AuthorCard key={index} author={author}/>
                     })}
                   </CRow>
                 </CCardBody>
@@ -156,9 +156,9 @@ const AuthorCard = (props) => {
   return (
     <CCol className={styles.hot_author} xs='1'>
       <Link to={path} target='_blank'>
-        <h5 className={styles.authorname}>{props.author.username}</h5>
+        <p className={styles.authorname}>{props.author.username}</p>
         <CImg
-          src={props.imgsrc}
+          src={props.author.photoURL}
           className="c-avatar-img"
           alt={props.author.username}
         />

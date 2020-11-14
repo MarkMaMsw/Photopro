@@ -103,7 +103,9 @@ class ImageCard extends React.Component {
             headers: {
                 'Authorization': `Bearer ${sessionStorage.getItem('token')}`
             }
-        }).then(res=> console.log(res.status))
+        }).then(res=> {
+            console.log(res.status)
+        })
         
     }
 

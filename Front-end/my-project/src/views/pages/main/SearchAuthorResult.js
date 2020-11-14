@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
+import url from '../../../components/api/url';
 import { Link } from 'react-router-dom';
 import {
   CCard,
@@ -17,7 +18,7 @@ const SearchAuthorResult = (props) => {
 
     useEffect(() => {
         if (sessionStorage.getItem('token')){
-            Axios.get('http://13.55.8.94:5000/explorerInfo', {
+            Axios.get(`${url}/explorerInfo`, {
               headers: {
                 'Authorization': `Bearer ${sessionStorage.getItem('token')}`
               }
@@ -28,7 +29,7 @@ const SearchAuthorResult = (props) => {
                     keyword: props.keyword,
                     explorer_id: res.data.content.id
                 };
-                Axios.post('http://13.55.8.94:5000/search', json)
+                Axios.post(`${url}/search`, json)
                 .then(res => {
                     console.log(res);
                     const newArr = res.data.result.filter( a => a.userType === 'contributor');
@@ -43,7 +44,7 @@ const SearchAuthorResult = (props) => {
                 keyword: props.keyword,
                 explorer_id: ""
             };
-            Axios.post('http://13.55.8.94:5000/search', json)
+            Axios.post(`${url}/search`, json)
             .then(res => {
                 console.log(res);
                 const newArr = res.data.result.filter( a => a.userType === 'contributor');

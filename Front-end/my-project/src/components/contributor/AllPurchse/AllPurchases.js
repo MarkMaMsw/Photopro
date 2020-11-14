@@ -32,7 +32,7 @@ const fields = ['Explorer', 'Time', 'image', 'Price']
       })
       .then(res => {
         res.data.forEach((thumbup,id) => {
-          userdata.push({id,Explorer:thumbup["explorer"]["username"],Time:thumbup["order_time"],image:thumbup["image"]["image_no_watermark_url"], Price:thumbup["order_price"]})
+          userdata.push({id,Explorer:thumbup["explorer"]["username"],Time:thumbup["order_time"],image:thumbup["image"]["image_url"], Price:thumbup["order_price"]})
         });
         console.log(userdata);
         this.setState({

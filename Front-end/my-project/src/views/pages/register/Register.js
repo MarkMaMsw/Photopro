@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Axios from 'axios'
+import url from '../../../components/api/url'
 import {
   CButton,
   CCard,
@@ -44,7 +45,7 @@ const Register = () => {
     console.log(username, email, password, usertype)
     if (username && email && password && confirmPass){
       if (password === confirmPass){
-        Axios.post('http://13.55.8.94:5000/register', {
+        Axios.post(`${url}/register`, {
           id: '',
           username: username,
           email: email,
