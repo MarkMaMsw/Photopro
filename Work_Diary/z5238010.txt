@@ -40,4 +40,5 @@ Week9
 1.Add comment function to imagecard component
 2.Debug work
 3.Finish the whole purchase flow
+4.Fix many existing bugs
 
