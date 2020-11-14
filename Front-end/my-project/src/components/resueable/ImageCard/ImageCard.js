@@ -90,11 +90,6 @@ class ImageCard extends React.Component {
     }
 
     heartClick = async () => {
-        if (this.state.heartcolor === 'black'){
-            this.setState({heartcolor: 'red'});
-        } else {
-            this.setState({heartcolor: 'black'});
-        }
         var body = {
             image_id: this.props.imageinfo.image_id,
             status: this.state.heartcolor==="black"?"active":"inactive"
@@ -106,7 +101,11 @@ class ImageCard extends React.Component {
         }).then(res=> {
             console.log(res.status)
         })
-        
+        if (this.state.heartcolor === 'black'){
+            this.setState({heartcolor: 'red'});
+        } else {
+            this.setState({heartcolor: 'black'});
+        }
     }
 
     toggle = async ()=>{
