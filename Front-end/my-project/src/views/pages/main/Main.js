@@ -1,14 +1,16 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react';
+import Axios from 'axios';
+import url from '../../../components/api/url'
 import MainpHeader from './MainpHeader';
 import Footer from '../../../components/resueable/Footer/Footer';
 import MainpBeforeContent from './MainpBeforeContent';
-import SearchPhotoResult from './SearchPhotoResult'
-import SearchAuthorResult from './SearchAuthorResult'
+import SearchPhotoResult from './SearchPhotoResult';
+import SearchAuthorResult from './SearchAuthorResult';
 
 const Main = () => {
   const [searchtype, setSearchtype] = useState('image');
   const [keyword, setKeyword] = useState('123');
-  const [currentContent, setCurrentContent] = useState('mainpage')
+  const [currentContent, setCurrentContent] = useState('mainpage');
 
   return (
     <div className="c-app c-default-layout">
@@ -24,7 +26,7 @@ const Main = () => {
         <Footer/>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Main;

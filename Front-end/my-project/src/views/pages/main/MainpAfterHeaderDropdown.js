@@ -19,7 +19,7 @@ const MainpAfterHeaderDropdown = () => {
       <CDropdownToggle className="c-header-nav-link" caret={false}>
         <div className="c-avatar">
           <CImg
-            src={'avatars/8.jpg'}
+            src={sessionStorage.getItem('avatar')}
             className="c-avatar-img"
             alt="admin@bootstrapmaster.com"
           />

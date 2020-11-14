@@ -1,24 +1,3 @@
-/* #photo-pro-icon{
-    background-color: rgb(204, 15, 15, 0.7);
-    border-radius: 5px;
-    box-shadow: inset 0 0 25px rgb(204, 15, 15);;
-}
-#login-left-card{
-    display: flex;
-    justify-content: center;
-    background-color: rgba(0,0,0,0.6) !important;
-}
-#login-left-card>div{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-#login-left-card h1{
-    font-size: 50px;
-}
-#login-left-card p{
-    font-size: 25px;
-} */
 .container{
     background-image: url('../../../images/LoginBcakground.jpg');
     width: 100%;

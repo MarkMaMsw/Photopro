@@ -32,6 +32,7 @@ const fields = ['Contributor', 'Time', 'image', 'Price','Download']
         },
       })
       .then(res => {
+        console.log(res);
         res.data.forEach((thumbup,id) => {
           userdata.push({id,Contributor:thumbup["image"]["contributor_detail"]["username"],Time:thumbup["time"],image:thumbup["image"]["image_no_watermark_url"], Price:thumbup["order_price"],Download:"download"})
         });
@@ -70,7 +71,7 @@ const fields = ['Contributor', 'Time', 'image', 'Price','Download']
                     'Download':
                     (item)=>(
                       <td>
-                        <a href={item.image} download><CButton color='success'>Download</CButton></a>
+                        <a href={item.image} download target='_blank'><CButton color='success'>Download</CButton></a>
                       </td>
                     )
                 }}

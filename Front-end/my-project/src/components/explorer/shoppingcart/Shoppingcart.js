@@ -1,14 +1,16 @@
 
 import React from 'react'
+import Axios from 'axios'
+import url from '../../../components/api/url'
 import {
+  CCard,
+  CCardBody,
+  CCardHeader,
   CCol,
   CRow,
 } from '@coreui/react'
-import ShoppingcartHeader from './ShoppingcartHeader';
-import ShoppingcartFooter from './ShoppingcartFooter';
-import Photo from '../../../components/shoppingcart/Photos/Photos';
-import Axios from 'axios'
-import Checkout from '../../../components/shoppingcart/Checkout/Checkout';
+import Photo from './Photos/Photos';
+import Checkout from './Checkout/Checkout';
 
 
 class Shoppingcart extends React.Component{
@@ -47,7 +49,7 @@ class Shoppingcart extends React.Component{
         }
 
         updateArr = ()=>{
-          Axios.get(`http://13.55.8.94:5000/explorer/shoppingcart`, {
+          Axios.get(`${url}/explorer/shoppingcart`, {
                 headers: {
                     'Authorization': `Bearer ${sessionStorage.getItem('token')}`
                 }
@@ -62,7 +64,7 @@ class Shoppingcart extends React.Component{
         }
          
         componentDidMount(){
-            Axios.get(`http://13.55.8.94:5000/explorer/shoppingcart`, {
+            Axios.get(`${url}/explorer/shoppingcart`, {
                 headers: {
                     'Authorization': `Bearer ${sessionStorage.getItem('token')}`
                 }
@@ -77,37 +79,40 @@ class Shoppingcart extends React.Component{
         }
   render(){
   return (
-    <>    
-    <div className='c-wrapper'>      
-      {/* <ShoppingcartHeader/> */}
-      <h1>Shopping Cart</h1>
-      <div className="col">
-        <CRow>
-          
-          <CCol xs='6'>
-            <CRow alignHorizontal='center'>
-              {this.state.photoArr.map(p => <Photo 
-              key={p.image_id} 
-              imageinfo={p}
-              checkBox={this.checkBox}
-              price={p.price}
-              updateArr={this.updateArr}
-              />)
-              }
+    <>
+    <CRow alignHorizontal='center'>  
+      <CCol xs="12" md='10'>
+        <CCard>
+          <CCardHeader>
+            My Shopping Cart
+          </CCardHeader>
+          <CCardBody>
+            <CRow>
+              <CCol xs='6'>
+                <CRow alignHorizontal='center'>
+                  {this.state.photoArr.map(p => <Photo 
+                  key={p.image_id} 
+                  imageinfo={p}
+                  checkBox={this.checkBox}
+                  price={p.price}
+                  updateArr={this.updateArr}
+                  />)
+                  }
 
+                </CRow>
+              </CCol>
+
+              <CCol xs='6'>
+              <Checkout
+                checkoutList = {this.state.checkoutList}
+                totalPrice = {this.state.totalPrice}
+              />
+              </CCol>
             </CRow>
-          </CCol>
-
-          <CCol xs='6'>
-           <Checkout
-            checkoutList = {this.state.checkoutList}
-            totalPrice = {this.state.totalPrice}
-           />
-          </CCol>
-        </CRow>
-      </div>
-      {/* <ShoppingcartFooter/> */}
-    </div>
+          </CCardBody>
+        </CCard>
+      </CCol>
+    </CRow>    
     </>
   )
 }

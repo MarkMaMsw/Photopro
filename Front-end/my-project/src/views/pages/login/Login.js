@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import Axios from 'axios'
+import url from '../../../components/api/url'
 import {
   CButton,
   CCard,
@@ -38,7 +39,7 @@ const Login = () => {
   const sendUserInfo = () => {
     console.log(username, password, usertype);
     if (username && password && usertype){
-      Axios.post('http://13.55.8.94:5000/login', {
+      Axios.post(`${url}/login`, {
           username: username,
           password: password,
           userType: usertype
@@ -48,10 +49,36 @@ const Login = () => {
           sessionStorage.setItem('token', res.data.access_token);
           if (usertype === 'explorer'){
             sessionStorage.setItem('usertype', 'explorer');
-            history.push("/");
+            Axios.get(`${url}/explorerInfo`, {
+              headers: {
+                'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
+              }
+            })
+            .then(res => {
+              console.log(res.data.content);
+              sessionStorage.setItem('avatar', res.data.content.photoURL);
+              history.push("/");
+            })
+            .catch(err => {
+              console.log(err)
+              history.push("/");
+            });
           } else if (usertype === 'contributor'){
-            history.push("/profile/contributorprofile");
             sessionStorage.setItem('usertype', 'contributor');
+            Axios.get(`${url}/contributor`, {
+              headers: {
+                'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
+              }
+            })
+            .then(res => {
+              console.log(res.data.content);
+              sessionStorage.setItem('avatar', res.data.content.photoURL);
+              history.push("/profile/contributorprofile");
+            })
+            .catch(err => {
+              console.log(err)
+              history.push("/profile/contributorprofile");
+            });
           }
         })
         .catch(err => {

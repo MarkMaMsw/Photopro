@@ -1,0 +1,25 @@
+.card_image{
+    height: 100px;
+}
+.card_footer{
+    height: 20px;
+}
+
+.checkout_button{
+    flex-direction: column;
+}
+.bar{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.number{
+    color: rgb(44, 100, 221);
+    font-weight: bold;
+}
+.info{
+    margin: 30px;
+}
+.price{
+    color: orange;
+}
