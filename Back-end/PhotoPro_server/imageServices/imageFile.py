@@ -9,3 +9,11 @@ class ImageFile(Resource):
         if not os.path.exists(fileName):
             fileName = "upload/static/404.png"
         return send_file(fileName, mimetype='image/gif')
+
+class UserImage(Resource):
+    #get image file
+    def get(self,imageName):
+        fileName = "upload/user/" + imageName
+        if not os.path.exists(fileName):
+            fileName = "upload/static/404.png"
+        return send_file(fileName, mimetype='image/gif')
