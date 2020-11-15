@@ -33,3 +33,15 @@ Week 5
 Week 6
 1. Write retrospective report
 2. implement more APIs
+
+Week 7
+1. test implemented functions
+2. implement final part of APIs
+
+Week 8 
+1. implement final functions of imagecard and shopping cart
+2. debug
+
+Week 9
+1. debug
+2. finish final report
