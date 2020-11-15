@@ -29,6 +29,7 @@ page404: 404 page while inputting nonexistent url
 * Npm v6.14.5
 * React 16.13.1
 ## Install Step
+```
 1. open Front-end/
 cd my-project
 2. install dependencies
@@ -38,3 +39,4 @@ If you access some 404 images, it denotes these images are not stored in the cur
 4. run this project using script
 npm start
 Then frontend will run on port 3000
+```
