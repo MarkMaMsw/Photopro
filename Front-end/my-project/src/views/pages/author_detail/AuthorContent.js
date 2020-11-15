@@ -53,7 +53,7 @@ class AuthorContent extends React.Component{
         .then(res => {
             console.log(res);
             this.setState({
-                photoArr: res.data,
+                photoArr: res.data.filter((b)=>b.status==="on_shop"),
             });
         })
     }
