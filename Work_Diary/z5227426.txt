@@ -32,3 +32,14 @@ week7:
 - Assisted scrum master to improve the retrospective document through the front-end 
 - Figured out how to connect with the backend data and use the data 
 - Learned how to use postman to get token after user finish their registration
+
+week8:
+- Extracted the data include photo,title,tags,user name and liked number from the backend to render onto the image card component
+- Wrote static "my photo" page, and learn how to use map function to acquire data from backend and dynamic display on page
+- Start writing shopping page and checkout
+
+week9:
+- Added checkbox function onto the shopping cart pages and tried to combine the multiple choice event with button event response 
+- Wrote the final report and tested the system to find out any ignored error 
+- Finished writing project objectives map function and user manual of the final report
+- Assisted check out the grammar and case sentive issues 
