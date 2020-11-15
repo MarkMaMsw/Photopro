@@ -8,7 +8,7 @@ import imageServices.imageDetail as ImageDetail
 
 class ExplorerLike(Resource):
     def get_explorer_like(self,explorer_id):
-        comment = db.db.like.find({"explorer_id":explorer_id})
+        comment = db.db.like.find({"explorer_id":explorer_id,"like_status":"active"})
         result = []
         for c in comment:
             image_detail = ImageDetail.get_image_detail_from_db(c['image_id'])
