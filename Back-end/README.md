@@ -32,18 +32,13 @@ Database setting
 * PhotoPro_server/encrypt.py
 Encrypt token
 ## Requirement:
-Python 3.7+
-Flask 1.1.2
-Pymongo 3.11.0
+* Python 3.7+
+* Flask 1.1.2
+* Pymongo 3.11.0
 ## Install Step
-Step1:
-cd Back-end
-Step2:
-python3 -m pip install -r requirements.txt
-Step3:
-cd PhotoPro_server
-Step4:
-Modify the IP address and datebase address in dev/config.py file
-Step5:
-Python3 app.py
+1. cd Back-end
+2. python3 -m pip install -r requirements.txt
+3. cd PhotoPro_server
+4. Modify the IP address and datebase address in dev/config.py file
+5. Python3 app.py
 That backend will be run on port 5000
