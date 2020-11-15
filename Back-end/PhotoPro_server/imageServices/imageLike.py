@@ -36,7 +36,7 @@ class PostImageLike(Resource):
 
 class GetImageLike(Resource):
     def get(self,imageId):
-        like = db.db.like.find({"image_id":imageId})
+        like = db.db.like.find({"image_id":imageId,"like_status":"active"})
         result = []
         for i in like:
             explorer_id = i["explorer_id"]
