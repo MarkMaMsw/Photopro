@@ -33,7 +33,7 @@ const ExplorerProfileSidebar = () => {
       </CSidebarBrand>
       <div className={styles.sidebar_avatar}>
         <CImg
-            src={'avatars/8.jpg'}
+            src={sessionStorage.getItem('avatar')}
             className="c-avatar-img"
             alt="avatars"
           />

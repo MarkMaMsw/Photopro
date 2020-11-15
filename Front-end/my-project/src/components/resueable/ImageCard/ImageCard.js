@@ -90,11 +90,6 @@ class ImageCard extends React.Component {
     }
 
     heartClick = async () => {
-        if (this.state.heartcolor === 'black'){
-            this.setState({heartcolor: 'red'});
-        } else {
-            this.setState({heartcolor: 'black'});
-        }
         var body = {
             image_id: this.props.imageinfo.image_id,
             status: this.state.heartcolor==="black"?"active":"inactive"
@@ -103,8 +98,14 @@ class ImageCard extends React.Component {
             headers: {
                 'Authorization': `Bearer ${sessionStorage.getItem('token')}`
             }
-        }).then(res=> console.log(res.status))
-        
+        }).then(res=> {
+            console.log(res.status)
+        })
+        if (this.state.heartcolor === 'black'){
+            this.setState({heartcolor: 'red'});
+        } else {
+            this.setState({heartcolor: 'black'});
+        }
     }
 
     toggle = async ()=>{
@@ -379,7 +380,7 @@ class ImageCard extends React.Component {
                                     id="comment"
                                     name={image_id}
                                     placeholder="Leave your comment"
-                                    size="120"
+                                    size="100"
                                     onChange={this.inputComment}
                                 /> &nbsp; &nbsp;
                                 <button type="submit" color="primary" onClick={this.commentSubmit}>submit</button>

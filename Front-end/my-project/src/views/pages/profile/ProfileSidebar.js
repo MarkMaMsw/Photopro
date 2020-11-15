@@ -33,7 +33,7 @@ const ProfileSidebar = () => {
       <div className={styles.sidebar_avatar}>
         {/* <img src='' className={styles.avatar}></img> */}
         <CImg
-            src={'avatars/9.jpg'}
+            src={sessionStorage.getItem('avatar')}
             className="c-avatar-img"
             alt="avatars"
           />

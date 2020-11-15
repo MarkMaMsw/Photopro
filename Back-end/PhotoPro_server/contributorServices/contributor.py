@@ -4,7 +4,7 @@ import db
 import json
 from flask_restful import Resource
 from flask_jwt_extended import jwt_required,get_raw_jwt
-
+import dev.config as config
 
 class ContributorInfo(Resource):
     @jwt_required
@@ -19,6 +19,7 @@ class ContributorInfo(Resource):
         for i in attributes:
             newUser[i] = user[i]
         newUser['image_num'] = image_num
+        newUser['photoURL'] = config.ip_address + config.image_file_url + 'user/' + newUser['photoURL']
         #newUser = json.dumps(newUser)
         return {
                 "message": "found user",

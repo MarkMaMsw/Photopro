@@ -19,7 +19,7 @@ const ExplorerProfileHeaderDropdown = () => {
       <CDropdownToggle className="c-header-nav-link" caret={false}>
         <div className="c-avatar">
           <CImg
-            src={'avatars/8.jpg'}
+            src={sessionStorage.getItem('avatar')}
             className="c-avatar-img"
             alt="admin@bootstrapmaster.com"
           />
@@ -28,7 +28,7 @@ const ExplorerProfileHeaderDropdown = () => {
       <CDropdownMenu className="pt-0" placement="bottom-end">
         <CDropdownItem>
           
-          <Link to="/"><CIcon name="cilHome" className="mfe-2" /> Log out</Link>
+          <Link to="/login"><CIcon name="cilHome" className="mfe-2" /> Log out</Link>
         </CDropdownItem>
       </CDropdownMenu>
     </CDropdown>

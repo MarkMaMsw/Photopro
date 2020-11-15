@@ -1,5 +1,6 @@
 import React from 'react'
 import styles from './author.module.css';
+import url from '../../../components/api/url'
 import {
   CRow,
   CCol,
@@ -21,27 +22,30 @@ class AuthorContent extends React.Component{
             username: '',
             email: '',
             portfolio: '',
+            authorAvatar: '',
             photoArr:[],
         }
     }
 
     componentDidMount(){
-        Axios.get(`http://13.55.8.94:5000/user/${this.state.authorid}`, {
+        Axios.get(`${url}/user/${this.state.authorid}`, {
             header: {
                 'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
             }
         })
         .then(res => {
+            console.log(res);
             this.setState({
                 username: res.data.username,
                 email: res.data.email,
                 description: res.data.description,
                 portfolio: res.data.image_num,
+                authorAvatar: res.data.photoURL,
             });
         })
         .catch(err => console.log(err));
 
-        Axios.get(`http://13.55.8.94:5000/contributor/image/${this.state.authorid}`, {
+        Axios.get(`${url}/contributor/image/${this.state.authorid}`, {
             header: {
                 'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
           }
@@ -49,7 +53,7 @@ class AuthorContent extends React.Component{
         .then(res => {
             console.log(res);
             this.setState({
-                photoArr: res.data,
+                photoArr: res.data.filter((b)=>b.status==="on_shop"),
             });
         })
     }
@@ -67,7 +71,7 @@ class AuthorContent extends React.Component{
                       <CRow alignHorizontal='center' >
                         <CCol xs='4' md='2'>
                           <CImg
-                          src={'avatars/9.jpg'}
+                          src={this.state.authorAvatar}
                           className="c-avatar-img"
                           alt="avatars"/>
                         </CCol>

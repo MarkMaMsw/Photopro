@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
+import url from '../../../components/api/url';
 import {
   CCard,
   CCardBody,
@@ -16,7 +17,7 @@ const SearchPhotoResult = (props) => {
 
     useEffect(() => {
         if (sessionStorage.getItem('token')){
-            Axios.get('http://13.55.8.94:5000/explorerInfo', {
+            Axios.get(`${url}/explorerInfo`, {
               headers: {
                 'Authorization': `Bearer ${sessionStorage.getItem('token')}`
               }
@@ -27,7 +28,7 @@ const SearchPhotoResult = (props) => {
                     keyword: props.keyword,
                     explorer_id: res.data.content.id
                 };
-                Axios.post('http://13.55.8.94:5000/search', json)
+                Axios.post(`${url}/search`, json)
                 .then(res => {
                     console.log(res);
                     setImageArr(res.data.result);
@@ -41,7 +42,7 @@ const SearchPhotoResult = (props) => {
                 keyword: props.keyword,
                 explorer_id: ""
             };
-            Axios.post('http://13.55.8.94:5000/search', json)
+            Axios.post(`${url}/search`, json)
             .then(res => {
                 console.log(res);
                 setImageArr(res.data.result);

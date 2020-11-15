@@ -8,14 +8,14 @@ import userServices.userInfo as UserInfo
 import imageServices.imageDetail as ImageDetail
 class ContributorLike(Resource):
     def get_id_from_db(self,contributorId):
-        image = db.db.image.find({"contributor_id":contributorId})
+        image = db.db.image.find({"contributor_id":contributorId,"like_status":"active"})
         result = []
         for i in image:
             result.append(i['image_id'])
         return result
     #get image detail
     def get_like_from_db(self,image_id):
-        like = db.db.like.find({'image_id':image_id})
+        like = db.db.like.find({'image_id':image_id,"like_status":"active"})
         like_result = []
         for l in like:
             explorer_detail = UserInfo.get_user_info(l['explorer_id'])

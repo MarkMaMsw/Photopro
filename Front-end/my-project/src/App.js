@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { HashRouter, Route, Switch } from 'react-router-dom';
 import './scss/style.scss';
-import Shoppingcart from './views/pages/shoppingcart/Shoppingcart';
 
 const loading = (
   <div className="pt-3 text-center">
@@ -30,7 +29,6 @@ class App extends Component {
               <Route path="/profile" name="profile" render={props => <Profile {...props}/>} />
               <Route path="/explorerprofile" name="profile" render={props => <ExplorerProfile {...props}/>} />
               <Route path="/authordetail/:id" name="profile" render={props => <AuthorDetail {...props}/>} />
-              <Route path="/shoppingcart" name="shopping_cart" render={props => <Shoppingcart{...props}/>}/>
               <Route exact path="/" name="Main Page" render={props => <Main {...props}/>} />
               <Route path="/404" name="404" render={props => <Page404 {...props}/>} />
             </Switch>

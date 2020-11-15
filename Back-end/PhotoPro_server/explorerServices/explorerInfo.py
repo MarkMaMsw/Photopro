@@ -4,7 +4,7 @@ import db
 import json
 from flask_restful import Resource
 from flask_jwt_extended import jwt_required,get_raw_jwt
-
+import dev.config as config
 
 class ExplorerInfo(Resource):
     @jwt_required
@@ -20,6 +20,7 @@ class ExplorerInfo(Resource):
         for i in attributes:
             newUser[i] = user[i]
         #newUser = json.dumps(newUser)
+        newUser['photoURL'] = config.ip_address + config.image_file_url + 'user/' + newUser['photoURL']
         return {
                 "message": "found user",
                 "content": newUser
