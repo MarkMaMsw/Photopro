@@ -25,9 +25,9 @@ login: set login page
 main: specify mainpage for explorers
 page404: 404 page while inputting nonexistent url
 ## Requirement:
-Node.js v12.16.3
-Npm v6.14.5
-React 16.13.1
+* Node.js v12.16.3
+* Npm v6.14.5
+* React 16.13.1
 ## Install Step
 1. open Front-end/
 cd my-project
