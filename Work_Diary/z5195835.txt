@@ -37,3 +37,19 @@ Week 6
 1. Retrospective report
 2. implement more API
 3. schedule week7
+
+Week 7
+1. debug
+2. test function
+3. schedule week8
+
+Week 8
+1. debug
+2. test function
+3. schedule week9
+
+Week 9
+1. debug
+2. test function
+3. working on final report
+4. schedule week9
