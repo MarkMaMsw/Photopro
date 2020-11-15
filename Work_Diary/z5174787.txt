@@ -1,24 +1,53 @@
 Week 1
-1. analyze the basic needs of assignment
-2. configurate the environment for the react framework
-3. design the home page structure
+1. Analyze the basic needs of assignment
+2. Configurate the environment for the react framework
+3. Design the home page structure
 
 
 Week 2
-1. learn react framework and make an example of antdesign
-2. design the components of main page, user detail website, author detail website
-3. draw the sketch of every websites on the powerpoint
+1. Learn react framework and make an example of antdesign
+2. Design the components of main page, user detail website, author detail website
+3. Draw the sketch of every websites on the powerpoint
 
 week 3
-1. verify the function of all websites and draw the related flowchart
-2. write and modify the user stories
-3. satisfy the needs with userstory
+1. Verify the function of all websites and draw the related flowchart
+2. Write and modify the user stories
+3. Satisfy the needs with userstory
 
 
 week 4
-1. make use of coreui framework to construct mainpage and research page result.
-2. complete the connection with mainpage and sign in/up page.
-3. learn how to write thumbup and comment function
+1. Make use of coreui framework to construct mainpage and research page result.
+2. Complete the connection with mainpage and sign in/up page.
+3. Learn how to write thumbup and comment function
 
 week 5
+1. Write the contributor relative pages.
+2. Modify some user stories and split up contributor and explorer authority.
+3. Complete the related report.
+4. Prepare for Demo A
+
+week 6
+1. Reflect on the demo and complete the retrospective report.
+2. Complete the contributor functions.
+
+week 7
+1. Design and write the contributor profile, comment, like, payment webpage.
+2. Learn how to get data from back-end with token and display them in the front-end.
+ 
+
+week 8
+1. Get the data from the backend api in comments and likes api(for both contributors and explorers).
+2. Upload photos and users data for debugging of corresponding functions.
+3. Debug the function of the system.
+4. Prepare for Demo B
+
+week 9
+1. Add a function of summing up all likes, comments and purchases.
+2. Debug the function of the system.
+3. Write all the third party function introduction and find relative literature in the report.
+4. Reflect on the demo B and complete the retrospective report.
+
+week 10
+1. Prepare for the presentation.
+
 
