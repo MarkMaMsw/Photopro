@@ -35,7 +35,8 @@ cd my-project
 2. install dependencies
 npm install
 3. modify the backend address in /my-project/src/components/api/url.js
-If you access some 404 images, it denotes these images are not stored in the currently setting backend address. Maybe you should change the backend url in the url.js.
+If you access some 404 images, it denotes these images are not stored in the currently setting backend address. 
+Maybe you should change the local backend url into our cloud service url in the url.js.
 4. run this project using script
 npm start
 Then frontend will run on port 3000
