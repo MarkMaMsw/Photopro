@@ -1,6 +1,5 @@
 # COMP9900
 ## Our team has submitted zip file through GitHub classroom repository.
-## URL: https://github.com/unsw-cse-capstone-project/capstone-project-comp9900-h16a-fighting
 # Project: PhotoPro
 # COMP9900-H16A-Fighting!
 
